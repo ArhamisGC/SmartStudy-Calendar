@@ -35,7 +35,6 @@ import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
-
 @NgModule({
   declarations: [
     AppComponent,
