@@ -3,14 +3,54 @@
   <header class="app-header">
     <h1>Lista de Tareas</h1>
   </header>
-  <div class="task-input">
-    <input type="text" [(ngModel)]="newTaskTitle" placeholder="Añade una nueva tarea..." />
-    <button (click)="addTask(newTaskTitle)"><i class="fa fa-plus"></i></button>
-  </div>
-  <ul class="task-list">
-    <li *ngFor="let task of tasks">
-      <span>{{ task.title }}</span>
-      <button (click)="removeTask(task.id)"><i class="fa fa-trash"></i></button>
-    </li>
-  </ul>
+  <!-- todo.component.html -->
+<div>
+  <input type="text" [(ngModel)]="newTaskTitle" placeholder="Task title" />
+  <input type="number" [(ngModel)]="newTaskOrder" placeholder="Order" min="1" />
+  
+  <select [(ngModel)]="newTaskPriority">
+    <option [value]="1">Alta</option>
+    <option [value]="2">Media</option>
+    <option [value]="3">Baja</option>
+  </select>
+
+  <select [(ngModel)]="newTaskStatus">
+    <option [value]="0">Pendiente</option>
+    <option [value]="1">Completado</option>
+  </select>
+
+  <button (click)="addTask()">Add Task</button>
+</div>
+
+<!-- Lista de tareas -->
+<ul>
+  <li *ngFor="let task of tasks">
+    <div>
+      <span>{{ task.title }} (Priority: {{ task.priority }}, Status: {{ task.status }}, Order: {{ task.order }})</span>
+      <button (click)="editTask(task)">Edit</button>
+      <button (click)="removeTask(task.id)">Delete</button>
+    </div>
+
+    <!-- Formulario de edición por cada tarea (podrías hacer esto en un modal o inline) -->
+    <div *ngIf="task.editing">
+      <input type="text" [(ngModel)]="task.title" placeholder="Task title" />
+      <input type="number" [(ngModel)]="task.order" placeholder="Order" />
+      
+      <select [(ngModel)]="task.priority">
+        <option [value]="1">Alta</option>
+        <option [value]="2">Media</option>
+        <option [value]="3">Baja</option>
+      </select>
+
+      <select [(ngModel)]="task.status">
+        <option [value]="0">Pendiente</option>
+        <option [value]="1">Completado</option>
+      </select>
+
+      <button (click)="updateTask(task)">Update</button>
+      <button (click)="cancelEdit(task)">Cancel</button>
+    </div>
+  </li>
+</ul>
+
 </div>
