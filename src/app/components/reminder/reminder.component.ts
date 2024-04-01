@@ -6,11 +6,12 @@ import { User } from '../../interfaces/user.interface';
 import {user} from "@angular/fire/auth";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-reminder',
+  templateUrl: './reminder.component.html',
+  styleUrls: ['./reminder.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class ReminderComponent implements OnInit{
+  reminder = { description: '', time: '' };
   user$: Observable<User | undefined>;
   protected userData: any;
 
@@ -27,14 +28,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  navigateTo(path: string): void {
-    this.router.navigate([path]);
+  createReminder() {
+    console.log(this.reminder);
+    // Here you would add logic to save the reminder to Firebase
   }
-
-  logout(): void {
-    this.userService.logout();
-    this.router.navigate(['/logout']);
-  }
-
-  protected readonly user = user;
 }

@@ -35,6 +35,8 @@ import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
+import { RecordatorioComponent } from './recordatorio/recordatorio.component';
+import { ReminderComponent } from './reminder/reminder.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
     LogoutComponent,
     DashboardComponent,
     NotesComponent,
-    TodoComponent
+    TodoComponent,
+    RecordatorioComponent,
+    ReminderComponent
   ],
   imports: [
     BrowserModule,
