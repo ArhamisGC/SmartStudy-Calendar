@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 .subject-creator-overlay {
-  font-family: 'Roboto', sans-serif;
+  all: initial;
+  font-family: 'Poppins', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,6 +15,8 @@
 }
 
 .subject-creator-container {
+  all: revert;
+  font-family: 'Poppins', sans-serif;
   background-color: #fff;
   padding: 20px;
   border-radius: 12px;
@@ -21,20 +24,24 @@
   width: 600px;
   max-height: 80%;
   position: relative;
-  overflow: auto;
+  overflow-x: hidden; /* Prevents horizontal scrollbar */
+  overflow-y: auto; /* Allows vertical scrollbar if needed */
+  box-sizing: border-box;
 }
 
-/* Styles for form elements */
 .form-group {
+  all: revert;
   margin-bottom: 20px;
 }
 
 label {
+  all: revert;
   display: block;
   margin-bottom: 5px;
 }
 
 h4 {
+  all: revert;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 23px;
@@ -43,6 +50,7 @@ h4 {
 }
 
 input[type="text"], input[type="email"], textarea {
+  all: revert;
   width: 100%;
   padding: 12px;
   margin-bottom: 10px;
@@ -52,8 +60,9 @@ input[type="text"], input[type="email"], textarea {
   background-color: #f9f9f9;
 }
 
-/* Button Styles */
 .btn-primary {
+  all: revert;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 500;
   padding: 10px 20px;
@@ -75,6 +84,7 @@ input[type="text"], input[type="email"], textarea {
 }
 
 .close-button {
+  all: revert;
   cursor: pointer;
   font-size: 24px;
   color: #666;
@@ -88,6 +98,7 @@ input[type="text"], input[type="email"], textarea {
 }
 
 .action-buttons {
+  all: revert;
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
