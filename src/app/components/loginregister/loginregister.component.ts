@@ -89,7 +89,7 @@ export class LoginregisterComponent{
         container.classList.remove("active");
       }
     }).catch(error => {
-      alert('Error al registrar:' + error);
+      alert('Error al registrar: ' + error);
     });
   }
 
