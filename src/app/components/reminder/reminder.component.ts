@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { Observable, of } from 'rxjs';
 import { User } from '../../interfaces/user.interface';
+import Reminder from '../../interfaces/reminder.interface';
 import {user} from "@angular/fire/auth";
 
 @Component({
@@ -11,7 +12,12 @@ import {user} from "@angular/fire/auth";
   styleUrls: ['./reminder.component.css']
 })
 export class ReminderComponent implements OnInit{
-  reminder = { description: '', time: '' };
+  reminder: Reminder = { description: '', time: '', date: '' }; // CHANGED: Added date
+  reminders: Reminder[] = []; // Array para almacenar los recordatorios
+
+  submitted = false;
+  formValid = true;
+
   user$: Observable<User | undefined>;
   protected userData: any;
 
@@ -29,7 +35,16 @@ export class ReminderComponent implements OnInit{
   }
 
   createReminder() {
-    console.log(this.reminder);
-    // Here you would add logic to save the reminder to Firebase
+    this.submitted = true;
+    this.validateForm();
+    if (!this.formValid) return;
+
+    console.log('Reminder creado:', this.reminder);
+  }
+  validateForm() {
+    this.formValid = this.reminder.description.trim().length > 0 &&
+      this.reminder.time.trim().length > 0 &&
+      this.reminder.date.trim().length > 0;
   }
 }
+

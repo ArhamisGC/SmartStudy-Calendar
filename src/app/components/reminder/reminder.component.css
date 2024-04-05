@@ -1,32 +1,69 @@
 .reminder-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #E8EDDF;
   color: #242423;
   padding: 20px;
   border-radius: 8px;
+  width: 97%; /* Modificado a 97% */
+}
+
+/* Secciones adicionales permanecen igual, se añade estilo para error */
+.error-message {
+  color: red;
+  margin-top: 5px;
 }
 
 .form-group {
   margin-bottom: 15px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
+.form-row { /* CHANGED: For inline elements */
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-input[type="text"], input[type="time"] {
-  width: 100%;
+.time-date { /* CHANGED: Adjustments for inline display */
+  margin: 0 10px; /* Give some space between the inputs */
+}
+
+input[type="text"], input[type="time"], input[type="date"] {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
   border: 1px solid #333533;
+  box-sizing: border-box;
+}
+
+input[type="text"] {
+  width: 100%; /* Ensure full width for input */
 }
 
 button {
-  background-color: #F5CB5C;
-  color: #242423;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 100%; /* CHANGED: Make button full width */
+  background-color: #F5CB5C;
+  color: #242423;
+}
+
+.description label, .description input[type="text"] {
+  width: 100%; /* CHANGED: Ensure label and input take full width */
+  text-align: center; /* CHANGED: Center text and label */
+}
+
+.form-group.description { /* CHANGED: Special styling for description */
+  width: 100%;
+}
+
+button {
+  transition: transform 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
 }

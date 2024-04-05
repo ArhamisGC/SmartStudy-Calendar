@@ -1,18 +1,29 @@
+<app-header></app-header>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
 <body>
   <div class="reminder-container">
-    <form (submit)="createReminder()">
-      <div class="form-group">
-        <label for="description">Reminder Description</label>
-        <input type="text" id="description" [(ngModel)]="reminder.description" name="description" required>
-      </div>
-      <div class="form-group">
+    <div class="form-group description">
+      <label for="description">Reminder Description</label>
+      <input type="text" id="description" [(ngModel)]="reminder.description" name="description" (change)="validateForm()" required>
+    </div>
+    <div class="form-row">
+      <div class="form-group time-date">
         <label for="time">Time</label>
-        <input type="time" id="time" [(ngModel)]="reminder.time" name="time" required>
+        <!-- Revertido a input de tipo time -->
+        <input type="time" id="time" [(ngModel)]="reminder.time" name="time" (change)="validateForm()" required>
       </div>
-      <button type="submit">Create Reminder</button>
-    </form>
+      <div class="form-group time-date">
+        <label for="date">Date</label>
+        <input type="date" id="date" [(ngModel)]="reminder.date" name="date" (change)="validateForm()" required>
+      </div>
+    </div>
+    <button type="button" (click)="createReminder()">Create Reminder</button>
+    <!-- Mensaje de error solo aparece bajo ciertas condiciones -->
+    <div *ngIf="submitted && !formValid" class="error-message">All fields are required</div>
   </div>
 </body>
+
+
+
