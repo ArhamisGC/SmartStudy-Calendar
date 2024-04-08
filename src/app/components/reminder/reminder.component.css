@@ -65,5 +65,135 @@ button {
 }
 
 button:hover {
-  transform: scale(1.05);
+  transform: scale(1.025);
 }
+
+.message-success, .message-error {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  z-index: 1000; /* Asegura que el mensaje esté por encima de otros elementos */
+}
+
+.message-success {
+  background-color: #4CAF50; /* Verde */
+}
+
+.message-error {
+  background-color: #f44336; /* Rojo */
+}
+
+.extra-square {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 10px;
+  padding: 20px;
+  background-color: #E8EDDF;
+  margin-top: 30px; /* Aumenta el margen superior para crear separación */
+  box-sizing: border-box;
+}
+
+.reminder-item {
+  flex: 0 1 48%;
+  background-color: #FFFFFF;
+  padding: 10px; /* Ajuste según sea necesario para reducir la altura */
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reminder-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; /* Espacio entre los botones */
+}
+
+.action-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.action-button:first-child {
+  background-color: #4CAF50; /* Color para el botón Prueba */
+  color: white;
+}
+
+.action-button:last-child {
+  background-color: #f44336; /* Color para el botón Eliminar */
+  color: white;
+}
+
+/* Añade o ajusta según los estilos existentes */
+.edit-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: auto;
+  text-align: center;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.modal-content h2{
+  text-align: center;
+}
+
+.modal-actions button {
+  margin: 5px;
+  padding: 5px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content modal-actions button:first-child {
+  background-color: #f44336; /* Rojo para confirmar */
+  color: white;
+}
+
+.edit-modal-content modal-actions button:first-child {
+  background-color: #4CAF50; /* Rojo para confirmar */
+  color: white;
+}
+
+.modal-content modal-actions button:last-child {
+  background-color: #4CAF50; /* Verde para cancelar */
+  color: white;
+}
+
+.edit-modal-content modal-actions button:last-child {
+  background-color: #f44336; /* Rojo para confirmar */
+  color: white;
+}
+
+
+
+

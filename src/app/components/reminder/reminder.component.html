@@ -3,6 +3,11 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
 <body>
+  <div *ngIf="showMessageSuccess" class="message-success">Recordatorio creado con éxito.</div>
+  <div *ngIf="showMessageError" class="message-error">Por favor, rellena todos los campos.</div>
+
+  <!--Logistica y creación de los recordatorios-->
+
   <div class="reminder-container">
     <div class="form-group description">
       <label for="description">Reminder Description</label>
@@ -20,8 +25,58 @@
       </div>
     </div>
     <button type="button" (click)="createReminder()">Create Reminder</button>
-    <!-- Mensaje de error solo aparece bajo ciertas condiciones -->
-    <div *ngIf="submitted && !formValid" class="error-message">All fields are required</div>
+  </div>
+
+  <!--Almacenamientos de recordatorios-->
+
+  <div class="extra-square">
+    <div *ngFor="let reminder of reminders; let i = index" class="reminder-item">
+      <div>
+        <h3>{{ reminder.description }}</h3>
+        <p>Time: {{ reminder.time }}</p>
+        <p>Date: {{ reminder.date }}</p>
+        <div class="reminder-actions">
+          <button (click)="openEditModal(i)">Editar</button>
+          <button (click)="openModal(i)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Logistica de cancelación-->
+
+  <div *ngIf="showModal" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Confirmar eliminación</h2>
+      <p>¿Estás seguro de que deseas eliminar este recordatorio?</p>
+      <div class="modal-actions">
+        <button (click)="confirmDeletion()">Confirmar</button>
+        <button (click)="cancelDeletion()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!--Logistica de edición-->
+
+  <div *ngIf="showEditModal" class="modal-overlay">
+    <div class="edit-modal-content">
+      <h2>Editar Recordatorio</h2>
+      <form>
+        <label for="editDescription">Descripción:</label>
+        <input type="text" id="editDescription" [(ngModel)]="editReminder.description" name="editDescription">
+
+        <label for="editTime">Hora:</label>
+        <input type="time" id="editTime" [(ngModel)]="editReminder.time" name="editTime">
+
+        <label for="editDate">Fecha:</label>
+        <input type="date" id="editDate" [(ngModel)]="editReminder.date" name="editDate">
+
+        <div class="modal-actions">
+          <button type="button" (click)="confirmEdit()">Editar</button>
+          <button type="button" (click)="cancelEdit()">Cancelar</button>
+        </div>
+      </form>
+    </div>
   </div>
 </body>
 
