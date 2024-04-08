@@ -23,7 +23,5 @@ describe('ReminderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  // Additional tests can be added here
 });
 

@@ -10,35 +10,40 @@
 
   <div class="reminder-container">
     <div class="form-group description">
-      <label for="description">Reminder Description</label>
-      <input type="text" id="description" [(ngModel)]="reminder.description" name="description" (change)="validateForm()" required>
+      <input type="text" id="description" [(ngModel)]="reminder.description" name="description" placeholder="Reminder Description" (change)="validateForm()" required>
     </div>
     <div class="form-row">
       <div class="form-group time-date">
-        <label for="time">Time</label>
-        <!-- Revertido a input de tipo time -->
+        <label for="time">Time  </label>
         <input type="time" id="time" [(ngModel)]="reminder.time" name="time" (change)="validateForm()" required>
       </div>
       <div class="form-group time-date">
-        <label for="date">Date</label>
+        <label for="date">Date  </label>
         <input type="date" id="date" [(ngModel)]="reminder.date" name="date" (change)="validateForm()" required>
       </div>
     </div>
     <button type="button" (click)="createReminder()">Create Reminder</button>
   </div>
 
+  <!--Gestión de los recordatorios-->
+
+  <div class="sort-container">
+    <select (change)="changeSortOrder($event)">
+      <option value="creation">Por Creación</option>
+      <option value="alphabetical">Alfabéticamente</option>
+      <option value="time">Por Proximidad</option>
+    </select>
+  </div>
+
   <!--Almacenamientos de recordatorios-->
 
   <div class="extra-square">
     <div *ngFor="let reminder of reminders; let i = index" class="reminder-item">
-      <div>
-        <h3>{{ reminder.description }}</h3>
-        <p>Time: {{ reminder.time }}</p>
-        <p>Date: {{ reminder.date }}</p>
-        <div class="reminder-actions">
-          <button (click)="openEditModal(i)">Editar</button>
-          <button (click)="openModal(i)">Eliminar</button>
-        </div>
+      <h3>{{ reminder.description }}</h3>
+      <p class="time-date">Hora: {{ reminder.time }} Fecha: {{ formatDate(reminder.date) }}</p>
+      <div class="reminder-actions">
+        <button (click)="openEditModal(i)">Editar</button>
+        <button (click)="openModal(i)">Eliminar</button>
       </div>
     </div>
   </div>
@@ -63,14 +68,15 @@
     <div class="edit-modal-content">
       <h2>Editar Recordatorio</h2>
       <form>
-        <label for="editDescription">Descripción:</label>
         <input type="text" id="editDescription" [(ngModel)]="editReminder.description" name="editDescription">
 
-        <label for="editTime">Hora:</label>
-        <input type="time" id="editTime" [(ngModel)]="editReminder.time" name="editTime">
-
-        <label for="editDate">Fecha:</label>
-        <input type="date" id="editDate" [(ngModel)]="editReminder.date" name="editDate">
+        <div class="form-field inline-fields">
+          <label for="editTime">Hora:</label>
+          <input type="time" id="editTime" [(ngModel)]="editReminder.time" name="editTime">
+          <span class="spacer"></span> <!-- Espaciador entre hora y fecha -->
+          <label for="editDate">Fecha:</label>
+          <input type="date" id="editDate" [(ngModel)]="editReminder.date" name="editDate">
+        </div>
 
         <div class="modal-actions">
           <button type="button" (click)="confirmEdit()" class="edit">Editar</button>

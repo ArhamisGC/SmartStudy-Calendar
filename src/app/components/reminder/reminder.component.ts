@@ -12,24 +12,27 @@ import {user} from "@angular/fire/auth";
   styleUrls: ['./reminder.component.css']
 })
 export class ReminderComponent implements OnInit{
-  //Base
-  reminder: Reminder = { description: '', time: '', date: '' }; // CHANGED: Added date
-  reminders: Reminder[] = []; // Array para almacenar los recordatorios
+  // Base
+  reminder: Reminder = { description: '', time: '', date: '' };
+  reminders: Reminder[] = [];
 
   // Modales Cancelar
   showModal: boolean = false;
-  currentIndex: number = -1; // Index del recordatorio actual para eliminar
+  currentIndex: number = -1;
 
   // Modales Editar
   editReminder: Reminder = { description: '', time: '', date: '' };
   showEditModal: boolean = false;
-  editIndex: number = -1; // Para saber cuál recordatorio estamos editando
+  editIndex: number = -1;
 
-  //Mesajes de confirmación
+  // Mesajes de confirmación
   showMessageSuccess: boolean = false;
   showMessageError: boolean = false;
   formValid:boolean = true;
   errorMessage: string = '';
+
+  // Gestión de los recordatorios
+  sortOrder: string = 'creation';
 
   user$: Observable<User | undefined>;
   protected userData: any;
@@ -49,13 +52,13 @@ export class ReminderComponent implements OnInit{
   createReminder() {
     this.validateForm();
     if (this.formValid) {
-      this.reminders.push({...this.reminder}); // Añade el recordatorio
+      this.reminders.push({...this.reminder});
       this.showMessageSuccess = true;
-      setTimeout(() => this.showMessageSuccess = false, 3000); // Oculta el mensaje de éxito después de 3 segundos
-      this.resetForm();
+      setTimeout(() => this.showMessageSuccess = false, 3000);
+      //this.resetForm();
     } else {
       this.showMessageError = true;
-      setTimeout(() => this.showMessageError = false, 3000); // Oculta el mensaje de error después de 3 segundos
+      setTimeout(() => this.showMessageError = false, 3000);
     }
   }
   validateForm() {
@@ -68,20 +71,49 @@ export class ReminderComponent implements OnInit{
 
     if (!this.formValid) {
       this.errorMessage = "Por favor, rellena todos los campos.";
-      return; // Termina la ejecución si algún campo está vacío
+      return;
     } else if (reminderDate < currentDate) {
       this.formValid = false;
       this.errorMessage = "La fecha y hora deben ser correctas";
     } else {
-      this.errorMessage = ""; // No hay errores
+      this.errorMessage = "";
     }
+  }
 
-    // Note que el mostrar u ocultar el mensaje de error se maneja en las funciones de creación/edición
+  // Alteración de datos
+
+  formatDate(date: string): string {
+    return date.split('-').reverse().join('-');
   }
 
   resetForm() {
     this.reminder = { description: '', time: '', date: '' };
   }
+
+  // Gestión
+
+  changeSortOrder(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    this.sortOrder = selectElement.value;
+    this.sortReminders();
+  }
+
+  sortReminders() {
+    if (this.sortOrder === 'alphabetical') {
+      this.reminders.sort((a, b) => a.description.localeCompare(b.description));
+    } else if (this.sortOrder === 'time') {
+      this.reminders.sort((a, b) => {
+        const dateA = new Date(a.date + 'T' + a.time);
+        const dateB = new Date(b.date + 'T' + b.time);
+        return dateA.getTime() - dateB.getTime();
+      });
+    } else { // Orden por creación
+      // Si tus recordatorios no tienen un timestamp de creación, podrías necesitar manejar esto de manera diferente.
+      // Por simplicidad, asumimos que no necesitan reordenarse ya que el orden de creación es el orden por defecto.
+    }
+  }
+
+  // Modales
 
   openModal(index: number): void {
     this.currentIndex = index;
@@ -92,19 +124,18 @@ export class ReminderComponent implements OnInit{
     if (this.currentIndex !== -1) {
       this.reminders.splice(this.currentIndex, 1);
       this.showModal = false;
-      this.currentIndex = -1; // Restablece el índice
+      this.currentIndex = -1;
     }
   }
 
   cancelDeletion(): void {
     this.showModal = false;
-    this.currentIndex = -1; // Restablece el índice
+    this.currentIndex = -1;
   }
 
-  // Métodos para manejar el modal de edición
   openEditModal(index: number): void {
     this.editIndex = index;
-    this.editReminder = {...this.reminders[index]}; // Copia el recordatorio a editar
+    this.editReminder = {...this.reminders[index]};
     this.showEditModal = true;
   }
 
@@ -112,12 +143,12 @@ export class ReminderComponent implements OnInit{
     this.validateForm();
     if (this.formValid) {
       if (this.editIndex !== -1) {
-        this.reminders[this.editIndex] = {...this.editReminder}; // Actualiza el recordatorio
+        this.reminders[this.editIndex] = {...this.editReminder};
         this.showEditModal = false;
       }
     } else {
       this.showMessageError = true;
-      setTimeout(() => this.showMessageError = false, 3000); // Oculta el mensaje de error después de 3 segundos
+      setTimeout(() => this.showMessageError = false, 3000);
     }
   }
 

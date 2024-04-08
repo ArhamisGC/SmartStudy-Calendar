@@ -1,3 +1,31 @@
+/* Estilo de los mensajes */
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}
+
+.message-success {
+  background-color: #4CAF50;
+}
+
+.message-error {
+  background-color: #f44336;
+}
+
+.message-success, .message-error {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+/* Estilo del Relleno de Recordatorios */
+
 .reminder-container {
   display: flex;
   flex-direction: column;
@@ -6,27 +34,21 @@
   color: #242423;
   padding: 20px;
   border-radius: 8px;
-  width: 97%; /* Modificado a 97% */
-}
-
-/* Secciones adicionales permanecen igual, se añade estilo para error */
-.error-message {
-  color: red;
-  margin-top: 5px;
+  width: 97%;
 }
 
 .form-group {
   margin-bottom: 15px;
 }
 
-.form-row { /* CHANGED: For inline elements */
+.form-row {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-.time-date { /* CHANGED: Adjustments for inline display */
-  margin: 0 10px; /* Give some space between the inputs */
+.time-date {
+  margin: 0 10px;
 }
 
 input[type="text"], input[type="time"], input[type="date"] {
@@ -38,7 +60,16 @@ input[type="text"], input[type="time"], input[type="date"] {
 }
 
 input[type="text"] {
-  width: 100%; /* Ensure full width for input */
+  width: 100%;
+}
+
+.description label, .description input[type="text"] {
+  width: 100%;
+  text-align: center;
+}
+
+.form-group.description {
+  width: 100%;
 }
 
 button {
@@ -46,18 +77,9 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 100%; /* CHANGED: Make button full width */
+  width: 100%;
   background-color: #F5CB5C;
   color: #242423;
-}
-
-.description label, .description input[type="text"] {
-  width: 100%; /* CHANGED: Ensure label and input take full width */
-  text-align: center; /* CHANGED: Center text and label */
-}
-
-.form-group.description { /* CHANGED: Special styling for description */
-  width: 100%;
 }
 
 button {
@@ -68,40 +90,24 @@ button:hover {
   transform: scale(1.025);
 }
 
-.message-success, .message-error {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px;
-  color: white;
-  border-radius: 5px;
-  z-index: 1000; /* Asegura que el mensaje esté por encima de otros elementos */
-}
-
-.message-success {
-  background-color: #4CAF50; /* Verde */
-}
-
-.message-error {
-  background-color: #f44336; /* Rojo */
-}
+/* Estilo del cuadrado */
 
 .extra-square {
+  font-family: 'Helvetica', sans-serif;
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
   gap: 10px;
   padding: 20px;
   background-color: #E8EDDF;
-  margin-top: 30px; /* Aumenta el margen superior para crear separación */
+  margin-top: 10px;
   box-sizing: border-box;
 }
 
 .reminder-item {
-  flex: 0 1 48%;
+  flex: 0 1 31%;
   background-color: #FFFFFF;
-  padding: 10px; /* Ajuste según sea necesario para reducir la altura */
+  padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -110,10 +116,28 @@ button:hover {
   justify-content: space-between;
 }
 
+.reminder-item h3 {
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+.reminder-item p {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.reminder-item .time-date {
+  text-align: center;
+}
+
 .reminder-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 10px; /* Espacio entre los botones */
+  gap: 10px;
+}
+
+.extra-square .reminder-item p {
+  margin-bottom: 10px;
 }
 
 .action-button {
@@ -124,18 +148,19 @@ button:hover {
 }
 
 .action-button:first-child {
-  background-color: #4CAF50; /* Color para el botón Prueba */
+  background-color: #4CAF50;
   color: white;
 }
 
 .action-button:last-child {
-  background-color: #f44336; /* Color para el botón Eliminar */
+  background-color: #f44336;
   color: white;
 }
 
-/* Añade o ajusta según los estilos existentes */
+/* Estilo del mensaje extra (Edición y Eliminar) */
+
 .edit-modal-content {
-  background-color: white;
+  background-color: #CFDBD5;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -156,14 +181,29 @@ button:hover {
 }
 
 .modal-content {
-  background-color: white;
+  background-color: #CFDBD5;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
-.modal-content h2{
+.inline-fields input {
+  margin-right: 5px;
+}
+
+.spacer {
+  display: inline-block;
+  width: 10px;
+}
+
+.edit-modal-content input[type="text"] {
   text-align: center;
+  width: 100%;
+}
+
+.sort-container {
+  text-align: right;
+  margin-top: 10px;
 }
 
 .modal-actions button {
@@ -175,23 +215,22 @@ button:hover {
 }
 
 .modal-content .modal-actions button.delete {
-  background-color: #f44336; /* Rojo */
+  background-color: #f44336;
   color: white;
 }
 
 .modal-content .modal-actions button.cancel {
-  background-color: #4CAF50; /* Verde */
+  background-color: #4CAF50;
   color: white;
 }
 
 .edit-modal-content .modal-actions button.edit {
-  background-color: #4CAF50; /* Verde */
+  background-color: #4CAF50;
   color: white;
 }
 
-/* Estilos para el botón Cancelar, ahora con fondo rojo */
 .edit-modal-content .modal-actions button.cancel {
-  background-color: #f44336; /* Rojo */
+  background-color: #f44336;
   color: white;
 }
 
