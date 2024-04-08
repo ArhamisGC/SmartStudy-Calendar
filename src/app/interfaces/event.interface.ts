@@ -10,4 +10,5 @@ export default interface Event {
   description?: string;
   courseRef?: DocumentReference<Course>;
   course?: Course;
+  notified?: boolean;
 }
