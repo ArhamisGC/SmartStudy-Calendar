@@ -174,23 +174,24 @@ button:hover {
   cursor: pointer;
 }
 
-.modal-content modal-actions button:first-child {
-  background-color: #f44336; /* Rojo para confirmar */
+.modal-content .modal-actions button.delete {
+  background-color: #f44336; /* Rojo */
   color: white;
 }
 
-.edit-modal-content modal-actions button:first-child {
-  background-color: #4CAF50; /* Rojo para confirmar */
+.modal-content .modal-actions button.cancel {
+  background-color: #4CAF50; /* Verde */
   color: white;
 }
 
-.modal-content modal-actions button:last-child {
-  background-color: #4CAF50; /* Verde para cancelar */
+.edit-modal-content .modal-actions button.edit {
+  background-color: #4CAF50; /* Verde */
   color: white;
 }
 
-.edit-modal-content modal-actions button:last-child {
-  background-color: #f44336; /* Rojo para confirmar */
+/* Estilos para el botón Cancelar, ahora con fondo rojo */
+.edit-modal-content .modal-actions button.cancel {
+  background-color: #f44336; /* Rojo */
   color: white;
 }
 

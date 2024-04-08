@@ -29,6 +29,7 @@ export class ReminderComponent implements OnInit{
   showMessageSuccess: boolean = false;
   showMessageError: boolean = false;
   formValid:boolean = true;
+  errorMessage: string = '';
 
   user$: Observable<User | undefined>;
   protected userData: any;
@@ -45,25 +46,39 @@ export class ReminderComponent implements OnInit{
       }
     });
   }
-
   createReminder() {
-    this.validateForm()
+    this.validateForm();
     if (this.formValid) {
-      this.reminders.push({...this.reminder});
+      this.reminders.push({...this.reminder}); // Añade el recordatorio
       this.showMessageSuccess = true;
-      this.showMessageError = false;
-      setTimeout(() => this.showMessageSuccess = false, 3000); // El mensaje de éxito desaparece después de 3 segundos
-      //this.resetForm();
+      setTimeout(() => this.showMessageSuccess = false, 3000); // Oculta el mensaje de éxito después de 3 segundos
+      this.resetForm();
     } else {
       this.showMessageError = true;
-      setTimeout(() => this.showMessageError = false, 3000); // El mensaje de error desaparece después de 3 segundos
+      setTimeout(() => this.showMessageError = false, 3000); // Oculta el mensaje de error después de 3 segundos
     }
   }
-  validateForm()  {
+  validateForm() {
+    const currentDate = new Date();
+    const reminderDate = new Date(this.reminder.date + 'T' + this.reminder.time);
+
     this.formValid = this.reminder.description.trim().length > 0 &&
       this.reminder.time.trim().length > 0 &&
       this.reminder.date.trim().length > 0;
+
+    if (!this.formValid) {
+      this.errorMessage = "Por favor, rellena todos los campos.";
+      return; // Termina la ejecución si algún campo está vacío
+    } else if (reminderDate < currentDate) {
+      this.formValid = false;
+      this.errorMessage = "La fecha y hora deben ser correctas";
+    } else {
+      this.errorMessage = ""; // No hay errores
+    }
+
+    // Note que el mostrar u ocultar el mensaje de error se maneja en las funciones de creación/edición
   }
+
   resetForm() {
     this.reminder = { description: '', time: '', date: '' };
   }
@@ -93,10 +108,16 @@ export class ReminderComponent implements OnInit{
     this.showEditModal = true;
   }
 
-  confirmEdit(): void {
-    if (this.editIndex !== -1) {
-      this.reminders[this.editIndex] = {...this.editReminder}; // Actualiza el recordatorio
-      this.showEditModal = false;
+  confirmEdit() {
+    this.validateForm();
+    if (this.formValid) {
+      if (this.editIndex !== -1) {
+        this.reminders[this.editIndex] = {...this.editReminder}; // Actualiza el recordatorio
+        this.showEditModal = false;
+      }
+    } else {
+      this.showMessageError = true;
+      setTimeout(() => this.showMessageError = false, 3000); // Oculta el mensaje de error después de 3 segundos
     }
   }
 

@@ -4,7 +4,7 @@
 
 <body>
   <div *ngIf="showMessageSuccess" class="message-success">Recordatorio creado con éxito.</div>
-  <div *ngIf="showMessageError" class="message-error">Por favor, rellena todos los campos.</div>
+  <div *ngIf="showMessageError" class="message-error">{{ errorMessage }}</div>
 
   <!--Logistica y creación de los recordatorios-->
 
@@ -49,9 +49,10 @@
     <div class="modal-content">
       <h2>Confirmar eliminación</h2>
       <p>¿Estás seguro de que deseas eliminar este recordatorio?</p>
+
       <div class="modal-actions">
-        <button (click)="confirmDeletion()">Confirmar</button>
-        <button (click)="cancelDeletion()">Cancelar</button>
+        <button type="button" (click)="confirmDeletion()" class="delete">Eliminar</button>
+        <button type="button" (click)="cancelDeletion()" class="cancel">Cancelar</button>
       </div>
     </div>
   </div>
@@ -72,8 +73,8 @@
         <input type="date" id="editDate" [(ngModel)]="editReminder.date" name="editDate">
 
         <div class="modal-actions">
-          <button type="button" (click)="confirmEdit()">Editar</button>
-          <button type="button" (click)="cancelEdit()">Cancelar</button>
+          <button type="button" (click)="confirmEdit()" class="edit">Editar</button>
+          <button type="button" (click)="cancelEdit()" class="cancel">Cancelar</button>
         </div>
       </form>
     </div>
