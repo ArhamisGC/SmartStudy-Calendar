@@ -35,6 +35,7 @@ import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
+import { PomodoroComponent } from './components/pomodoro/pomodoro.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +58,8 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
     LogoutComponent,
     DashboardComponent,
     NotesComponent,
-    TodoComponent
+    TodoComponent,
+    PomodoroComponent
   ],
   imports: [
     BrowserModule,
