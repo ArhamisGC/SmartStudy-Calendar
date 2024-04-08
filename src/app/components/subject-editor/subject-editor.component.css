@@ -12,6 +12,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  overflow-x: hidden; /* Prevents horizontal scrollbar */
 }
 
 .subject-editor-container, .subject-manager-container {
@@ -22,7 +23,8 @@
   width: 600px;
   max-height: 80%;
   position: relative;
-  overflow: auto;
+  overflow-x: hidden; /* Prevents horizontal scrollbar */
+  overflow-y: auto; /* Allows vertical scrollbar if needed */
 }
 
 .form-group, .dialog-header, .courses-list-container, .course-actions, .create-course {
