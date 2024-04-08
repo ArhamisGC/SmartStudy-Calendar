@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import Note from '../../interfaces/note.interface';
+import Course from '../../interfaces/course.interface';
 import { NotesService } from '../../services/notes.service';
+import { CourseService } from '../../services/course.service';
+import {map} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {DocumentReference} from "@angular/fire/firestore";
 
 @Component({
   selector: 'app-notes',
@@ -15,20 +20,35 @@ export class NotesComponent implements OnInit {
   showColor:boolean = false;
   editingNoteId: string | undefined = undefined;
   private _searchText: string = '';
+  courses: Course[] = [];
+  selectedCourseColor: string | undefined = '';
+  selectedCourseId: any;
 
-  constructor(private notesService: NotesService) {
+  constructor(private notesService: NotesService, private courseService: CourseService) {
   }
 
   ngOnInit(): void {
-    this.loadNotes();
+    this.loadNotesWithCourseNames();
+    this.loadCourses();
   }
 
-  loadNotes(): void {
+  loadCourses(): void {
+    this.courseService.getAllCourses().subscribe(courses => this.courses = courses);
+  }
+
+  loadNotesWithCourseNames(): void {
     this.notesService.getNotes().subscribe(notes => {
-      this.notes = notes;
-      this.filterNotes();
+      this.courseService.getAllCourses().subscribe(courses => {
+        const coursesMap = new Map(courses.map(course => [course.id, course.name]));
+        this.notes = notes.map(note => ({
+          ...note,
+          courseName: note.courseRef ? coursesMap.get(note.courseRef.id) : 'Sin asignatura'
+        }));
+        this.filterNotes();
+      });
     });
   }
+
 
   filterNotes(): void {
     this.filteredNotes = this.notes.filter(note =>
@@ -50,26 +70,37 @@ export class NotesComponent implements OnInit {
     if (note) {
       this.editingNoteId = note.id;
       this.newNote = {...note};
-
+      // Si la nota ya tiene una asignatura, establece el color correspondiente
+      if(note.courseRef) {
+        this.courseService.getCourseFromReference(note.courseRef).subscribe(course => {
+          this.selectedCourseColor = course.color; // Asume que tu interfaz Course tiene un campo color
+        });
+      }
     } else {
       this.editingNoteId = undefined;
-      this.newNote = {title: '', description: '',color:''};
+      this.newNote = {title: '', description: '', color: ''};
+      this.selectedCourseColor = ''; // Resetear el color seleccionado
     }
   }
 
   submitNote(): void {
+    if (this.selectedCourseId) {
+      const courseRef = this.courseService.createRefToCourse(this.selectedCourseId);
+      this.newNote.courseRef = courseRef;
+    }
+
     if (this.editingNoteId) {
       // Actualizar una nota existente
       this.notesService.modifyNote(this.editingNoteId, this.newNote).then(() => {
         this.resetForm();
-        this.loadNotes(); // Recargar las notas para reflejar los cambios
+        this.loadNotesWithCourseNames(); // Recargar las notas para reflejar los cambios
       });
     } else {
       // Crear una nueva nota
       if (this.newNote.title && this.newNote.description) {
         this.notesService.addNote(this.newNote).then(() => {
           this.resetForm();
-          this.loadNotes(); // Recargar las notas para incluir la nueva
+          this.loadNotesWithCourseNames(); // Recargar las notas para incluir la nueva
         });
       }
     }
@@ -77,7 +108,7 @@ export class NotesComponent implements OnInit {
 
   deleteNote(noteId: string): void {
     this.notesService.deleteNote(noteId).then(() => {
-      this.loadNotes(); // Recargar las notas después de eliminar
+      this.loadNotesWithCourseNames(); // Recargar las notas después de eliminar
     });
   }
 
@@ -88,4 +119,16 @@ export class NotesComponent implements OnInit {
     this.editingNoteId = undefined;
   }
 
+  public createCourseRef(courseId: string | undefined) {
+    if (courseId === undefined) {
+      return;
+    }
+    return this.courseService.createRefToCourse(courseId);
+  }
+
+  getCourseNameObservable(courseRef: DocumentReference<Course>): Observable<string> {
+    return this.courseService.getCourseFromReference(courseRef).pipe(
+      map(course => course.name)
+    );
+  }
 }
