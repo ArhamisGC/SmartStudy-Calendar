@@ -10,8 +10,9 @@ import { NotesService } from '../../services/notes.service';
 export class NotesComponent implements OnInit {
   notes: Note[] = [];
   filteredNotes: Note[] = [];
-  newNote: Note = {title: '', description: ''};
+  newNote: Note = {title: '', description: '',color:''};
   showForm: boolean = false;
+  showColor:boolean = false;
   editingNoteId: string | undefined = undefined;
   private _searchText: string = '';
 
@@ -49,9 +50,10 @@ export class NotesComponent implements OnInit {
     if (note) {
       this.editingNoteId = note.id;
       this.newNote = {...note};
+
     } else {
       this.editingNoteId = undefined;
-      this.newNote = {title: '', description: ''};
+      this.newNote = {title: '', description: '',color:''};
     }
   }
 
@@ -81,7 +83,9 @@ export class NotesComponent implements OnInit {
 
   resetForm(): void {
     this.showForm = false;
-    this.newNote = {title: '', description: ''};
+    this.showColor = false;
+    this.newNote = {title: '', description: '',color:''};
     this.editingNoteId = undefined;
   }
+
 }
