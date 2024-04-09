@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { Observable, of } from 'rxjs';
 import { User } from '../../interfaces/user.interface';
-import { map } from 'rxjs/operators';
 import {user} from "@angular/fire/auth";
 
 @Component({

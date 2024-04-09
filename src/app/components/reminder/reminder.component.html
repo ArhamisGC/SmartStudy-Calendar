@@ -1,0 +1,81 @@
+<app-header></app-header>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+<body>
+  <div *ngIf="showMessageSuccess" class="message-success">Recordatorio creado con éxito.</div>
+  <div *ngIf="showMessageError" class="message-error">{{ errorMessage }}</div>
+
+  <div class="reminder-container">
+    <div class="form-group description">
+      <input type="text" id="description" [(ngModel)]="reminder.description" name="description" placeholder="Reminder Description" (change)="validateForm()" required>
+    </div>
+    <div class="form-row">
+      <div class="form-group time-date">
+        <label for="time">Time  </label>
+        <input type="time" id="time" [(ngModel)]="reminder.time" name="time" (change)="validateForm()" required>
+      </div>
+      <div class="form-group time-date">
+        <label for="date">Date  </label>
+        <input type="date" id="date" [(ngModel)]="reminder.date" name="date" (change)="validateForm()" required>
+      </div>
+    </div>
+    <button type="button" (click)="createReminder()">Create Reminder</button>
+  </div>
+
+  <div class="sort-container">
+    <select (change)="changeSortOrder($event)">
+      <option value="creation">Por Creación</option>
+      <option value="alphabetical">Alfabéticamente</option>
+      <option value="time">Por Proximidad</option>
+    </select>
+  </div>
+
+  <div class="extra-square">
+    <div *ngFor="let reminder of reminders; let i = index" class="reminder-item">
+      <h3>{{ reminder.description }}</h3>
+      <p class="time-date">Hora: {{ reminder.time }} Fecha: {{ formatDate(reminder.date) }}</p>
+      <div class="reminder-actions">
+        <button (click)="openEditModal(i)">Editar</button>
+        <button (click)="openModal(i)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showModal" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Confirmar eliminación</h2>
+      <p>¿Estás seguro de que deseas eliminar este recordatorio?</p>
+
+      <div class="modal-actions">
+        <button type="button" (click)="confirmDeletion()" class="delete">Eliminar</button>
+        <button type="button" (click)="cancelDeletion()" class="cancel">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showEditModal" class="modal-overlay">
+    <div class="edit-modal-content">
+      <h2>Editar Recordatorio</h2>
+      <form>
+        <input type="text" id="editDescription" [(ngModel)]="editReminder.description" name="editDescription">
+
+        <div class="form-field inline-fields">
+          <label for="editTime">Hora:</label>
+          <input type="time" id="editTime" [(ngModel)]="editReminder.time" name="editTime">
+          <span class="spacer"></span> <!-- Espaciador entre hora y fecha -->
+          <label for="editDate">Fecha:</label>
+          <input type="date" id="editDate" [(ngModel)]="editReminder.date" name="editDate">
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" (click)="confirmEdit()" class="edit">Editar</button>
+          <button type="button" (click)="cancelEdit()" class="cancel">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+
+

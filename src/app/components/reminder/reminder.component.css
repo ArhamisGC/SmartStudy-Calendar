@@ -1,0 +1,233 @@
+/* Estilo de los mensajes */
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}
+
+.message-success {
+  background-color: #4CAF50;
+}
+
+.message-error {
+  background-color: #f44336;
+}
+
+.message-success, .message-error {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.reminder-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #E8EDDF;
+  color: #242423;
+  padding: 20px;
+  border-radius: 8px;
+  width: 97%;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.time-date {
+  margin: 0 10px;
+}
+
+input[type="text"], input[type="time"], input[type="date"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #333533;
+  box-sizing: border-box;
+}
+
+input[type="text"] {
+  width: 100%;
+}
+
+.description label, .description input[type="text"] {
+  width: 100%;
+  text-align: center;
+}
+
+.form-group.description {
+  width: 100%;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  background-color: #F5CB5C;
+  color: #242423;
+}
+
+button {
+  transition: transform 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.025);
+}
+
+.extra-square {
+  font-family: 'Helvetica', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 10px;
+  padding: 20px;
+  background-color: #E8EDDF;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.reminder-item {
+  flex: 0 1 31%;
+  background-color: #FFFFFF;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reminder-item h3 {
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+.reminder-item p {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.reminder-item .time-date {
+  text-align: center;
+}
+
+.reminder-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.extra-square .reminder-item p {
+  margin-bottom: 10px;
+}
+
+.action-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.action-button:first-child {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.action-button:last-child {
+  background-color: #f44336;
+  color: white;
+}
+
+.edit-modal-content {
+  background-color: #CFDBD5;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: auto;
+  text-align: center;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #CFDBD5;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.inline-fields input {
+  margin-right: 5px;
+}
+
+.spacer {
+  display: inline-block;
+  width: 10px;
+}
+
+.edit-modal-content input[type="text"] {
+  text-align: center;
+  width: 100%;
+}
+
+.sort-container {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.modal-actions button {
+  margin: 5px;
+  padding: 5px 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-content .modal-actions button.delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.modal-content .modal-actions button.cancel {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.edit-modal-content .modal-actions button.edit {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.edit-modal-content .modal-actions button.cancel {
+  background-color: #f44336;
+  color: white;
+}
+
+
+
+
