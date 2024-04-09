@@ -38,6 +38,17 @@
         <input type="text" placeholder="Escribe aquí..." name="input" class="input" [(ngModel)]="newNote.description">
       </div>
 
+      <select [(ngModel)]="selectedCourseId">
+        <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
+      </select>
+
+      <div class="styled_input">
+        <label class="text">Color:</label>
+        <input type="color" name="input" class="input" [(ngModel)]="newNote.color">
+      </div>
+
+
+
       <div class="form-actions">
         <button (click)="submitNote()"><i class="fas fa-save"></i> Guardar</button>
         <button (click)="toggleForm()"><i class="fas fa-times"></i> Cancelar</button>
@@ -46,10 +57,12 @@
   </div>
 
   <div class="notes-list">
-    <div *ngFor="let note of filteredNotes" class="note-item">
+    <div *ngFor="let note of filteredNotes" class="note-item" [style.backgroundColor]="note.color">
       <div class="note-content">
         <h2>{{ note.title }}</h2>
+        <p>{{ [note.courseName] }}</p>
         <p>{{ note.description }}</p>
+
       </div>
       <div class="note-actions">
         <button (click)="toggleForm(note)"><i class="fas fa-edit"></i> Editar</button>
@@ -57,4 +70,5 @@
       </div>
     </div>
   </div>
+  <div class="asignaturas"></div>
 </div>

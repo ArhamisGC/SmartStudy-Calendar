@@ -17,10 +17,13 @@
     <header class="cabecera">
     </header>
     <div class="main-content">
-        <div class="grid-item" (click)="navigateTo('/calendar')"><i class="fas fa-calendar-alt"></i> Calendario</div>
-        <div class="grid-item" (click)="navigateTo('/notes')"><i class="fas fa-clipboard-list"></i> Notas</div>
+      <div class="grid-item" (click)="navigateTo('/calendar')"><i class="fas fa-calendar-alt"></i> Calendario</div>
+      <div class="grid-item" (click)="navigateTo('/notes')"><i class="fas fa-clipboard-list"></i> Notas</div>
+      <div class="grid-item" (click)="openSubjectManager()"><i class="fa solid fa-book-open"></i> Asignaturas</div>
+      <div class="grid-item" (click)="navigateTo('/pomodoro')"><i class="fa solid fa-stopwatch"></i> Pomodoro</div>
     </div>
   </div>
 </div>
 <script src="animations.js"></script>
 </body>
+<app-subject-manager *ngIf="showSubjectManager" (close)="closeSubjectManager()"></app-subject-manager>

@@ -6,4 +6,5 @@ export default interface Course {
   name: string;
   professorsRefs?: DocumentReference<Professor>[];
   description?: string;
+  color?: string;
 }

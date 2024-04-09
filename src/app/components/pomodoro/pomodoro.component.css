@@ -1,0 +1,85 @@
+/* style.css*/
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  line-height: 1.5;
+  min-height: 300vh;
+  background: #f3f3f3;
+  flex-direction: column;
+  margin: 0;
+}
+
+.main {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  padding: 10px 20px;
+  transition: transform 0.2s;
+  width: 500px;
+  height: 550px;
+  text-align: center;
+}
+
+.timer-circle {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  color: crimson;
+  border: 8px solid #ffcc00;
+}
+
+.time-control {
+  margin-top: 75px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.time-control button{
+  background-color: #ffcc00;
+  color: #000000;
+  border: 2px;
+  border-color: black;
+  padding: 10px 10px;
+  cursor: pointer;
+}
+
+.time-control button:hover {
+  background-color: rgba(255, 204, 0, 0.6);
+  transition: background-color 0.3s;
+}
+
+.time-control button:active {
+  background-color: rgba(255, 204, 0, 0.3);
+  transition: background-color 0.3s;
+}
+.control-buttons {
+  margin-top: 75px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.control-buttons button {
+  background-color: #ffcc00;
+  color: #000000;
+  border: 2px;
+  border-color: black;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.control-buttons button:hover {
+  background-color: rgba(255, 204, 0, 0.6);
+  transition: background-color 0.3s;
+}
+
+.control-buttons button:active {
+  background-color: rgba(255, 204, 0, 0.3);
+  transition: background-color 0.3s;
+}

@@ -1,0 +1,233 @@
+/* Estilos generales */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f7f7f7;
+}
+
+/* Estilos para el header */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 150px;
+  margin-left: 20px;
+}
+
+nav {
+  margin-right: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 20px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #f5cb5c;
+}
+
+/* Estilos para el banner */
+.banner {
+  background-color: #f5cb5c;
+  color: #333;
+  padding: 150px 0;
+  text-align: center;
+}
+
+.banner-heading {
+  font-size: 48px;
+  margin-bottom: 20px;
+  animation: slideUp 1s ease;
+}
+
+.banner-text {
+  font-size: 24px;
+  animation: slideUp 1s ease;
+}
+
+/* Animación para el texto del banner */
+@keyframes slideUp {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Estilos para las características */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.feature-item {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-10px);
+}
+
+.feature-item i {
+  font-size: 36px;
+  color: #f5cb5c;
+}
+
+.feature-item h3 {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.feature-item p {
+  font-size: 16px;
+}
+
+/* Estilos para la sección de precios */
+.pricing {
+  background-color: #fff;
+  padding: 50px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.pricing h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para la sección de quiénes somos */
+.about-us {
+  background-color: #f7f7f7;
+  padding: 50px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.about-us h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para la sección de la aplicación web */
+.web-app {
+  background-color: #fff;
+  padding: 50px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.web-app h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para las citas */
+.quotes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.quote-item {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 30px;
+  margin: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.quote-item blockquote {
+  font-size: 24px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.quote-item p {
+  font-size: 18px;
+}
+
+/* Estilos para el footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+nav a {
+  color: rgb(7, 6, 6);
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: rgba(47, 47, 47, 0.94);
+}
+
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons a {
+  color: #fff;
+  font-size: 24px;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #cfdbd5;
+}
+
+/* Estilos para el botón de inicio de sesión */
+.login-btn {
+  background-color: #cfdbd5;
+  color: #333;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background-color: #cfdbd5;
+  transform: scale(1.05);
+}
+
+.login-btn:active {
+  transform: scale(0.95);
+}

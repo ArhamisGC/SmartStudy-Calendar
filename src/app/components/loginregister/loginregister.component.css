@@ -74,10 +74,18 @@ body{
   height: 100%;
 }
 
+.error-message{
+  color: #ff0000;
+  font-size: 9px !important;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+  border: none !important;
+}
+
 .container input{
   background-color: #E8EDDF;
-  border: none;
-  margin: 8px 0;
+  border: 1px solid #333533;
+  margin: 4px 0;
   padding: 10px 15px;
   font-size: 13px;
   border-radius: 8px;
@@ -207,3 +215,5 @@ body{
 .container.active .toggle-right{
   transform: translateX(200%);
 }
+
+

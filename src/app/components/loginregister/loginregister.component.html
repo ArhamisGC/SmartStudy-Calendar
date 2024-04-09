@@ -2,20 +2,41 @@
 <body>
   <div class="container" id="container">
     <div class="form-container sign-up">
-      <form (ngSubmit)="registerUser(registerForm)" #registerForm="ngForm">
+      <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
         <h1>Crear Cuenta</h1>
-        <input type="text" placeholder="Nombre Completo" [(ngModel)]="userData.nombreCompleto" name="nombreCompleto" required>
-        <input type="email" placeholder="Email" [(ngModel)]="userData.email" name="email" required>
-        <input type="password" placeholder="Contraseña" [(ngModel)]="userData.password" name="password" required>
-        <input type="password" placeholder="Confirmar Contraseña" [(ngModel)]="userData.confirmPassword" name="confirmPassword" required>
-        <select [(ngModel)]="userData.universidad" name="universidad" required>
+        <input formControlName="nombreCompleto" type="text" placeholder="Nombre Completo">
+        <input *ngIf="nombreCompleto?.invalid && (nombreCompleto?.dirty || nombreCompleto?.touched)"
+               class="error-message" value="El nombre completo es obligatorio." readonly>
+
+        <input type="email" placeholder="Email" formControlName="email">
+        <input *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+               class="error-message" value="El correo electrónico es obligatorio o no es válido." readonly>
+
+        <input type="password" placeholder="Contraseña" formControlName="password">
+        <input *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+               class="error-message" value="La contraseña es obligatoria y debe tener al menos 6 caracteres." readonly>
+
+        <input type="password" placeholder="Confirmar Contraseña" formControlName="confirmPassword">
+        <input *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)"
+               class="error-message" value="La contraseña no coincide" readonly>
+
+        <select formControlName="universidad">
           <option value="" disabled selected>Selecciona una centro universitario</option>
           <option value="ULPGC">Universidad de Las Palmas de Gran Canaria</option>
           <option value="ULL">Universidad de La Laguna</option>
         </select>
-        <input type="tel" placeholder="Teléfono" [(ngModel)]="userData.telefono" name="telefono" required>
-        <input type="date" placeholder="Fecha de Nacimiento" [(ngModel)]="userData.fechaNacimiento" name="fechaNacimiento" required>
-        <button type="submit">Regístrate</button>
+        <input *ngIf="universidad?.invalid && (universidad?.dirty || universidad?.touched)"
+               class="error-message" value="Debes seleccionar una universidad." readonly>
+
+        <input type="tel" placeholder="Teléfono" formControlName="telefono">
+        <input *ngIf="telefono?.invalid && (telefono?.dirty || telefono?.touched)"
+               class="error-message" value="El número de teléfono es obligatorio." readonly>
+
+        <input type="date" placeholder="Fecha de Nacimiento" formControlName="fechaNacimiento">
+        <input *ngIf="fechaNacimiento?.invalid && (fechaNacimiento?.dirty || fechaNacimiento?.touched)"
+               class="error-message" value="La fecha de nacimiento es obligatoria." readonly>
+
+        <button type="submit" [disabled]="registerForm.invalid">Regístrate</button>
       </form>
     </div>
       <div class="form-container sign-in">
@@ -25,8 +46,8 @@
             <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
           </div>
           <span>O utiliza tu email y contraseña</span>
-          <input type="email" placeholder="Email" ngModel name="email" required>
-          <input type="password" placeholder="Contraseña" ngModel name="password" required>
+          <input type="email" placeholder="Email" ngModel name="email">
+          <input type="password" placeholder="Contraseña" ngModel name="password">
           <a href="#">¿Te olvidaste de tu contraseña?</a>
           <button type="submit">Iniciar sesión</button>
         </form>
