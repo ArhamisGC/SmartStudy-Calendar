@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { User } from '../../interfaces/user.interface';
 import Reminder from '../../interfaces/reminder.interface';
 import {user} from "@angular/fire/auth";
+import { ReminderService } from '../../services/reminder.service';
 
 @Component({
   selector: 'app-reminder',
@@ -37,7 +38,7 @@ export class ReminderComponent implements OnInit{
   user$: Observable<User | undefined>;
   protected userData: any;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private reminderService: ReminderService) {
     this.user$ = of(undefined);
   }
 
@@ -48,19 +49,34 @@ export class ReminderComponent implements OnInit{
         this.userData = userData;
       }
     });
+    this.loadReminders();
   }
+
+  loadReminders() {
+    this.reminderService.getReminders().subscribe(reminders => {
+      this.reminders = reminders;
+    });
+  }
+
   createReminder() {
     this.validateForm();
     if (this.formValid) {
-      this.reminders.push({...this.reminder});
-      this.showMessageSuccess = true;
-      setTimeout(() => this.showMessageSuccess = false, 3000);
-      //this.resetForm();
+      this.reminderService.addReminder(this.reminder).then(() => {
+        this.showMessageSuccess = true;
+        setTimeout(() => this.showMessageSuccess = false, 3000);
+        this.loadReminders(); // Recarga los recordatorios después de añadir uno nuevo
+        this.resetForm();
+      }).catch(error => {
+        console.error('Error al añadir recordatorio:', error);
+        this.showMessageError = true;
+        setTimeout(() => this.showMessageError = false, 3000);
+      });
     } else {
       this.showMessageError = true;
       setTimeout(() => this.showMessageError = false, 3000);
     }
   }
+
   validateForm() {
     const currentDate = new Date();
     const reminderDate = new Date(this.reminder.date + 'T' + this.reminder.time);
@@ -107,9 +123,7 @@ export class ReminderComponent implements OnInit{
         const dateB = new Date(b.date + 'T' + b.time);
         return dateA.getTime() - dateB.getTime();
       });
-    } else { // Orden por creación
-      // Si tus recordatorios no tienen un timestamp de creación, podrías necesitar manejar esto de manera diferente.
-      // Por simplicidad, asumimos que no necesitan reordenarse ya que el orden de creación es el orden por defecto.
+    } else {
     }
   }
 
@@ -118,14 +132,6 @@ export class ReminderComponent implements OnInit{
   openModal(index: number): void {
     this.currentIndex = index;
     this.showModal = true;
-  }
-
-  confirmDeletion(): void {
-    if (this.currentIndex !== -1) {
-      this.reminders.splice(this.currentIndex, 1);
-      this.showModal = false;
-      this.currentIndex = -1;
-    }
   }
 
   cancelDeletion(): void {
@@ -142,13 +148,38 @@ export class ReminderComponent implements OnInit{
   confirmEdit() {
     this.validateForm();
     if (this.formValid) {
-      if (this.editIndex !== -1) {
-        this.reminders[this.editIndex] = {...this.editReminder};
-        this.showEditModal = false;
+      const reminderId = this.reminders[this.editIndex].id;
+      if (typeof reminderId === 'string') {
+        this.reminderService.modifyReminder(reminderId, this.editReminder).then(() => {
+          this.showEditModal = false;
+          this.loadReminders();
+        }).catch(error => {
+          console.error('Error al editar recordatorio:', error);
+          this.showMessageError = true;
+          setTimeout(() => this.showMessageError = false, 3000);
+        });
+      } else {
+        console.error('ID del recordatorio no definido.');
       }
     } else {
       this.showMessageError = true;
       setTimeout(() => this.showMessageError = false, 3000);
+    }
+  }
+
+  confirmDeletion() {
+    if (this.currentIndex !== -1) {
+      const reminderId = this.reminders[this.currentIndex].id;
+      if (typeof reminderId === 'string') {
+        this.reminderService.deleteReminder(reminderId).then(() => {
+          this.showModal = false;
+          this.loadReminders();
+        }).catch(error => {
+          console.error('Error al eliminar recordatorio:', error);
+        });
+      } else {
+        console.error('ID del recordatorio no definido.');
+      }
     }
   }
 

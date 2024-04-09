@@ -24,8 +24,6 @@
   z-index: 1000;
 }
 
-/* Estilo del Relleno de Recordatorios */
-
 .reminder-container {
   display: flex;
   flex-direction: column;
@@ -89,8 +87,6 @@ button {
 button:hover {
   transform: scale(1.025);
 }
-
-/* Estilo del cuadrado */
 
 .extra-square {
   font-family: 'Helvetica', sans-serif;
@@ -156,8 +152,6 @@ button:hover {
   background-color: #f44336;
   color: white;
 }
-
-/* Estilo del mensaje extra (Edición y Eliminar) */
 
 .edit-modal-content {
   background-color: #CFDBD5;

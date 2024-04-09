@@ -6,8 +6,6 @@
   <div *ngIf="showMessageSuccess" class="message-success">Recordatorio creado con éxito.</div>
   <div *ngIf="showMessageError" class="message-error">{{ errorMessage }}</div>
 
-  <!--Logistica y creación de los recordatorios-->
-
   <div class="reminder-container">
     <div class="form-group description">
       <input type="text" id="description" [(ngModel)]="reminder.description" name="description" placeholder="Reminder Description" (change)="validateForm()" required>
@@ -25,8 +23,6 @@
     <button type="button" (click)="createReminder()">Create Reminder</button>
   </div>
 
-  <!--Gestión de los recordatorios-->
-
   <div class="sort-container">
     <select (change)="changeSortOrder($event)">
       <option value="creation">Por Creación</option>
@@ -34,8 +30,6 @@
       <option value="time">Por Proximidad</option>
     </select>
   </div>
-
-  <!--Almacenamientos de recordatorios-->
 
   <div class="extra-square">
     <div *ngFor="let reminder of reminders; let i = index" class="reminder-item">
@@ -48,8 +42,6 @@
     </div>
   </div>
 
-  <!--Logistica de cancelación-->
-
   <div *ngIf="showModal" class="modal-overlay">
     <div class="modal-content">
       <h2>Confirmar eliminación</h2>
@@ -61,8 +53,6 @@
       </div>
     </div>
   </div>
-
-  <!--Logistica de edición-->
 
   <div *ngIf="showEditModal" class="modal-overlay">
     <div class="edit-modal-content">
