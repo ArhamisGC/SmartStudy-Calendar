@@ -61,7 +61,7 @@ import { PomodoroComponent } from './components/pomodoro/pomodoro.component';
     DashboardComponent,
     NotesComponent,
     TodoComponent,
-    ReminderComponent
+    ReminderComponent,
     PomodoroComponent
   ],
   imports: [
