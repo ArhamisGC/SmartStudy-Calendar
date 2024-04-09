@@ -98,7 +98,7 @@ export class LoginregisterComponent{
       const {email, password} = form.value;
       this.userService.login({email, password}).then(() => {
         console.log("Login successful")
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/dashboard']);
       }).catch(error => {
         alert('Error al iniciar sesión: ' + error.message)
       });
