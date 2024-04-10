@@ -5,49 +5,70 @@
       <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
         <h1>Crear Cuenta</h1>
         <input formControlName="nombreCompleto" type="text" placeholder="Nombre Completo">
-        <input *ngIf="nombreCompleto?.invalid && (nombreCompleto?.dirty || nombreCompleto?.touched)"
-               class="error-message" value="El nombre completo es obligatorio." readonly>
+        <div *ngIf="nombreCompleto?.invalid && nombreCompleto?.touched">
+          <p class="error-message" *ngIf="nombreCompleto?.errors?.['required']">El nombre completo es obligatorio.</p>
+        </div>
 
         <input type="email" placeholder="Email" formControlName="email">
-        <input *ngIf="email?.invalid && (email?.dirty || email?.touched)"
-               class="error-message" value="El correo electrónico es obligatorio o no es válido." readonly>
+        <div *ngIf="email?.invalid && email?.touched">
+          <p class="error-message" *ngIf="email?.errors?.['required']">El correo electrónico es obligatorio.</p>
+          <p class="error-message" *ngIf="email?.errors?.['email']">El correo electrónico no es válido.</p>
+        </div>
 
         <input type="password" placeholder="Contraseña" formControlName="password">
-        <input *ngIf="password?.invalid && (password?.dirty || password?.touched)"
-               class="error-message" value="La contraseña es obligatoria y debe tener al menos 6 caracteres." readonly>
+        <div *ngIf="password?.invalid && password?.touched">
+          <p class="error-message" *ngIf="password?.errors?.['required']">La contraseña es obligatoria.</p>
+          <p class="error-message" *ngIf="password?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</p>
+        </div>
 
         <input type="password" placeholder="Confirmar Contraseña" formControlName="confirmPassword">
-        <input *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)"
-               class="error-message" value="La contraseña no coincide" readonly>
+        <div *ngIf="confirmPassword?.invalid && confirmPassword?.touched">
+          <p class="error-message" *ngIf="confirmPassword?.errors?.['required']">La confirmación de la contraseña es requerida.</p>
+          <p class="error-message" *ngIf="confirmPassword?.errors?.['confirmPasswordMismatch']">Las contraseñas no coinciden.</p>
+        </div>
 
         <select formControlName="universidad">
           <option value="" disabled selected>Selecciona una centro universitario</option>
           <option value="ULPGC">Universidad de Las Palmas de Gran Canaria</option>
           <option value="ULL">Universidad de La Laguna</option>
         </select>
-        <input *ngIf="universidad?.invalid && (universidad?.dirty || universidad?.touched)"
-               class="error-message" value="Debes seleccionar una universidad." readonly>
+        <div *ngIf="universidad?.invalid && universidad?.touched">
+          <p class="error-message" *ngIf="universidad?.errors?.['required']">Debes seleccionar una universidad.</p>
+        </div>
 
         <input type="tel" placeholder="Teléfono" formControlName="telefono">
-        <input *ngIf="telefono?.invalid && (telefono?.dirty || telefono?.touched)"
-               class="error-message" value="El número de teléfono es obligatorio." readonly>
+        <div *ngIf="telefono?.invalid && telefono?.touched">
+          <p class="error-message" *ngIf="telefono?.errors?.['required']">El número de teléfono es obligatorio.</p>
+          <p class="error-message" *ngIf="telefono?.errors?.['telefonoInvalido']">El número de teléfono no es válido.</p>
+        </div>
 
         <input type="date" placeholder="Fecha de Nacimiento" formControlName="fechaNacimiento">
-        <input *ngIf="fechaNacimiento?.invalid && (fechaNacimiento?.dirty || fechaNacimiento?.touched)"
-               class="error-message" value="La fecha de nacimiento es obligatoria." readonly>
+        <div *ngIf="fechaNacimiento?.invalid && fechaNacimiento?.touched">
+          <p class="error-message" *ngIf="fechaNacimiento?.errors?.['required']">La fecha de nacimiento es obligatoria.</p>
+        </div>
 
-        <button type="submit" [disabled]="registerForm.invalid">Regístrate</button>
+        <input readonly *ngIf="backendErrorMessageRegister" class="error-message" [value]="backendErrorMessageRegister">
+        <button type="submit">Regístrate</button>
       </form>
     </div>
       <div class="form-container sign-in">
-        <form (ngSubmit)="loginUser(loginForm)" #loginForm="ngForm">
+        <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
           <h1>Acceder</h1>
           <div class="social-icons">
             <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
           </div>
           <span>O utiliza tu email y contraseña</span>
-          <input type="email" placeholder="Email" ngModel name="email">
-          <input type="password" placeholder="Contraseña" ngModel name="password">
+          <input type="email" placeholder="Email" formControlName="emailLogin">
+          <div *ngIf="emailLogin?.invalid && emailLogin?.touched">
+            <p class="error-message" *ngIf="emailLogin?.errors?.['required']">El correo electrónico es requerido.</p>
+            <p class="error-message" *ngIf="emailLogin?.errors?.['email']">El correo electrónico no es válido.</p>
+          </div>
+          <input type="password" placeholder="Contraseña" formControlName="passwordLogin">
+          <div *ngIf="passwordLogin?.invalid && passwordLogin?.touched">
+            <p class="error-message" *ngIf="passwordLogin?.errors?.['required']">La contraseña es obligatoria.</p>
+            <p class="error-message" *ngIf="passwordLogin?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</p>
+          </div>
+          <input readonly *ngIf="backendErrorMessageLogin" class="error-message" [value]="backendErrorMessageLogin">
           <a href="#">¿Te olvidaste de tu contraseña?</a>
           <button type="submit">Iniciar sesión</button>
         </form>

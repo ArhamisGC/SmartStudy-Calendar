@@ -35,6 +35,8 @@ import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {MatCard, MatCardContent} from "@angular/material/card";
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {ToastrModule} from "ngx-toastr";
+
 import { ReminderComponent } from "./components/reminder/reminder.component";
 import { PomodoroComponent } from './components/pomodoro/pomodoro.component';
 
@@ -81,7 +83,8 @@ import { PomodoroComponent } from './components/pomodoro/pomodoro.component';
     MatToolbar,
     MatCard,
     MatLabel,
-    MatFormField
+    MatFormField,
+    ToastrModule.forRoot()
   ],
   providers: [
     provideAnimationsAsync()

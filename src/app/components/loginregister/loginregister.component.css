@@ -24,7 +24,7 @@ body{
   overflow: hidden;
   width: 768px;
   max-width: 100%;
-  min-height: 480px;
+  min-height: 520px;
 }
 
 .container p{
@@ -76,16 +76,19 @@ body{
 
 .error-message{
   color: #ff0000;
+  margin: 0px !important;
   font-size: 9px !important;
   padding-bottom: 0px !important;
   padding-top: 0px !important;
   border: none !important;
+  display:block !important;
+  text-align: left !important;
 }
 
 .container input{
   background-color: #E8EDDF;
   border: 1px solid #333533;
-  margin: 4px 0;
+  margin: 6px 0;
   padding: 10px 15px;
   font-size: 13px;
   border-radius: 8px;

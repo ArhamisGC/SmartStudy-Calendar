@@ -58,7 +58,7 @@ export class UserService {
             errorMessage = 'Error al registrar el usuario.';
             break;
         }
-        throw new Error(errorMessage);
+        return Promise.reject(new Error(errorMessage));
       });
   }
 
@@ -85,7 +85,7 @@ export class UserService {
             errorMessage = 'Error al iniciar sesión.';
             break;
         }
-        throw new Error(errorMessage);
+        return Promise.reject(new Error(errorMessage));
       });
   }
 

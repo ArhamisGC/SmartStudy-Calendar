@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import { UserService } from '../../services/user.service';
-import {User} from "../../interfaces/user.interface";
+import { UserService } from '../../services/user.service'
+import {ToastrModule, ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {
   AbstractControl,
-  FormBuilder,
   FormControl,
   FormGroup,
-  NgForm,
   ValidationErrors,
   ValidatorFn,
   Validators
@@ -18,10 +16,13 @@ import {
   templateUrl: './loginregister.component.html',
   styleUrls: ['./loginregister.component.css']
 })
-export class LoginregisterComponent{
+export class LoginregisterComponent implements OnInit {
   registerForm!: FormGroup;
+  loginForm!: FormGroup;
+  backendErrorMessageLogin: string | null = null;
+  backendErrorMessageRegister: string | null = null;
   userData: any = {};
-  constructor(private formBuilder: FormBuilder,private router: Router,private userService: UserService) {}
+  constructor(private toastr:ToastrService,private router: Router,private userService: UserService) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -33,6 +34,12 @@ export class LoginregisterComponent{
       telefono: new FormControl('', [Validators.required,this.telephoneValidator()]),
       fechaNacimiento: new FormControl('', [Validators.required]),
     });
+
+    this.loginForm = new FormGroup({
+      emailLogin: new FormControl('', [Validators.required, Validators.email]),
+      passwordLogin: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    });
+
 
     const container = document.getElementById('container');
     const registerBtn = document.getElementById('register');
@@ -76,36 +83,44 @@ export class LoginregisterComponent{
     return this.registerForm.get('fechaNacimiento');
   }
 
+  get emailLogin(){
+    return this.loginForm.get('emailLogin');
+  }
+
+  get passwordLogin(){
+    return this.loginForm.get('passwordLogin');
+  }
+
   registerUser() {
     if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched()
       return;
     }
     this.userData = this.registerForm.value;
 
     this.userService.register(this.userData).then(() => {
-      alert("Registro exitoso");
+      this.toastr.success('Usuario registrado con éxito', '¡Bienvenido a SmartStudy Calendar!');
       const container = document.getElementById('container');
       if (container) {
         container.classList.remove("active");
       }
     }).catch(error => {
-      alert('Error al registrar: ' + error);
+      this.backendErrorMessageRegister = error.message;
     });
   }
 
-  loginUser(form: NgForm) {
-    if (form.valid) {
-      const {email, password} = form.value;
-      this.userService.login({email, password}).then(() => {
-        console.log("Login successful")
+  loginUser() {
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return
+    }
+    const {emailLogin, passwordLogin} = this.loginForm.value;
+    this.userService.login({password: passwordLogin,email: emailLogin}).then(() => {
         this.router.navigate(['/dashboard']);
       }).catch(error => {
-        alert('Error al iniciar sesión: ' + error.message)
+        this.backendErrorMessageLogin = error.message;
       });
-    }else{
-      alert('Rellena los campos correctamente')
     }
-  }
 
   confirmPasswordValidator(controlName: string): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
