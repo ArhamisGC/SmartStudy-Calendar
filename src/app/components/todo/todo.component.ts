@@ -21,7 +21,7 @@ export class TodoComponent implements OnInit {
     this.taskService.getTasks().subscribe(tasks => {
       this.tasks = this.sortTasks(tasks);
     });
-  }  
+  }
 
   addTask(): void {
     if (!this.newTaskTitle.trim()) return;
@@ -59,16 +59,16 @@ export class TodoComponent implements OnInit {
   updateStatus(task: Task): void {
     const newStatus = task.status === 1 ? 0 : 1; // Cambia el estado
     this.taskService.updateTask(task.id, { status: newStatus });
-    task.status = newStatus; // Asegúrate de actualizar el estado en el cliente también
+    task.status = newStatus;
   }
 
   editTask(task: Task): void {
     task.editing = true;  // Agrega la propiedad 'editing' a tu interfaz Task si aún no está.
   }
-  
+
   sortTasks(tasks: Task[]): Task[] {
     return tasks.sort((a, b) => a.order - b.order);
-  }  
+  }
 
   fixDuplicateOrders(sortedTasks: Task[]): void {
     // Asumiendo que 'sortedTasks' ya está ordenada por 'order'.
@@ -76,17 +76,17 @@ export class TodoComponent implements OnInit {
       if (sortedTasks[i].order === sortedTasks[i + 1].order) {
         // Encuentra el próximo valor de 'order' que no cause duplicidad.
         let nextUniqueOrder = sortedTasks[i].order;
-  
+
         // Incrementa el 'order' hasta que encuentre una posición única.
         while (sortedTasks.some(task => task.order === nextUniqueOrder)) {
           nextUniqueOrder++;
         }
-  
+
         // Asigna el nuevo valor de 'order' a la tarea actual para eliminar el duplicado.
         sortedTasks[i + 1].order = nextUniqueOrder;
       }
     }
-  
+
     this.tasks = sortedTasks;
   }
 
@@ -103,7 +103,7 @@ export class TodoComponent implements OnInit {
     this.sortTasks(this.tasks);
     this.fixDuplicateOrders(this.tasks);
   }
-  
+
   cancelEdit(task: Task): void {
     task.editing = false;
     // Opcionalmente, podrías recargar la tarea desde Firebase para descartar los cambios no guardados.
