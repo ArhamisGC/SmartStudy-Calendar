@@ -10,6 +10,7 @@ import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import { NotesComponent } from './components/notes/notes.component';
 import { PomodoroComponent } from './components/pomodoro/pomodoro.component';
 import { ReminderComponent } from "./components/reminder/reminder.component";
+import { TodoComponent } from "./components/todo/todo.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'logout', component: LogoutComponent},
   {path: 'notes', component: NotesComponent},
   {path: 'pomodoro', component: PomodoroComponent},
-  {path: 'reminders', component: ReminderComponent}
+  {path: 'reminders', component: ReminderComponent},
+  {path: 'todo', component: TodoComponent}
 ];
 
 @NgModule({
