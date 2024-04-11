@@ -103,6 +103,13 @@
   vertical-align: top;
 
 }
+.asignaturas{
+  background-color: #dcf5ee;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px; /* ajusta la altura según sea necesario */
+}
 
 .note-content h2, .note-content p, .note-actions button {
   margin: 10px 0;

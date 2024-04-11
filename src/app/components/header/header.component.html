@@ -15,6 +15,22 @@
       <i class="far fa-sticky-note"></i>
       <span>Notas</span>
     </a>
+
+    <a (click)="navigateTo('/reminders')" class="menu-item" cursor="pointer">
+      <i class="far fa-bell"></i>
+      <span>Recordatorios</span>
+    </a>
+
+    <a (click)="navigateTo('/todo')" class="menu-item" cursor="pointer">
+      <i class="fas fa-check-square"></i>
+      <span>To-Do</span>
+    </a>
+
+    <a (click)="navigateTo('/pomodoro')" class="menu-item" cursor="pointer">
+      <i class="fas fa-clock"></i>
+      <span>Pomodoro</span>
+    </a>
+
   </div>
   <div class="user-menu">
     <a (click)="navigateTo('/profile')" class="user-item" cursor="pointer">

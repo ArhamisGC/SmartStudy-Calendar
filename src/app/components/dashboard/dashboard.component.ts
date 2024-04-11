@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { Observable, of } from 'rxjs';
 import { User } from '../../interfaces/user.interface';
-import { map } from 'rxjs/operators';
 import {user} from "@angular/fire/auth";
 
 @Component({
@@ -14,6 +13,7 @@ import {user} from "@angular/fire/auth";
 export class DashboardComponent implements OnInit {
   user$: Observable<User | undefined>;
   protected userData: any;
+  showSubjectManager: boolean = false;
 
   constructor(private userService: UserService, private router: Router) {
     this.user$ = of(undefined);
@@ -35,6 +35,14 @@ export class DashboardComponent implements OnInit {
   logout(): void {
     this.userService.logout();
     this.router.navigate(['/logout']);
+  }
+
+  openSubjectManager(): void {
+    this.showSubjectManager = true;
+  }
+
+  closeSubjectManager(): void {
+    this.showSubjectManager = false;
   }
 
   protected readonly user = user;

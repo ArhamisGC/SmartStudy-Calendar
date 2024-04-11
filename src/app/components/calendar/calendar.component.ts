@@ -25,8 +25,20 @@ export class CalendarComponent implements OnInit, OnDestroy {
   constructor(private eventsService: EventsService) {}
 
   ngOnInit(): void {
+    this.requestNotificationPermission();
     this.generateCalendar();
     this.loadEvents();
+    setInterval(() => this.checkAndNotifyEvents(), 30000);
+  }
+
+  requestNotificationPermission(): void {
+    Notification.requestPermission().then(permission => {
+      if (permission === "granted") {
+        console.log("Permission for notifications granted");
+      } else {
+        console.log("Permission for notifications denied");
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -35,9 +47,13 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
   loadEvents(): void {
     this.eventsSub = this.eventsService.getEventsWithCourse().subscribe(events => {
-      this.events = events;
+      this.events = events.map(event => ({
+        ...event,
+        notified: localStorage.getItem(`notified_${event.id}`) === 'true'
+      }));
     });
   }
+
 
   generateCalendar(): void {
     const year = this.currentMonth.toDate().getFullYear();
@@ -128,5 +144,29 @@ export class CalendarComponent implements OnInit, OnDestroy {
   closeDialog(): void {
     this.showEventCreator = false;
     this.showEventViewer = false;
+  }
+
+  checkAndNotifyEvents(): void {
+    const now = new Date();
+    this.events.forEach(event => {
+      const eventDate = event.date.toDate();
+      if (eventDate > now && !event.notified) {
+        this.sendNotification(event);
+        event.notified = true;
+      }
+    });
+  }
+  sendNotification(event: Event): void {
+    if (Notification.permission === "granted") {
+      const notification = new Notification("Recordatorio de evento", {
+        body: `${event.name}`,
+        icon: '/img/icon_square.png'
+      });
+      localStorage.setItem(`notified_${event.id}`, 'true');
+      event.notified = true;
+      notification.onclick = () => {
+        window.focus();
+      };
+    }
   }
 }
