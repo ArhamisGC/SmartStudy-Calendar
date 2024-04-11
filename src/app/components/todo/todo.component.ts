@@ -51,11 +51,6 @@ export class TodoComponent implements OnInit {
     this.taskService.removeTask(id);
   }
 
-  updatePriority(id: string, newPriority: number): void {
-    this.taskService.updateTask(id, { priority: newPriority });
-    this.fixDuplicateOrders(this.tasks);
-  }
-
   updateStatus(task: Task): void {
     const newStatus = task.status === 1 ? 0 : 1; // Cambia el estado
     this.taskService.updateTask(task.id, { status: newStatus });
@@ -74,25 +69,17 @@ export class TodoComponent implements OnInit {
     // Asumiendo que 'sortedTasks' ya está ordenada por 'order'.
     for (let i = 0; i < sortedTasks.length - 1; i++) {
       if (sortedTasks[i].order === sortedTasks[i + 1].order) {
-        // Encuentra el próximo valor de 'order' que no cause duplicidad.
         let nextUniqueOrder = sortedTasks[i].order;
-
-        // Incrementa el 'order' hasta que encuentre una posición única.
         while (sortedTasks.some(task => task.order === nextUniqueOrder)) {
           nextUniqueOrder++;
         }
-
-        // Asigna el nuevo valor de 'order' a la tarea actual para eliminar el duplicado.
         sortedTasks[i + 1].order = nextUniqueOrder;
       }
     }
-
     this.tasks = sortedTasks;
   }
 
   updateTask(task: Task): void {
-    // Aquí iría la lógica para actualizar la tarea en Firebase.
-    // Por simplicidad, asumiremos que ya tienes implementado 'updateTask' en tu service.
     this.taskService.updateTask(task.id, {
       title: task.title,
       order: task.order,
@@ -113,5 +100,7 @@ export class TodoComponent implements OnInit {
     this.showTaskBuilder = !this.showTaskBuilder;
   }
 
-  // Implementar métodos adicionales según sea necesario
+  trackByTasks(index: number, task: Task): any {
+    return task.id; // Usamos el ID de la tarea como un identificador único
+  }
 }
