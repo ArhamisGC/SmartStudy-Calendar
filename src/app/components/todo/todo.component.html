@@ -4,6 +4,17 @@
   <header class="app-header">
     <h1>Lista de Tareas</h1>
   </header>
+
+  <!-- Contenedor para la barra de progreso -->
+  <div class="progress-sidebar">
+    <div class="progress-container">
+      <label for="taskProgress">Progreso de Tareas:</label>
+      <progress id="taskProgress" value="{{ completedTasks }}" max="{{ totalTasks }}"></progress>
+      <span class="progress-text">{{ completedTasks }} / {{ totalTasks }}</span>
+    </div>
+  </div>
+
+
   <button (click)="toggleTaskBuilder()">Crear Tarea</button>
   <div class="modal-backdrop" *ngIf="showTaskBuilder" (click)="toggleTaskBuilder()">
     <div class="task-builder-container" (click)="$event.stopPropagation()">

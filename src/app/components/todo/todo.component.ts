@@ -103,4 +103,12 @@ export class TodoComponent implements OnInit {
   trackByTasks(index: number, task: Task): any {
     return task.id; // Usamos el ID de la tarea como un identificador único
   }
+
+  get totalTasks(): number {
+    return this.tasks.length;
+  }
+
+  get completedTasks(): number {
+    return this.tasks.filter(task => task.status === 1).length;
+  }
 }
