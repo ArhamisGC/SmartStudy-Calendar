@@ -9,16 +9,16 @@
 
   <div class="reminder-container">
     <div class="form-group description">
-      <input type="text" id="description" [(ngModel)]="reminder.description" name="description" placeholder="Reminder Description" (change)="validateForm()" required>
+      <input type="text" id="description" [(ngModel)]="reminder.description" name="description" placeholder="Reminder Description" required>
     </div>
     <div class="form-row">
       <div class="form-group time-date">
         <label for="time">Time  </label>
-        <input type="time" id="time" [(ngModel)]="reminder.time" name="time" (change)="validateForm()" required>
+        <input type="time" id="time" [(ngModel)]="reminder.time" name="time" required>
       </div>
       <div class="form-group time-date">
         <label for="date">Date  </label>
-        <input type="date" id="date" [(ngModel)]="reminder.date" name="date" (change)="validateForm()" required>
+        <input type="date" id="date" [(ngModel)]="reminder.date" name="date" required>
       </div>
     </div>
     <button type="button" (click)="createReminder()">Create Reminder</button>
