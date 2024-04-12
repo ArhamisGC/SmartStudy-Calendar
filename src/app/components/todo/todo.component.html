@@ -1,6 +1,6 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
 <app-header></app-header>
-<div class="todo-app">
+<div class="todo-app" [@dialog]>
   <header class="app-header">
     <h1>Lista de Tareas</h1>
   </header>
@@ -19,7 +19,6 @@
   <div class="modal-backdrop" *ngIf="showTaskBuilder" (click)="toggleTaskBuilder()">
     <div class="task-builder-container" (click)="$event.stopPropagation()">
       <input type="text" [(ngModel)]="newTaskTitle" placeholder="Task title" />
-      <input type="number" [(ngModel)]="newTaskOrder" placeholder="Order" min="1" />
 
       <select [(ngModel)]="newTaskPriority">
         <option [value]="1">Alta</option>
@@ -27,10 +26,6 @@
         <option [value]="3">Baja</option>
       </select>
 
-      <select [(ngModel)]="newTaskStatus">
-        <option [value]="0">Pendiente</option>
-        <option [value]="1">Completado</option>
-      </select>
 
       <button (click)="addTask()">Add Task</button>
     </div>
@@ -57,7 +52,6 @@
 
       <div *ngIf="task.editing">
         <input type="text" [(ngModel)]="task.title" placeholder="Task title" />
-        <input type="number" [(ngModel)]="task.order" placeholder="Order" />
 
         <select [(ngModel)]="task.priority">
           <option [value]="1">Alta</option>

@@ -6,11 +6,23 @@ import { User } from '../../interfaces/user.interface';
 import Reminder from '../../interfaces/reminder.interface';
 import {user} from "@angular/fire/auth";
 import { ReminderService } from '../../services/reminder.service';
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-reminder',
   templateUrl: './reminder.component.html',
-  styleUrls: ['./reminder.component.css']
+  styleUrls: ['./reminder.component.css'],
+  animations: [
+    trigger('dialog', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.9)' }),
+        animate('200ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ opacity: 0, transform: 'scale(0.9)' }))
+      ])
+    ])
+  ]
 })
 export class ReminderComponent implements OnInit{
   // Base

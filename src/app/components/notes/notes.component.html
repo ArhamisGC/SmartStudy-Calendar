@@ -2,7 +2,7 @@
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
-<div class="notes-container">
+<div class="notes-container" [@dialog]>
   <div class="title-search-bar">
     <svg viewBox="0 0 24 24" aria-hidden="true" class="search-icon">
       <g>
@@ -56,7 +56,7 @@
     </div>
   </div>
 
-  <div class="notes-list">
+  <div class="notes-list" [@dialog]>
     <div *ngFor="let note of filteredNotes" class="note-item" [style.backgroundColor]="note.color">
       <div class="note-content">
         <h2>{{ note.title }}</h2>
@@ -64,7 +64,7 @@
         <p>{{ note.description }}</p>
 
       </div>
-      <div class="note-actions">
+      <div class="note-actions" [@dialog]>
         <button (click)="toggleForm(note)"><i class="fas fa-edit"></i> Editar</button>
         <button *ngIf="note.id" (click)="deleteNote(note.id)"><i class="fas fa-trash-alt"></i> Eliminar</button>
       </div>
