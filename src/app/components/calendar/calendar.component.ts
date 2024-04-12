@@ -3,12 +3,25 @@ import { EventsService } from "../../services/event.service";
 import { Subscription } from 'rxjs';
 import Event from "../../interfaces/event.interface";
 import { Timestamp } from '@angular/fire/firestore';
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css'],
+  animations: [
+    trigger('dialog', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.9)' }),
+        animate('200ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ opacity: 0, transform: 'scale(0.9)' }))
+      ])
+    ])
+  ]
 })
+
 export class CalendarComponent implements OnInit, OnDestroy {
   weeks: (Timestamp | null)[][] = [];
   weekDays: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

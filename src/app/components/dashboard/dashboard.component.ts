@@ -4,12 +4,25 @@ import { UserService } from '../../services/user.service';
 import { Observable, of } from 'rxjs';
 import { User } from '../../interfaces/user.interface';
 import {user} from "@angular/fire/auth";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
-  selector: 'app-dashboard',
+selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  animations: [
+  trigger('dialog', [
+    transition(':enter', [
+      style({ opacity: 0, transform: 'scale(0.9)' }),
+      animate('200ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+    ]),
+    transition(':leave', [
+      animate('200ms ease-in', style({ opacity: 0, transform: 'scale(0.9)' }))
+    ])
+  ])
+]
 })
+
 export class DashboardComponent implements OnInit {
   user$: Observable<User | undefined>;
   protected userData: any;
