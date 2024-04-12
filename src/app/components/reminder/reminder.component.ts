@@ -77,22 +77,27 @@ export class ReminderComponent implements OnInit{
     }
   }
 
-  validateForm() {
+  validateForm(isEditing = false) {
+    const reminder = isEditing ? this.editReminder : this.reminder;
     const currentDate = new Date();
-    const reminderDate = new Date(this.reminder.date + 'T' + this.reminder.time);
+    const reminderDate = new Date(reminder.date + 'T' + reminder.time);
 
-    this.formValid = this.reminder.description.trim().length > 0 &&
-      this.reminder.time.trim().length > 0 &&
-      this.reminder.date.trim().length > 0;
+    this.formValid = reminder.description.trim().length > 0 &&
+      reminder.time.trim().length > 0 &&
+      reminder.date.trim().length > 0;
 
     if (!this.formValid) {
       this.errorMessage = "Por favor, rellena todos los campos.";
-      return;
     } else if (reminderDate < currentDate) {
       this.formValid = false;
-      this.errorMessage = "La fecha y hora deben ser correctas";
+      this.errorMessage = "La fecha y hora deben ser futuras.";
     } else {
       this.errorMessage = "";
+    }
+
+    this.showMessageError = !this.formValid;
+    if (this.showMessageError) {
+      setTimeout(() => this.showMessageError = false, 3000);
     }
   }
 
@@ -146,7 +151,7 @@ export class ReminderComponent implements OnInit{
   }
 
   confirmEdit() {
-    this.validateForm();
+    this.validateForm(true);
     if (this.formValid) {
       const reminderId = this.reminders[this.editIndex].id;
       if (typeof reminderId === 'string') {
