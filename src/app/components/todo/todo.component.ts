@@ -1,12 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import Task from '../../interfaces/task.interface'; // Asegúrate de que la ruta sea correcta
-import { TaskService } from '../../services/task.service'; // Asegúrate de que la ruta al servicio es correcta
+import { TaskService } from '../../services/task.service';
+import {animate, style, transition, trigger} from "@angular/animations"; // Asegúrate de que la ruta al servicio es correcta
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.css']
+  styleUrls: ['./todo.component.css'],
+  animations: [
+    trigger('dialog', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.9)' }),
+        animate('200ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ opacity: 0, transform: 'scale(0.9)' }))
+      ])
+    ])
+  ]
 })
+
 export class TodoComponent implements OnInit {
   tasks: Task[] = [];
   newTaskTitle: string = '';

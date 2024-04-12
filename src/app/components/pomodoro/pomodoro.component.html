@@ -1,6 +1,5 @@
 <app-header></app-header>
-<div class="main">
-
+<div class="main" [@dialog]>
   <div class="time-control">
     <button (click)="addPomodoroTime()">+</button>
     <p>Pomodoro Time</p>
@@ -9,9 +8,9 @@
   <div class="timer-circle" id="timer">{{ timer }}</div>
   <div class="control-buttons">
     <button (click)="togglePauseResume()">
-      {{ isPaused ? 'Start' : 'Pause' }} <!-- Change button text based on isPaused -->
+      {{ isPaused ? 'Start' : 'Pause' }}
     </button>
-    <button (click)="restartTimer()">Restart</button> <!-- Rename button to Restart -->
+    <button (click)="restartTimer()">Restart</button>
     <button (click)="chooseTime()">Choose Break Time</button>
   </div>
 </div>

@@ -3,7 +3,7 @@
 
 <app-header></app-header>
 
-<div class="calendar-container">
+<div class="calendar-container" [@dialog]>
   <div class="calendar-header">
     <button (click)="changeMonth(-1)">
       <span class="material-icons">chevron_left</span>
@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div class="week-days row">
+  <div class="week-days row" [@dialog]>
     <div class="col text-center" *ngFor="let dayName of weekDays">{{ dayName }}</div>
   </div>
   <div *ngFor="let week of weeks" class="row">

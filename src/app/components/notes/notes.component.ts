@@ -6,12 +6,24 @@ import { CourseService } from '../../services/course.service';
 import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {DocumentReference} from "@angular/fire/firestore";
-
+import {animate, style, transition, trigger} from "@angular/animations";
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.css']
+  styleUrls: ['./notes.component.css'],
+  animations: [
+    trigger('dialog', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.9)' }),
+        animate('200ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ opacity: 0, transform: 'scale(0.9)' }))
+      ])
+    ])
+  ]
 })
+
 export class NotesComponent implements OnInit {
   notes: Note[] = [];
   filteredNotes: Note[] = [];

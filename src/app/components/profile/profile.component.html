@@ -2,16 +2,16 @@
 
 <app-header></app-header>
 
-<div class="profile-banner">
+<div class="profile-banner" [@dialog]>
   <div class="profile-image-container">
     <img alt="Imagen de perfil" src="https://via.placeholder.com/250" class="profile-image" />
   </div>
 </div>
 
-<div class="profile-info-container">
+<div class="profile-info-container" [@dialog]>
   <h2 class="profile-name">{{ userData?.nombreCompleto }} - <span class="profile-role">Estudiante</span></h2>
 
-  <div class="profile-details">
+  <div class="profile-details" [@dialog]>
     <!-- Icono y detalle de Teléfono -->
     <div class="profile-detail-item">
       <i class="fa-icon fa fa-phone"></i>
