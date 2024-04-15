@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { UserService } from '../../services/user.service'
-import {ToastrModule, ToastrService} from "ngx-toastr";
+import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {
   AbstractControl,
@@ -139,6 +139,13 @@ export class LoginregisterComponent implements OnInit {
       }
       return null;
     };
+  }
+
+  resetForms() {
+    this.loginForm.markAsUntouched();
+    this.registerForm.markAsUntouched();
+    this.backendErrorMessageLogin = null;
+    this.backendErrorMessageRegister = null;
   }
 
 }

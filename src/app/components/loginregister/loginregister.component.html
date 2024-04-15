@@ -78,12 +78,12 @@
         <div class="toggle-panel toggle-left">
           <h1>¡Bienvenido de vuelta!</h1>
           <p>Introduce tus credenciales para acceder a tu cuenta de SmartStudy Calendar.</p>
-          <button class="hidden" id="login">Acceder</button>
+          <button class="hidden" id="login" (click)="resetForms()" >Acceder</button>
         </div>
         <div class="toggle-panel toggle-right">
           <h1>¿No tienes cuenta?</h1>
           <p>Regístrate con tus datos personales para empezar a utilizar SmartStudy Calendar.</p>
-          <button class="hidden" id="register">Regístrate</button>
+          <button class="hidden" id="register" (click)="resetForms()" >Regístrate</button>
         </div>
       </div>
     </div>
