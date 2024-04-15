@@ -12,12 +12,19 @@ body {
   padding: 20px;
   background-color: #f0f2f5;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
 }
 
 .menu, .user-menu {
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+.user-menu {
+  margin-top: 10px;
 }
 
 .menu-item, .user-item, .logout-item {
