@@ -25,10 +25,10 @@
   </div>
 
   <div class="sort-container" [@dialog]>
+    <span>Está siendo ordenado de forma:</span>
     <select (change)="changeSortOrder($event)">
-      <option value="creation">Por Creación</option>
-      <option value="alphabetical">Alfabéticamente</option>
       <option value="time">Por Proximidad</option>
+      <option value="alphabetical">Alfabéticamente</option>
     </select>
   </div>
 

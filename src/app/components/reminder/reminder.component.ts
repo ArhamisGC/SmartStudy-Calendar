@@ -45,7 +45,7 @@ export class ReminderComponent implements OnInit{
   errorMessage: string = '';
 
   // Gestión de los recordatorios
-  sortOrder: string = 'creation';
+  sortOrder: string = 'time';
 
   user$: Observable<User | undefined>;
   protected userData: any;
@@ -67,6 +67,7 @@ export class ReminderComponent implements OnInit{
   loadReminders() {
     this.reminderService.getReminders().subscribe(reminders => {
       this.reminders = reminders;
+      this.sortReminders();
     });
   }
 
@@ -76,7 +77,7 @@ export class ReminderComponent implements OnInit{
       this.reminderService.addReminder(this.reminder).then(() => {
         this.showMessageSuccess = true;
         setTimeout(() => this.showMessageSuccess = false, 3000);
-        this.loadReminders(); // Recarga los recordatorios después de añadir uno nuevo
+        this.loadReminders();
         this.resetForm();
       }).catch(error => {
         console.error('Error al añadir recordatorio:', error);
