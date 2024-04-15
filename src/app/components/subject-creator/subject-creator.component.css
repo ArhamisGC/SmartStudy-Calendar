@@ -16,7 +16,6 @@
 
 .subject-creator-container {
   all: revert;
-  font-family: 'Poppins', sans-serif;
   background-color: #fff;
   padding: 20px;
   border-radius: 12px;
@@ -24,8 +23,8 @@
   width: 600px;
   max-height: 80%;
   position: relative;
-  overflow-x: hidden; /* Prevents horizontal scrollbar */
-  overflow-y: auto; /* Allows vertical scrollbar if needed */
+  overflow-x: auto;
+  overflow-y: auto;
   box-sizing: border-box;
 }
 
@@ -51,7 +50,7 @@ h4 {
 
 input[type="text"], input[type="email"], textarea {
   all: revert;
-  width: 100%;
+  width: 96%;
   padding: 12px;
   margin-bottom: 10px;
   border: 2px solid #ccc;
