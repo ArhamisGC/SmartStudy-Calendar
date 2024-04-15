@@ -143,4 +143,14 @@ export class NotesComponent implements OnInit {
       map(course => course.name)
     );
   }
+  color(nombre: string|undefined,courses :Course[]){
+    const foundCourse = courses.find(course => course.name === nombre);
+
+    // Si se encuentra la asignatura, devolver su color, de lo contrario, devolver null
+    return foundCourse ? foundCourse.color : null;
+  }
+  cambiarColor(course : Course, col: string | undefined){
+    course.color = col;
+    this.courseService.updateCourseColor(course.id, col);
+  }
 }

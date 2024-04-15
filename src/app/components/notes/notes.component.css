@@ -103,13 +103,6 @@
   vertical-align: top;
 
 }
-.asignaturas{
-  background-color: #dcf5ee;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 50px; /* ajusta la altura según sea necesario */
-}
 
 .note-content h2, .note-content p, .note-actions button {
   margin: 10px 0;
@@ -192,4 +185,25 @@
   height: 1rem;
   pointer-events: none;
   z-index: 1;
+}
+
+.asignaturas{
+  background-color: #dcf5ee;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px; /* ajusta la altura según sea necesario */
+  display: flex;
+  align-items: center;
+}
+
+option{
+  width:auto;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.subj{
+  margin-left: 20px;
+  margin-right: 20px;
 }
