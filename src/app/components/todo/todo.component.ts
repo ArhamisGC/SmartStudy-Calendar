@@ -27,12 +27,13 @@ export class TodoComponent implements OnInit {
   newTaskPriority: number = 2; // Prioridad media por defecto.
   newTaskStatus: number = 0; // Estado pendiente por defecto.
   showTaskBuilder: boolean = false;
+  currentSort: 'order' | 'priority' = 'order';
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe(tasks => {
-      this.tasks = this.sortTasks(tasks);
+      this.tasks = this.sortTasks(tasks, this.currentSort);
     });
   }
 
@@ -49,7 +50,7 @@ export class TodoComponent implements OnInit {
 
     this.taskService.addTask(newTask);
     this.clearForm();
-    this.sortTasks(this.tasks);
+    // this.sortTasks(this.tasks);
     this.fixDuplicateOrders(this.tasks);
   }
 
@@ -74,8 +75,28 @@ export class TodoComponent implements OnInit {
     task.editing = true;  // Agrega la propiedad 'editing' a tu interfaz Task si aún no está.
   }
 
-  sortTasks(tasks: Task[]): Task[] {
-    return tasks.sort((a, b) => a.order - b.order);
+  sortTasks(tasks: Task[], sortBy: 'order' | 'priority', isAscending: boolean = true): Task[] {
+    return tasks.sort((a, b) => {
+      if (sortBy === 'priority') {
+        // Cuando sortBy es 'priority', comprueba si es ascendente o descendente
+        const priorityComparison = isAscending ? a.priority - b.priority : b.priority - a.priority;
+        if (a.priority === b.priority) {
+          return a.order - b.order; // Siempre subordenar por 'order' ascendente si 'priority' es igual
+        }
+        return priorityComparison;
+      } else { // Default to sorting by 'order'
+        if (a.order === b.order) {
+          return a.priority - b.priority; // Suborden por 'priority' ascendente si 'order' es igual
+        }
+        return a.order - b.order;
+      }
+    });
+  }
+  
+
+  onSortChange(sortBy: 'order' | 'priority', isAscending: boolean = true): void {
+    this.currentSort = sortBy;
+    this.tasks = this.sortTasks(this.tasks, sortBy, isAscending);
   }
 
   fixDuplicateOrders(sortedTasks: Task[]): void {
@@ -100,7 +121,7 @@ export class TodoComponent implements OnInit {
       status: task.status
     });
     task.editing = false;
-    this.sortTasks(this.tasks);
+    // this.sortTasks(this.tasks);
     this.fixDuplicateOrders(this.tasks);
   }
 

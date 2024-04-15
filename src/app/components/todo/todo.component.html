@@ -15,7 +15,15 @@
   </div>
 
 
-  <button (click)="toggleTaskBuilder()">Crear Tarea</button>
+  <button (click)="toggleTaskBuilder()">
+    <i class="fas fa-plus"></i>
+    Crear Tarea
+  </button>
+  <div style="margin-top: 10px;">
+    <button (click)="onSortChange('order')">Ordenar por creación ascendente</button>
+    <button (click)="onSortChange('priority', true)">Ordenar por prioridad ascendente</button>
+    <button (click)="onSortChange('priority', false)">Ordenar por prioridad descendente</button>
+  </div>
   <div class="modal-backdrop" *ngIf="showTaskBuilder" (click)="toggleTaskBuilder()">
     <div class="task-builder-container" (click)="$event.stopPropagation()">
       <input type="text" [(ngModel)]="newTaskTitle" placeholder="Task title" />
@@ -34,20 +42,31 @@
   <ul>
     <li *ngFor="let task of tasks; trackBy: trackByTasks">
       <div class="task-container">
-        <div class="checkbox-wrapper-44">
-          <label class="toggleButton">
-            <input type="checkbox" [ngModel]="task.status" (ngModelChange)="updateStatus(task)">
-            <div>
-              <svg viewBox="0 0 44 44">
-                <path transform="translate(-2.000000, -2.000000)" d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758"></path>
-              </svg>
-            </div>
-          </label>
-        </div>
+        <div style="display: flex; ">
+          <div class="checkbox-wrapper-44">
+            <label class="toggleButton">
+              <input type="checkbox" [ngModel]="task.status" (ngModelChange)="updateStatus(task)">
+              <div>
+                <svg viewBox="0 0 44 44">
+                  <path transform="translate(-2.000000, -2.000000)"
+                    d="M14,24 L21,31 L39.7428882,11.5937758 C35.2809627,6.53125861 30.0333333,4 24,4 C12.95,4 4,12.95 4,24 C4,35.05 12.95,44 24,44 C35.05,44 44,35.05 44,24 C44,19.3 42.5809627,15.1645919 39.7428882,11.5937758">
+                  </path>
+                </svg>
+              </div>
+            </label>
+          </div>
 
-        <span>{{ task.title }} (Priority: {{ task.priority }}, Status: {{ task.status }}, Order: {{ task.order }})</span>
-        <button (click)="editTask(task)">Edit</button>
-        <button class="delete" (click)="removeTask(task.id)">Delete</button>
+          <span>{{ task.title }} Priority: {{ task.priority }}</span>
+        </div>
+        <div class="options-container">
+          <button (click)="editTask(task)">
+            <i class="fas fa-edit"></i>
+            Editar
+          </button>
+          <button class="delete" (click)="removeTask(task.id)">
+            <i class="fas fa-trash-alt"></i>
+            Eliminar</button>
+        </div>
       </div>
 
       <div *ngIf="task.editing">
@@ -57,11 +76,6 @@
           <option [value]="1">Alta</option>
           <option [value]="2">Media</option>
           <option [value]="3">Baja</option>
-        </select>
-
-        <select [(ngModel)]="task.status">
-          <option [value]="0">Pendiente</option>
-          <option [value]="1">Completado</option>
         </select>
 
         <button (click)="updateTask(task)">Update</button>
