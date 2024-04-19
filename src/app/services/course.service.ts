@@ -20,7 +20,7 @@ export class CourseService {
   constructor(private firestore: Firestore, private auth: Auth) {}
 
   private get userId(): string {
-    return this.auth.currentUser?.uid ?? '';
+    return this.auth.currentUser?.uid ?? ' ';
   }
 
   getCourseFromReference(courseRef: DocumentReference<Course>): Observable<Course> {
