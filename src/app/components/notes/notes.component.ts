@@ -27,7 +27,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
 export class NotesComponent implements OnInit {
   notes: Note[] = [];
   filteredNotes: Note[] = [];
-  newNote: Note = {title: '', description: '',color:''};
+  newNote: Note = {title: '', description: '',color:'',date:new Date(),formattedDate:''};
   showForm: boolean = false;
   showColor:boolean = false;
   editingNoteId: string | undefined = undefined;
@@ -90,7 +90,7 @@ export class NotesComponent implements OnInit {
       }
     } else {
       this.editingNoteId = undefined;
-      this.newNote = {title: '', description: '', color: ''};
+      this.newNote = {title: '', description: '', color: '',date:new Date(),formattedDate: ''};
       this.selectedCourseColor = ''; // Resetear el color seleccionado
     }
   }
@@ -110,6 +110,8 @@ export class NotesComponent implements OnInit {
     } else {
       // Crear una nueva nota
       if (this.newNote.title && this.newNote.description) {
+        this.newNote.date = new Date();
+        this.newNote.formattedDate = this.formatDate(this.newNote.date);
         this.notesService.addNote(this.newNote).then(() => {
           this.resetForm();
           this.loadNotesWithCourseNames(); // Recargar las notas para incluir la nueva
@@ -127,7 +129,7 @@ export class NotesComponent implements OnInit {
   resetForm(): void {
     this.showForm = false;
     this.showColor = false;
-    this.newNote = {title: '', description: '',color:''};
+    this.newNote = {title: '', description: '',color:'',date:new Date(),formattedDate:''};
     this.editingNoteId = undefined;
   }
 
@@ -152,5 +154,11 @@ export class NotesComponent implements OnInit {
   cambiarColor(course : Course, col: string | undefined){
     course.color = col;
     this.courseService.updateCourseColor(course.id, col);
+  }
+  private formatDate(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
   }
 }
