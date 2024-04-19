@@ -1,16 +1,18 @@
 <app-header></app-header>
 <div class="main" [@dialog]>
-  <div class="time-control">
-    <button (click)="addPomodoroTime()">+</button>
-    <p>Pomodoro Time</p>
-    <button (click)="subPomodoroTime()">-</button>
-  </div>
-  <div class="timer-circle" id="timer">{{ timer }}</div>
-  <div class="control-buttons">
-    <button (click)="togglePauseResume()">
-      {{ isPaused ? 'Start' : 'Pause' }}
-    </button>
-    <button (click)="restartTimer()">Restart</button>
-    <button (click)="chooseTime()">Choose Break Time</button>
+  <div class="pomodoro-container">
+    <div class="time-control">
+      <button (click)="addPomodoroTime()">+</button>
+      <p>Pomodoro Time</p>
+      <button (click)="subPomodoroTime()">-</button>
+    </div>
+    <div class="timer-circle" id="timer">{{ timer }}</div>
+    <div class="control-buttons">
+      <button (click)="togglePauseResume()">
+        {{ isPaused ? 'Start' : 'Pause' }}
+      </button>
+      <button (click)="restartTimer()">Restart</button>
+      <button (click)="chooseTime()">Choose Break Time</button>
+    </div>
   </div>
 </div>
