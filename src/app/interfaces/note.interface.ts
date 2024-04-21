@@ -9,4 +9,6 @@ export default interface Note {
   description: string;
   courseRef?: DocumentReference<Course>;
   courseName?: string;
+  date: Date;
+  formattedDate:string;
 }

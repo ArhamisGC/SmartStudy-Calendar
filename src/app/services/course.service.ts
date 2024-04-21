@@ -20,7 +20,7 @@ export class CourseService {
   constructor(private firestore: Firestore, private auth: Auth) {}
 
   private get userId(): string {
-    return this.auth.currentUser?.uid ?? '';
+    return this.auth.currentUser?.uid ?? ' ';
   }
 
   getCourseFromReference(courseRef: DocumentReference<Course>): Observable<Course> {
@@ -61,7 +61,7 @@ export class CourseService {
   }
 // En CourseService
   updateCourseColor(courseId: string | undefined, newColor: string | undefined): Promise<void> {
-    const courseRef = doc(this.firestore, `courses/${courseId}`);
+    const courseRef = doc(this.firestore, `users/${this.userId}/courses/${courseId}`);
     return updateDoc(courseRef, { color: newColor });
   }
 }
