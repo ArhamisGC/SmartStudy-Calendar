@@ -48,6 +48,7 @@ body {
 
 .time-control button {
   background-color: #ffcc00;
+  border-radius: 7px;
   color: #000000;
   border: 2px;
   border-color: black;
@@ -72,6 +73,7 @@ body {
 }
 
 .control-buttons button {
+  border-radius: 7px;
   background-color: #ffcc00;
   color: #000000;
   border: 2px;
