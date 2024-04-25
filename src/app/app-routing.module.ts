@@ -11,6 +11,7 @@ import { NotesComponent } from './components/notes/notes.component';
 import { PomodoroComponent } from './components/pomodoro/pomodoro.component';
 import { ReminderComponent } from "./components/reminder/reminder.component";
 import { TodoComponent } from "./components/todo/todo.component";
+import {TimetableComponent} from "./components/timetable-component/timetable/timetable.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, pathMatch: 'full'},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'notes', component: NotesComponent,canActivate: [AuthGuard]},
   {path: 'pomodoro', component: PomodoroComponent,canActivate: [AuthGuard]},
   {path: 'reminders', component: ReminderComponent,canActivate: [AuthGuard]},
-  {path: 'todo', component: TodoComponent,canActivate: [AuthGuard]}
+  {path: 'todo', component: TodoComponent,canActivate: [AuthGuard]},
+  {path: 'timetable', component: TimetableComponent}
 ];
 
 @NgModule({

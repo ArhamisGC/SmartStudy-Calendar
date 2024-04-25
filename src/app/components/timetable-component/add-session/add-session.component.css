@@ -1,0 +1,179 @@
+.add-session-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75); /* Ajusta la transparencia como desees */
+  z-index: 1050; /* Asegúrate de que sea suficientemente alto como para cubrir otros elementos */
+}
+
+
+.session-form-container {
+  display: flex;
+  position: relative; /* Importante para posicionar absolutamente el botón de cierre */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+  font-family: 'Poppins', sans-serif; /* Uso de la fuente Poppins */
+}
+
+
+.session-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.form-title, .form-label {
+  margin-bottom: 5px;
+  font-weight: 600; /* Poppins en peso 600 para títulos y etiquetas */
+}
+
+.day-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.day-button {
+  flex-grow: 1;
+  margin: 2px;
+  padding: 8px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.day-button.selected {
+  background-color: #007BFF;
+  color: white;
+}
+
+input[type="text"], input[type="time"], input[type="color"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+button {
+  padding: 10px;
+  width: 100%; /* Asegura que todos los botones tengan el mismo ancho */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  background-color: #007BFF;
+  color: #000000;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.manage-button {
+  background-color: #f8f9fa; /* Color de fondo claro para distinguirlo del botón principal */
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.manage-button:hover {
+  background-color: #e2e6ea; /* Color más oscuro al pasar el mouse */
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 25px;
+  cursor: pointer;
+  color: #000; /* Color fijo para asegurar que se mantenga */
+  background-color: transparent; /* Fondo transparente para evitar cualquier sobrescritura */
+  border: none; /* Eliminar cualquier borde por defecto */
+  z-index: 1100; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+/* Estilos adicionales para asegurar el color en diferentes estados */
+.close-button:hover,
+.close-button:focus {
+  color: #000;
+  text-decoration: none; /* Quitar cualquier subrayado en hover o focus */
+  background-color: transparent; /* Mantener el fondo transparente en hover o focus */
+  outline: none; /* Quitar cualquier contorno en focus */
+}
+
+/* Estilos específicos para el selector de asignaturas */
+.select-subject {
+  display: block;
+  width: 100%; /* Asegura que el selector ocupe todo el ancho disponible */
+  padding: 8px 10px; /* Padding cómodo para facilitar la selección */
+  margin: 10px 0; /* Espacio antes y después del selector */
+  background-color: #fff; /* Fondo blanco para el selector */
+  border: 1px solid #ccc; /* Borde sutil para el selector */
+  border-radius: 4px; /* Bordes redondeados para suavizar la apariencia */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera para dar profundidad */
+  appearance: none; /* Desactiva el estilo predeterminado del navegador para select */
+  cursor: pointer; /* Indica que el elemento es interactivo */
+}
+
+/* Estilos para mejorar la apariencia de los option dentro del select */
+.select-subject option {
+  padding: 8px; /* Padding para hacer cada opción más accesible */
+  background: #f8f8f8; /* Un ligero fondo gris para cada opción al desplegarse */
+}
+
+.select-subject {
+  display: block;
+  width: 100%; /* Cambia esto a un valor fijo en píxeles si es necesario, ej., 500px */
+  padding: 8px 10px; /* Ajuste cómodo */
+  margin: 10px 0; /* Espacio vertical */
+  background-color: #fff; /* Fondo blanco */
+  border: 1px solid #ccc; /* Borde sutil */
+  border-radius: 4px; /* Bordes redondeados */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  appearance: none; /* Elimina el estilo por defecto */
+  cursor: pointer; /* Cursor como indicador */
+}
+
+.select-subject::after {
+  content: '▼'; /* Icono de flecha */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #333;
+  font-size: 0.8em;
+}

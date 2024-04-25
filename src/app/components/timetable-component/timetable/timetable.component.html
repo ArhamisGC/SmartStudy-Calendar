@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timetable Component</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<app-header></app-header>
+
+<div class="timetable-container">
+  <div class="buttons-container">
+    <button (click)="addSession()" title="Add Session">
+      <i class="fas fa-plus"></i> Add Session
+    </button>
+  </div>
+
+  <table>
+    <thead>
+    <tr>
+      <th class="hour-header">Hour</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let time of uniqueTimes">
+      <td class="hour-cell">{{ time }}</td>
+      <td *ngFor="let day of daysOfWeek" class="class-cell">
+        <ng-container *ngFor="let session of getSessionsForDay(day)">
+          <div *ngIf="datePipe.transform(session.start.toDate(), 'shortTime') === time" class="class-box" [ngStyle]="{'background-color': session.color}">
+            {{ session.subject || 'Libre' }}
+            <i class="fas fa-pencil-alt edit-icon" (click)="editSubject(schedule.indexOf(session), 'New Subject')"></i>
+            <i class="fas fa-times delete-icon" (click)="deleteSubject(schedule.indexOf(session))"></i>
+          </div>
+        </ng-container>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+<div *ngIf="showAddSessionModal" class="add-session-overlay" [@dialog]>
+  <div [@dialog] class="modal-content">
+    <app-add-session (close)="closeAddSessionModal()"></app-add-session>
+  </div>
+</div>
+</html>

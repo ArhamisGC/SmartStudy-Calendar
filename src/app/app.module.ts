@@ -36,36 +36,41 @@ import {MatCard, MatCardContent} from "@angular/material/card";
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {ToastrModule} from "ngx-toastr";
-
 import { ReminderComponent } from "./components/reminder/reminder.component";
 import { PomodoroComponent } from './components/pomodoro/pomodoro.component';
+import { TimetableComponent } from './components/timetable-component/timetable/timetable.component';
+import { AddSessionComponent } from './components/timetable-component/add-session/add-session.component';
+import { EditSessionComponent } from './components/timetable-component/edit-session/edit-session.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CalendarComponent,
-    EventViewerComponent,
-    EventCreatorComponent,
-    EventEditorComponent,
-    SubjectManagerComponent,
-    SubjectViewerComponent,
-    SubjectEditorComponent,
-    ProfessorCreatorComponent,
-    ProfessorManagerComponent,
-    SubjectEditorComponent,
-    SubjectCreatorComponent,
-    LoginregisterComponent,
-    ProfileComponent,
-    EventListViewerComponent,
-    HomeComponent,
-    HeaderComponent,
-    LogoutComponent,
-    DashboardComponent,
-    NotesComponent,
-    TodoComponent,
-    ReminderComponent,
-    PomodoroComponent
-  ],
+    declarations: [
+        AppComponent,
+        CalendarComponent,
+        EventViewerComponent,
+        EventCreatorComponent,
+        EventEditorComponent,
+        SubjectManagerComponent,
+        SubjectViewerComponent,
+        SubjectEditorComponent,
+        ProfessorCreatorComponent,
+        ProfessorManagerComponent,
+        SubjectEditorComponent,
+        SubjectCreatorComponent,
+        LoginregisterComponent,
+        ProfileComponent,
+        EventListViewerComponent,
+        HomeComponent,
+        HeaderComponent,
+        LogoutComponent,
+        DashboardComponent,
+        NotesComponent,
+        TodoComponent,
+        ReminderComponent,
+        PomodoroComponent,
+        TimetableComponent,
+        AddSessionComponent,
+        EditSessionComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
