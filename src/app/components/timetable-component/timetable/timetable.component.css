@@ -140,3 +140,15 @@ thead th {
 .edit-icon:hover {
   color: #007bff; /* Azul al pasar el cursor sobre editar */
 }
+
+.dark-text {
+  color: white; /* Cambia el color del texto a blanco */
+}
+
+.session-container {
+  position: relative;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

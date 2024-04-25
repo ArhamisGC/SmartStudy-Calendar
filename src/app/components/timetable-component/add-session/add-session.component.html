@@ -1,7 +1,8 @@
-<div class="add-session-overlay">
+
+<div class="add-session-overlay" [@dialog]>
   <form [formGroup]="sessionForm" class="session-form">
     <span class="close-button" (click)="closeDialog()">&times;</span>
-    <h2 class="form-title">Añadir clase</h2>
+    <h2 class="form-title">Añadir nueva clase</h2>
     <div class="form-section">
       <label for="hourStart" class="form-label">Hora de inicio:</label>
       <input id="hourStart" formControlName="hourStart" type="time">
@@ -9,11 +10,11 @@
       <input id="hourEnd" formControlName="hourEnd" type="time">
     </div>
     <div class="day-buttons">
-      <button type="button" class="day-button" (click)="selectDay('monday')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Mon'">Lu</button>
-      <button type="button" class="day-button" (click)="selectDay('tuesday')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Tue'">Mar</button>
-      <button type="button" class="day-button" (click)="selectDay('wednesday')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Wed'">Mié</button>
-      <button type="button" class="day-button" (click)="selectDay('thursday')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Thu'">Jue</button>
-      <button type="button" class="day-button" (click)="selectDay('friday')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Fri'">Vie</button>
+      <button type="button" class="day-button" (click)="selectDay('Mon')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Mon'">Lu</button>
+      <button type="button" class="day-button" (click)="selectDay('Tue')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Tue'">Mar</button>
+      <button type="button" class="day-button" (click)="selectDay('Wed')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Wed'">Mié</button>
+      <button type="button" class="day-button" (click)="selectDay('Thu')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Thu'">Jue</button>
+      <button type="button" class="day-button" (click)="selectDay('Fri')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Fri'">Vie</button>
     </div>
     <div class="form-section">
       <label for="subject" class="form-label">Asignatura:</label>

@@ -5,12 +5,25 @@ import Course from '../../../interfaces/course.interface';
 import ClassSession from '../../../interfaces/class-sesion.interface';
 import { CourseService } from '../../../services/course.service';
 import { ClassSessionService } from '../../../services/timetable.service';
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-add-session',
   templateUrl: './add-session.component.html',
-  styleUrls: ['./add-session.component.css']
+  styleUrls: ['./add-session.component.css'],
+  animations: [
+    trigger('dialog', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.9)' }),
+        animate('200ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ opacity: 0, transform: 'scale(0.9)' }))
+      ])
+    ])
+  ]
 })
+
 export class AddSessionComponent implements OnInit {
   @Output() sessionAdded = new EventEmitter<ClassSession>();
   @Output() close = new EventEmitter<void>();
@@ -63,10 +76,9 @@ export class AddSessionComponent implements OnInit {
         this.sessionForm.reset();
         this.closeDialog();
       }).catch(error => {
-        console.error('Error adding class session:', error);
       });
     } else {
-      console.error('Form is not valid:', this.sessionForm.errors);
+      alert('Por favor, complete todos los campos de la sesión adecuadamente.');
     }
   }
 
