@@ -30,3 +30,8 @@
     </div>
   </form>
 </div>
+<div *ngIf="showManageSubjectsModal" class="add-session-overlay" [@dialog]>
+  <div [@dialog] class="modal-content">
+    <app-subject-manager (close)="closeManageSubjectsModal()"></app-subject-manager>
+  </div>
+</div>

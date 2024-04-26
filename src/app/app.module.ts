@@ -41,6 +41,7 @@ import { PomodoroComponent } from './components/pomodoro/pomodoro.component';
 import { TimetableComponent } from './components/timetable-component/timetable/timetable.component';
 import { AddSessionComponent } from './components/timetable-component/add-session/add-session.component';
 import { EditSessionComponent } from './components/timetable-component/edit-session/edit-session.component';
+import { ViewSessionComponent } from './components/timetable-component/view-session/view-session.component';
 
 @NgModule({
     declarations: [
@@ -70,6 +71,7 @@ import { EditSessionComponent } from './components/timetable-component/edit-sess
         TimetableComponent,
         AddSessionComponent,
         EditSessionComponent,
+        ViewSessionComponent,
     ],
   imports: [
     BrowserModule,

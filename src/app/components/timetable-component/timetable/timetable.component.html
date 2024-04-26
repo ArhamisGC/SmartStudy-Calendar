@@ -19,12 +19,12 @@
   <table>
     <thead>
     <tr>
-      <th class="hour-header">Hour</th>
-      <th>Monday</th>
-      <th>Tuesday</th>
-      <th>Wednesday</th>
-      <th>Thursday</th>
-      <th>Friday</th>
+      <th class="hour-header">Hora</th>
+      <th>Lunes</th>
+      <th>Martes</th>
+      <th>Miércoles</th>
+      <th>Jueves</th>
+      <th>Viernes</th>
     </tr>
     </thead>
     <tbody>
@@ -32,7 +32,9 @@
       <td class="hour-cell">{{ time }}</td>
       <td *ngFor="let day of daysOfWeek" class="class-cell">
         <ng-container *ngFor="let session of getSessionsForDay(day)">
-          <div *ngIf="datePipe.transform(session.start.toDate(), 'shortTime') === time" class="class-box" [ngStyle]="{'background-color': session.color}">
+          <div *ngIf="datePipe.transform(session.start.toDate(), 'shortTime') === time"
+               [ngStyle]="{'background-color': session.color}"
+               [ngClass]="{'dark-text': isDarkColor(session.color)}" class="class-box">
             {{ session.subjectName || 'Libre' }}
             <i class="fas fa-pencil-alt edit-icon" (click)="editSubject(schedule.indexOf(session), 'New Subject')"></i>
             <i class="fas fa-times delete-icon" (click)="deleteSubject(schedule.indexOf(session))"></i>
@@ -43,6 +45,7 @@
     </tbody>
   </table>
 </div>
+
 </body>
 <div *ngIf="showAddSessionModal" class="add-session-overlay" [@dialog]>
   <div [@dialog] class="modal-content">

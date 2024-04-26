@@ -18,6 +18,7 @@ export class TimetableComponent implements OnInit {
   schedule: ClassSession[] = [];
   public uniqueTimes: string[] | undefined;
   showAddSessionModal: boolean = false;
+  selectedSession: ClassSession | undefined;
 
   constructor(
     public datePipe: DatePipe,
@@ -131,5 +132,8 @@ export class TimetableComponent implements OnInit {
 
   closeAddSessionModal(): void {
     this.showAddSessionModal = false;
+  }
+
+  openSessionViewer(session: ClassSession): void {
   }
 }

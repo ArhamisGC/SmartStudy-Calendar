@@ -30,6 +30,8 @@ export class AddSessionComponent implements OnInit {
 
   sessionForm: FormGroup;
   courses: Course[] = [];
+  showManageSubjectsModal: boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -104,6 +106,11 @@ export class AddSessionComponent implements OnInit {
   }
 
   manageSubjects(): void {
-    // Placeholder for managing subjects functionality
+    this.showManageSubjectsModal = true;
+  }
+
+  closeManageSubjectsModal(): void {
+    this.showManageSubjectsModal = false;
   }
 }
+
