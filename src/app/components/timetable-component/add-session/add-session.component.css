@@ -80,37 +80,49 @@
     border-radius: 4px;
   }
 
-  .button-group {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+.button-group button, .day-button, .manage-button, .submit-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Añadir transiciones */
+}
 
-  button {
-    padding: 10px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    background-color: #007BFF;
-    color: #000000;
-  }
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
 
-  button:hover {
-    background-color: #0056b3;
-  }
 
-  .manage-button {
-    background-color: #f8f9fa;
-    color: #333;
-    border: 1px solid #ccc;
-  }
+.button-group button:hover, .day-button:hover, .manage-button:hover, .submit-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Efecto de escala al pasar el ratón */
+}
 
-  .manage-button:hover {
-    background-color: #e2e6ea;
-  }
+.button-group button:active, .day-button:active, .manage-button:active, .submit-button:active {
+  transform: scale(0.95); /* Efecto de pulsación */
+}
+
+.manage-button, .submit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.manage-button:hover, .submit-button:hover {
+  background-color: #0056b3;
+}
+
+.manage-button {
+  background-color: rgb(255, 196, 46);
+  color: #ffffff;
+  border: 1px solid #b78604;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.manage-button:hover {
+  background-color: #e2e6ea;
+}
 
   .close-button-container {
     position: absolute;

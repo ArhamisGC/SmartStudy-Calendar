@@ -1,3 +1,15 @@
+.view-session-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1050;
+}
+
 .session-view-container {
   display: flex;
   justify-content: center;
@@ -40,11 +52,18 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Añadir transiciones */
 }
 
-button:hover {
+button:hover, button:focus {
   background-color: #0056b3;
+  transform: scale(1.05); /* Efecto de escala al pasar el ratón */
 }
+
+button:active {
+  transform: scale(0.95); /* Efecto de pulsación */
+}
+
 
 button i {
   margin-right: 5px;

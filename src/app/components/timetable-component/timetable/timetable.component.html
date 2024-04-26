@@ -12,7 +12,7 @@
 <div class="timetable-container">
   <div class="buttons-container">
     <button (click)="addSession()" title="Add Session">
-      <i class="fas fa-plus"></i> Add Session
+      <i class="fas fa-plus"></i> Añadir clase
     </button>
   </div>
 
@@ -34,10 +34,11 @@
         <ng-container *ngFor="let session of getSessionsForDay(day)">
           <div *ngIf="datePipe.transform(session.start.toDate(), 'shortTime') === time"
                [ngStyle]="{'background-color': session.color}"
-               [ngClass]="{'dark-text': isDarkColor(session.color)}" class="class-box">
+               [ngClass]="{'dark-text': isDarkColor(session.color)}" class="class-box"
+               (click)="openSessionViewer(session)">
             {{ session.subjectName || 'Libre' }}
-            <i class="fas fa-pencil-alt edit-icon" (click)="editSubject(schedule.indexOf(session), 'New Subject')"></i>
-            <i class="fas fa-times delete-icon" (click)="deleteSubject(schedule.indexOf(session))"></i>
+            <i class="fas fa-pencil-alt edit-icon" (click)="editSubject(session); $event.stopPropagation()"></i>
+            <i class="fas fa-times delete-icon" (click)="deleteSubject(schedule.indexOf(session)); $event.stopPropagation()"></i>
           </div>
         </ng-container>
       </td>
@@ -47,9 +48,18 @@
 </div>
 
 </body>
-<div *ngIf="showAddSessionModal" class="add-session-overlay" [@dialog]>
-  <div [@dialog] class="modal-content">
+<div *ngIf="showAddSessionModal" class="add-session-overlay">
+  <div class="modal-content">
     <app-add-session (close)="closeAddSessionModal()"></app-add-session>
   </div>
 </div>
-</html>
+
+<div *ngIf="showSessionViewerModal" class="session-view-overlay">
+  <div class="modal-content">
+    <app-view-session [session]="selectedSession" (close)="closeSessionViewer()"></app-view-session>
+  </div>
+</div>
+
+<div *ngIf="showEditSessionModal" class="edit-session-overlay">
+  <app-edit-session [session]="editableSession" (onCancel)="closeEditSessionModal()"></app-edit-session>
+</div>

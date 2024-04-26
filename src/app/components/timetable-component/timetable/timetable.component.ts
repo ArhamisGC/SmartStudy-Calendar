@@ -18,7 +18,10 @@ export class TimetableComponent implements OnInit {
   schedule: ClassSession[] = [];
   public uniqueTimes: string[] | undefined;
   showAddSessionModal: boolean = false;
-  selectedSession: ClassSession | undefined;
+  showSessionViewerModal: boolean = false;
+  selectedSession: ClassSession | null = null;
+  showEditSessionModal: boolean = false;
+  editableSession: ClassSession | null = null
 
   constructor(
     public datePipe: DatePipe,
@@ -43,7 +46,6 @@ export class TimetableComponent implements OnInit {
               })
             )
             .subscribe(course => {
-              console.log(`Course loaded for session ${index}:`, course);
               this.schedule[index].subjectName = course.name;
               this.schedule = [...this.schedule];
             });
@@ -68,9 +70,6 @@ export class TimetableComponent implements OnInit {
 
   addSession(): void {
     this.showAddSessionModal = true;
-  }
-
-  editSubject(index: number, newSubject: string): void {
   }
 
   deleteSubject(index: number): void {
@@ -135,5 +134,26 @@ export class TimetableComponent implements OnInit {
   }
 
   openSessionViewer(session: ClassSession): void {
+    this.selectedSession = session;
+    this.showSessionViewerModal = true;
+    this.showAddSessionModal = false;
   }
+
+  closeSessionViewer(): void {
+    this.selectedSession = null;
+    this.showSessionViewerModal = false;
+  }
+
+  editSubject(session: ClassSession): void {
+    this.editableSession = session;
+    this.showEditSessionModal = true;
+  }
+
+  closeEditSessionModal(): void {
+    this.showEditSessionModal = false;
+  }
+
+  handleSessionInfo(session: ClassSession): void {
+  }
+
 }

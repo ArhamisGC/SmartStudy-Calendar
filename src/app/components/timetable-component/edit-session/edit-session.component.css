@@ -1,11 +1,21 @@
-/* edit-session.component.css */
+.edit-session-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1050;
+}
+
 .session-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  font-family: 'Poppins', sans-serif;
 }
 
 .session-form {
@@ -18,39 +28,39 @@
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
 }
 
 .form-title, .form-label {
   margin-bottom: 10px;
-  font-weight: 600; /* Aplicar negrita */
+  font-weight: 600;
 }
 
 .day-buttons {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: 10px 0; /* Añade espacio verticalmente entre los días y otros controles */
+  margin: 10px 0;
 }
 
 .day-button {
   flex-grow: 1;
-  margin: 0 5px; /* Añade espacio horizontal entre botones */
+  margin: 2px;
   padding: 8px;
-  background-color: #f0f0f0;
+  background-color: #333;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  color: white; /* Texto blanco */
 }
 
 .day-button.selected {
   background-color: #007BFF;
-  color: white;
 }
 
 input[type="text"], input[type="time"], input[type="color"] {
-  width: 100%;
+  width: calc(100% - 16px);
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -59,31 +69,31 @@ input[type="text"], input[type="time"], input[type="color"] {
 .button-group {
   width: 100%;
   display: flex;
-  flex-direction: column;
   gap: 10px;
 }
 
 button {
   padding: 10px;
-  width: 100%; /* Asegura que todos los botones tengan el mismo ancho */
+  flex-grow: 1;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
-  background-color: #007BFF;
-  color: #000000;
+  color: white;
 }
 
 button:hover {
   background-color: #0056b3;
 }
 
+.save-button {
+  background-color: #f5cb5c;
+}
+
 .cancel-button {
-  background-color: #f8f9fa; /* Color de fondo claro para distinguirlo del botón principal */
-  color: #333;
-  border: 1px solid #ccc;
+  background-color: #007BFF;
 }
 
 .cancel-button:hover {
-  background-color: #e2e6ea; /* Color más oscuro al pasar el mouse */
+  background-color: #0056b3;
 }

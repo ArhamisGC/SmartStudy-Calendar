@@ -1,42 +1,21 @@
-<!-- edit-session.component.html -->
-<div class="session-form-container" *ngIf="editSessionForm">
-  <form [formGroup]="editSessionForm" (ngSubmit)="onSubmit()" class="session-form">
-    <h2 class="form-title">Editar Sesión</h2>
-
-    <div class="form-section">
-      <label for="hourStart" class="form-label">Hora de inicio:</label>
-      <input id="hourStart" formControlName="hourStart" type="time">
-
-      <label for="hourEnd" class="form-label">Hora de fin:</label>
-      <input id="hourEnd" formControlName="hourEnd" type="time">
-    </div>
-
-    <div formGroupName="days" class="day-buttons">
-      <button type="button" class="day-button"
-              (click)="selectDay('monday')"
-              [class.selected]="editSessionForm.get('selectedDay')?.value === 'monday'">Lu</button>
-      <button type="button" class="day-button"
-              (click)="selectDay('tuesday')"
-              [class.selected]="editSessionForm.get('selectedDay')?.value === 'tuesday'">Mar</button>
-      <button type="button" class="day-button"
-              (click)="selectDay('wednesday')"
-              [class.selected]="editSessionForm.get('selectedDay')?.value === 'wednesday'">Mié</button>
-      <button type="button" class="day-button"
-              (click)="selectDay('thursday')"
-              [class.selected]="editSessionForm.get('selectedDay')?.value === 'thursday'">Jue</button>
-      <button type="button" class="day-button"
-              (click)="selectDay('friday')"
-              [class.selected]="editSessionForm.get('selectedDay')?.value === 'friday'">Vie</button>
-    </div>
-
-    <div class="form-section">
-      <label for="colorPicker" class="form-label">Color:</label>
-      <input id="colorPicker" formControlName="color" type="color" title="Seleccione el color de la asignatura">
-    </div>
-
-    <div class="button-group">
-      <button type="button" class="cancel-button" (click)="cancelEdit()">Cancelar</button>
-      <button type="submit">Actualizar Sesión</button>
-    </div>
-  </form>
+<div class="edit-session-overlay" *ngIf="editSessionForm" [@dialog]>
+  <div class="session-form-container">
+    <form [formGroup]="editSessionForm" class="session-form" (ngSubmit)="onSubmit()">
+      <h2 class="form-title">Editar Sesión</h2>
+      <div class="day-buttons">
+        <button type="button" class="day-button" [ngClass]="{'selected': editSessionForm.get('selectedDay')?.value === 'Mon'}" (click)="selectDay('Mon')">Lunes</button>
+        <button type="button" class="day-button" [ngClass]="{'selected': editSessionForm.get('selectedDay')?.value === 'Tue'}" (click)="selectDay('Tue')">Martes</button>
+        <button type="button" class="day-button" [ngClass]="{'selected': editSessionForm.get('selectedDay')?.value === 'Wed'}" (click)="selectDay('Wed')">Miércoles</button>
+        <button type="button" class="day-button" [ngClass]="{'selected': editSessionForm.get('selectedDay')?.value === 'Thu'}" (click)="selectDay('Thu')">Jueves</button>
+        <button type="button" class="day-button" [ngClass]="{'selected': editSessionForm.get('selectedDay')?.value === 'Fri'}" (click)="selectDay('Fri')">Viernes</button>
+      </div>
+      <input type="time" formControlName="hourStart">
+      <input type="time" formControlName="hourEnd">
+      <input type="color" formControlName="color">
+      <div class="button-group">
+        <button type="submit" class="save-button"><i class="fas fa-save"></i> Guardar</button>
+        <button type="button" class="cancel-button" (click)="cancelEdit()"><i class="fas fa-times"></i> Cancelar</button>
+      </div>
+    </form>
+  </div>
 </div>

@@ -1,11 +1,16 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
-<div class="session-view-container">
-  <div class="session-details">
-    <i class="fas fa-times close-icon" (click)="onClose()"></i>
-    <h2>{{ subjectName }}</h2>
-    <p class="session-time">{{ day }}: {{ startTime }} - {{ endTime }}</p>
-    <button (click)="onMoreInfo()">
-      <i class="fas fa-info-circle"></i> Información de la asignatura
-    </button>
+<div class="view-session-overlay" >
+  <div class="session-view-container">
+    <div class="session-details">
+      <i class="fas fa-times close-icon" (click)="onClose()"></i>
+      <h2>{{ session?.subjectName }}</h2>
+      <p class="session-time">{{ session?.day }}: {{ startTime }} - {{ endTime }}</p>
+      <button (click)="loadCourseDetails()"> <!-- Cambiado para cargar detalles directamente -->
+        <i class="fas fa-info-circle"></i> Información de la asignatura
+      </button>
+    </div>
+  </div>
+  <div *ngIf="showSubjectViewer" class="subject-viewer-overlay">
+    <app-subject-viewer [selectedCourse]="selectedCourse" (close)="closeSubjectViewer()"></app-subject-viewer>
   </div>
 </div>
