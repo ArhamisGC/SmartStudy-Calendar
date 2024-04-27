@@ -1,12 +1,11 @@
-// File: class-session.service.ts
-
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { Auth } from '@angular/fire/auth';
 import { onAuthStateChanged } from 'firebase/auth';
-import  ClassSession from "../interfaces/class-sesion.interface";
+import ClassSession from "../interfaces/class-sesion.interface";
 import { Timestamp } from '@angular/fire/firestore';
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +24,23 @@ export class ClassSessionService {
         this.userCollection = null;  // Reset when no user is logged in
       }
     });
+  }
+
+
+  getAllSessions(): Observable<ClassSession[]> {
+    if (!this.userCollection) {
+      throw new Error("No user is currently authenticated.");
+    }
+    return this.firestore.collection<ClassSession>(this.userCollection).valueChanges({ idField: 'id' });
+  }
+
+  getSessionsForDay(day: string): Observable<ClassSession[]> {
+    if (!this.userCollection) {
+      throw new Error("No user is currently authenticated.");
+    }
+    return this.firestore.collection<ClassSession>(this.userCollection, ref =>
+      ref.where('day', '==', day).orderBy('start')
+    ).valueChanges({ idField: 'id' });
   }
 
   addClassSession(session: ClassSession): Promise<void> {

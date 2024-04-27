@@ -31,6 +31,7 @@ export class AddSessionComponent implements OnInit {
   sessionForm: FormGroup;
   courses: Course[] = [];
   showManageSubjectsModal: boolean = false;
+  allSessions: ClassSession[] = [];
 
 
   constructor(
@@ -48,7 +49,10 @@ export class AddSessionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.courseService.getAllCourses().subscribe((courses: Course[]) => {
+    this.classSessionService.getAllSessions().subscribe(sessions => {
+      this.allSessions = sessions;
+    });
+    this.courseService.getAllCourses().subscribe(courses => {
       this.courses = courses;
     });
   }
@@ -57,28 +61,47 @@ export class AddSessionComponent implements OnInit {
     this.sessionForm.get('selectedDay')?.setValue(day);
   }
 
+  verifyOverlap(newSession: ClassSession): boolean {
+    const newStart = newSession.start.toDate().getTime();
+    const newEnd = newSession.end.toDate().getTime() - 1; // Permitir fin a inicio sin solapamiento
+
+    return this.allSessions.filter(session => session.day === newSession.day).some(session => {
+      const existingStart = session.start.toDate().getTime();
+      const existingEnd = session.end.toDate().getTime() - 1;
+      return newStart <= existingEnd && newEnd >= existingStart;
+    });
+  }
+
   addSession(): void {
     if (this.sessionForm.valid) {
       const formValue = this.sessionForm.value;
       const startDate = this.combineDateAndTime(formValue.selectedDay, formValue.hourStart);
       const endDate = this.combineDateAndTime(formValue.selectedDay, formValue.hourEnd);
-      const startTimestamp = Timestamp.fromDate(startDate);
-      const endTimestamp = Timestamp.fromDate(endDate);
 
-      const classSession: ClassSession = {
-        start: startTimestamp,
-        end: endTimestamp,
+      const newSession: ClassSession = {
+        start: Timestamp.fromDate(startDate),
+        end: Timestamp.fromDate(endDate),
         subject: this.courseService.createRefToCourse(formValue.subject),
         day: formValue.selectedDay,
         color: formValue.color
       };
 
-      this.classSessionService.addClassSession(classSession).then(() => {
-        this.sessionAdded.emit(classSession);
-        this.sessionForm.reset();
-        this.closeDialog();
-      }).catch(error => {
-      });
+      if (endDate <= startDate) {
+        alert("La hora de fin no puede ser anterior a la hora de inicio en el mismo día.");
+        return;
+      }
+
+      if (!this.verifyOverlap(newSession)) {
+        this.classSessionService.addClassSession(newSession).then(() => {
+          this.sessionAdded.emit(newSession);
+          this.sessionForm.reset();
+          this.closeDialog();
+        }).catch(error => {
+          console.error('Error adding session:', error);
+        });
+      } else {
+        alert('No se puede crear la sesión de clase porque se solapa con otra existente.');
+      }
     } else {
       alert('Por favor, complete todos los campos de la sesión adecuadamente.');
     }
