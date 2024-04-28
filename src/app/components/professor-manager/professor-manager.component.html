@@ -1,5 +1,5 @@
-<div class="professor-manager-container">
-  <span class="close-button" (click)="closeDialog()">&#10005;</span>
+<div class="professor-manager-container" [@dialog]>
+  <span class="close-button" (click)="closeManager()">&#10005;</span>
   <h2 class="professor-manager-title">Gestionar profesores</h2>
   <div class="professors-list">
     <div *ngFor="let professor of professors; let i = index" (click)="selectProfessor(i)" [class.selected]="i === selectedProfessorIndex">
@@ -7,8 +7,13 @@
     </div>
   </div>
   <div *ngIf="selectedProfessorIndex !== null" class="action-buttons">
-    <button (click)="editProfessor()">Editar Profesor</button>
-    <button (click)="deleteProfessor()">Eliminar Profesor</button>
+    <button (click)="editProfessor()" class="btn-edit"><i class="fas fa-edit"></i> Editar profesor</button>
+    <button (click)="deleteProfessor()" class="btn-delete"><i class="fas fa-trash-alt"></i> Eliminar profesor</button>
   </div>
-  <button (click)="addProfessor()" class="add-professor-btn">Añadir Profesor</button>
+  <button (click)="addProfessor()" class="add-professor-btn"><i class="fas fa-plus"></i> Añadir profesor</button>
+</div>
+<div *ngIf="showCreator" class="professor-creator-overlay">
+  <div class="modal-content">
+    <app-professor-creator [course]="course" (close)="closeCreator()"></app-professor-creator>
+  </div>
 </div>

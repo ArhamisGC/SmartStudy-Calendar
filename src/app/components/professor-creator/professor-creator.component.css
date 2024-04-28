@@ -1,4 +1,22 @@
+/* professor-creator.component.css */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+.professor-creator-overlay {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Más oscuro */
+  z-index: 1050; /* Asegura que está por encima de otros elementos */
+  overflow: hidden;
+}
+
 
 .professor-creator-container {
   font-family: 'Roboto', sans-serif;
@@ -7,11 +25,12 @@
   max-width: 400px;
   margin: auto;
   padding: 20px;
-  padding-top: 40px; /* Espacio para la 'X' */
+  padding-top: 40px; /* Space for the close 'X' */
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative; /* Para posicionar la 'X' absolutamente */
+  position: relative; /* For absolute positioning of the 'X' */
+  animation: slideIn 0.5s;
 }
 
 .form-group {
@@ -40,7 +59,7 @@ input {
   transition: background-color 0.3s ease;
   display: block;
   width: fit-content;
-  margin: 20px auto; /* Centrado */
+  margin: 20px auto; /* Centered */
 }
 
 .btn-save:hover {
@@ -58,4 +77,14 @@ input {
 
 .close-button:hover {
   color: #333;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }

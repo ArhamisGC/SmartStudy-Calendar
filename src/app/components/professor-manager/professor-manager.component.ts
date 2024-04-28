@@ -1,38 +1,85 @@
-import {Component, OnInit, signal} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Professor from '../../interfaces/professor.interface'; // Ajusta la ruta según sea necesario
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import Professor from '../../interfaces/professor.interface';
+import Course from "../../interfaces/course.interface";
+import { ProfessorService } from "../../services/professor.service";
+import { animate, state, style, transition, trigger } from "@angular/animations";
 
 @Component({
   selector: 'app-professor-manager',
   templateUrl: './professor-manager.component.html',
-  styleUrls: ['./professor-manager.component.css']
+  styleUrls: ['./professor-manager.component.css'],
+  animations: [
+    trigger('dialog', [
+      state('void', style({ opacity: 0, transform: 'scale(0.9)' })),
+      state('*', style({ opacity: 1, transform: 'scale(1)' })),
+      transition('void => *', animate('200ms ease-out')),
+      transition('* => void', animate('200ms ease-in'))
+    ])
+  ]
 })
 export class ProfessorManagerComponent implements OnInit {
-  professors: Professor[] = []; // Array para almacenar los profesores
-  selectedProfessorIndex: number | null = null; // Para rastrear el profesor seleccionado
+  professors: Professor[] = [];
+  selectedProfessorIndex: number | null = null;
+  @Input() course: Course | null = null;
+  @Output() close = new EventEmitter<void>();
+  showCreator: boolean = false;
 
-  constructor() { }
+  constructor(private professorService: ProfessorService) { }
 
   ngOnInit(): void {
-    this.loadProfessors();
+    if (this.course && this.course.id) {
+      this.loadProfessors();
+    }
   }
 
   loadProfessors(): void {
-    // Cargar profesores dummy o desde una base de datos
-    this.professors = [
-      { id: '1', name: 'John Doe', email: 'john.doe@example.com' },
-      { id: '2', name: 'Jane Doe', email: 'jane.doe@example.com' },
-      // Añade más profesores dummy según sea necesario
-    ];
+    if (this.course && this.course.id) {
+      const courseRef = this.professorService.createRefToCourse(this.course.id);
+      this.professorService.getProfessorsByCourseRef(courseRef).then(professors => {
+        this.professors = professors;
+      }).catch(error => {
+        console.error('Error al cargar los profesores del curso:', error);
+      });
+    }
   }
 
   selectProfessor(index: number): void {
     this.selectedProfessorIndex = index;
   }
 
-  // Añadir, editar y eliminar profesores según la lógica de tu aplicación
-  editProfessor = signal<any | null>(null);
-  deleteProfessor = signal<any | null>(null);
-  addProfessor = signal<any | null>(null);
-  closeDialog = signal<any | null>(null);
+  deleteProfessor(): void {
+    if (this.selectedProfessorIndex !== null && this.professors[this.selectedProfessorIndex]) {
+      const professor = this.professors[this.selectedProfessorIndex];
+      if (professor && professor.id) {
+        if (confirm('¿Estás seguro de que deseas eliminar a este profesor?')) {
+          this.professorService.deleteProfessor(professor.id)
+            .then(() => {
+              if (this.selectedProfessorIndex !== null) {
+                this.professors.splice(this.selectedProfessorIndex, 1);
+                this.selectedProfessorIndex = null;
+              }
+            })
+            .catch(error => {
+            });
+        }
+      }
+    }
+  }
+
+  addProfessor(): void {
+    this.showCreator = true;
+  }
+
+  closeCreator(): void {
+    this.showCreator = false;
+    this.loadProfessors();
+  }
+
+  closeManager(): void {
+    this.close.emit();
+  }
+
+  editProfessor() {
+
+  }
 }

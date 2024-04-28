@@ -4,13 +4,26 @@ import ClassSession from '../../../interfaces/class-sesion.interface';
 import { CourseService } from '../../../services/course.service';
 import Course from '../../../interfaces/course.interface';
 import { DocumentReference } from "@angular/fire/firestore";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-view-session',
   templateUrl: './view-session.component.html',
   styleUrls: ['./view-session.component.css'],
-  providers: [DatePipe]
+  providers: [DatePipe],
+  animations: [
+    trigger('dialog', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.9)' }),
+        animate('200ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ opacity: 0, transform: 'scale(0.9)' }))
+      ])
+    ])
+  ]
 })
+
 export class ViewSessionComponent implements OnInit {
   @Input() session: ClassSession | null = null;
   public startTime: string | null = null;

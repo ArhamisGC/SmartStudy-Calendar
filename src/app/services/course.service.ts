@@ -59,9 +59,10 @@ export class CourseService {
   createRefToCourse(courseId: string): DocumentReference<Course> {
     return doc(this.firestore, `users/${this.userId}/courses/${courseId}`) as DocumentReference<Course>;
   }
-// En CourseService
+
   updateCourseColor(courseId: string | undefined, newColor: string | undefined): Promise<void> {
     const courseRef = doc(this.firestore, `users/${this.userId}/courses/${courseId}`);
     return updateDoc(courseRef, { color: newColor });
   }
+
 }

@@ -1,5 +1,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 <div class="subject-editor-overlay" [@dialog]>
   <div class="subject-editor-container">
     <span class="close-button" (click)="closeDialog()"><i class="fas fa-times"></i></span>
@@ -14,16 +15,30 @@
         <textarea id="description" formControlName="description" class="form-control"></textarea>
       </div>
       <div class="action-buttons">
-        <button type="button" (click)="addProfessor()" class="btn btn-add"><i class="fas fa-plus"></i> Añadir Profesor</button>
+        <button type="button" (click)="openProfessorManager()" class="btn btn-add">
+          <i class="fas fa-plus"></i> Gestionar Profesores
+        </button>
         <div class="professors-container" formArrayName="professors">
           <div *ngFor="let professor of professors.controls; let i = index" [formGroupName]="i" class="professor-item">
             <p>{{ professor?.get('name')?.value }}</p>
-            <button type="button" class="btn btn-edit" (click)="editProfessor(i)"><i class="fas fa-edit"></i> Editar Profesor</button>
-            <button type="button" class="btn btn-delete" (click)="removeProfessor(i)"><i class="fas fa-trash"></i> Eliminar Profesor</button>
+            <button type="button" class="btn btn-edit" (click)="editProfessor(i)">
+              <i class="fas fa-edit"></i> Editar Profesor
+            </button>
+            <button type="button" class="btn btn-delete" (click)="removeProfessor(i)">
+              <i class="fas fa-trash"></i> Eliminar Profesor
+            </button>
           </div>
         </div>
-        <button type="submit" class="btn btn-save btn-primary"><i class="fas fa-save"></i> Guardar Cambios</button>
+        <button type="submit" class="btn btn-save btn-primary">
+          <i class="fas fa-save"></i> Guardar Cambios
+        </button>
       </div>
     </form>
+  </div>
+</div>
+
+<div *ngIf="showProfessorManager" class="professor-manager-overlay">
+  <div class="modal-content">
+    <app-professor-manager [course]="course" (close)="closeProfessorManager()"></app-professor-manager>
   </div>
 </div>

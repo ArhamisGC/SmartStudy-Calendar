@@ -1,8 +1,8 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { trigger, style, animate, transition } from '@angular/animations';
-import Professor from "../../interfaces/professor.interface";
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import Course from "../../interfaces/course.interface";
-import { DocumentReference } from "@angular/fire/firestore";
+import Professor from "../../interfaces/professor.interface";
+import { ProfessorService } from "../../services/professor.service";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-subject-viewer',
@@ -20,23 +20,31 @@ import { DocumentReference } from "@angular/fire/firestore";
     ])
   ]
 })
-export class SubjectViewerComponent implements OnInit {
+
+export class SubjectViewerComponent implements OnInit, OnChanges {
   @Input() selectedCourse?: Course;
   @Output() close = new EventEmitter<void>();
-
   professors: Professor[] = [];
 
-  ngOnInit(): void {}
+  constructor(private professorService: ProfessorService) {}
 
-  getProfessorName(profRef: DocumentReference<Professor>): string {
-    const professor = this.professors.find(prof => prof.id === profRef.id);
-    return professor ? professor.name : 'Desconocido';
+  ngOnInit(): void {
+    this.loadProfessors();
   }
 
-  getProfessorEmail(profId: string): string {
-    const professor = this.professors.find(prof => prof.id === profId);
-    return professor ? professor.email : 'Desconocido';
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['selectedCourse'] && changes['selectedCourse'].currentValue) {
+      this.loadProfessors();
+    }
   }
+
+  async loadProfessors() {
+    if (this.selectedCourse?.id) {
+      const courseRef = this.professorService.createRefToCourse(this.selectedCourse.id);
+      this.professors = await this.professorService.getProfessorsByCourseRef(courseRef);
+    }
+  }
+
 
   closeDialog() {
     this.close.emit();

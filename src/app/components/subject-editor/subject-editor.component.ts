@@ -24,6 +24,7 @@ export class SubjectEditorComponent implements OnInit {
   @Input() course: Course | null = null;
   @Output() close = new EventEmitter<void>();
   courseForm: FormGroup;
+  showProfessorManager: boolean = false;
 
   constructor(private fb: FormBuilder, private courseService: CourseService) {
     this.courseForm = this.fb.group({
@@ -75,5 +76,13 @@ export class SubjectEditorComponent implements OnInit {
 
   closeDialog(): void {
     this.close.emit();
+  }
+
+  openProfessorManager(): void {
+    this.showProfessorManager = true;
+  }
+
+  closeProfessorManager(): void {
+    this.showProfessorManager = false;  // Cierra el modal del gestor de profesores
   }
 }
