@@ -1,7 +1,7 @@
 <div class="subject-viewer-overlay" *ngIf="selectedCourse" [@dialog]>
   <div class="subject-viewer-container">
     <span class="close-button" (click)="closeDialog()">&#10005;</span>
-    <h5>{{ selectedCourse.name }}</h5> <!-- Reemplaza selectedCourse?.name por selectedCourse.name -->
+    <h5>{{ selectedCourse.name }}</h5>
     <div class="course-details">
       <p>{{ selectedCourse.description }}</p>
       <h6>Profesores:</h6>

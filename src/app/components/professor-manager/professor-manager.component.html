@@ -12,8 +12,13 @@
   </div>
   <button (click)="addProfessor()" class="add-professor-btn"><i class="fas fa-plus"></i> Añadir profesor</button>
 </div>
+
 <div *ngIf="showCreator" class="professor-creator-overlay">
   <div class="modal-content">
     <app-professor-creator [course]="course" (close)="closeCreator()"></app-professor-creator>
   </div>
+</div>
+
+<div *ngIf="showEditor">
+  <app-professor-editor [professor]="editingProfessor" (close)="closeEditor()"></app-professor-editor>
 </div>

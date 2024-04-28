@@ -23,6 +23,8 @@ export class ProfessorManagerComponent implements OnInit {
   @Input() course: Course | null = null;
   @Output() close = new EventEmitter<void>();
   showCreator: boolean = false;
+  showEditor: boolean = false;
+  editingProfessor: Professor | null = null;
 
   constructor(private professorService: ProfessorService) { }
 
@@ -79,7 +81,16 @@ export class ProfessorManagerComponent implements OnInit {
     this.close.emit();
   }
 
-  editProfessor() {
+  editProfessor(): void {
+    if (this.selectedProfessorIndex !== null && this.professors[this.selectedProfessorIndex]) {
+      this.editingProfessor = this.professors[this.selectedProfessorIndex];
+      this.showEditor = true;
+    }
+  }
 
+  closeEditor(): void {
+    this.showEditor = false;
+    this.editingProfessor = null;
+    this.loadProfessors();
   }
 }

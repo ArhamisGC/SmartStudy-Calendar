@@ -8,7 +8,7 @@ import {
   deleteDoc,
   doc, updateDoc, addDoc, query, getDocs, where, setDoc
 } from '@angular/fire/firestore';
-import { Auth } from '@angular/fire/auth'; // Importa Auth para obtener el usuario autenticado
+import { Auth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import Professor from '../interfaces/professor.interface';
 import Course from "../interfaces/course.interface";
