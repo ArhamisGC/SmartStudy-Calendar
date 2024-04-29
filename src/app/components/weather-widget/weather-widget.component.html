@@ -1,0 +1,11 @@
+<div class="weather-widget-container">
+  <h4>{{ title }}</h4>
+  <button (click)="setActiveLocation('Tafira Alta, Canarias')" style="background-color: #007bff;">ULPGC</button>
+  <button (click)="setActiveLocation('La Laguna, Canarias')" style="background-color: #8a2be2;">ULL</button>
+  <ng-container *ngFor="let option of weatherOptions">
+    <div *ngIf="option.location === activeLocation">
+      <p>{{ option.location }}</p>
+      <ngx-weather class="col-4" [options]="option"></ngx-weather>
+    </div>
+  </ng-container>
+</div>

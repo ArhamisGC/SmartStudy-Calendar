@@ -41,6 +41,9 @@
     <a (click)="toggleNotifications()" class="user-item" cursor="pointer">
       <i class="far fa-bell"></i>
     </a>
+    <a (click)="toggleWeather()" class="user-item" cursor="pointer">
+      <i class="fas fa-cloud-sun"></i>
+    </a>
     <a (click)="navigateTo('/profile')" class="user-item" cursor="pointer">
       <i class="far fa-user"></i>
     </a>
@@ -53,4 +56,8 @@
 
 <div *ngIf="showNotifications" class="notification-wrapper">
   <app-notification></app-notification>
+</div>
+
+<div *ngIf="showWeather" class="weather-wrapper">
+  <app-weather-widget></app-weather-widget>
 </div>
