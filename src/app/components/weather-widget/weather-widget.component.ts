@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import {LanguagesEnum, NgxWeatherOptionModel, TemperatureUnitsEnum, WidgetTypeEnum} from "ngx-weather";
+import { LanguagesEnum, NgxWeatherOptionModel, TemperatureUnitsEnum, WidgetTypeEnum } from "ngx-weather";
 
 @Component({
   selector: 'app-weather-widget',
   templateUrl: './weather-widget.component.html',
-  styleUrl: './weather-widget.component.css'
+  styleUrls: ['./weather-widget.component.css'],
+
 })
 export class WeatherWidgetComponent {
-  title = 'Tiempo en ..';
-  protected readonly JSON = JSON;
+  title = 'Tiempo en ...';
+  activeLocation = 'Tafira Alta, Canarias';  // Default location
   weatherOptions: NgxWeatherOptionModel[] = [
     {
       location: 'Tafira Alta, Canarias',
@@ -21,6 +22,10 @@ export class WeatherWidgetComponent {
       type: WidgetTypeEnum.DAY,
       lang: LanguagesEnum.Spanish,
       temperatureUnits: TemperatureUnitsEnum.CELSIUS
-    }];
+    }
+  ];
 
+  setActiveLocation(location: string) {
+    this.activeLocation = location;
+  }
 }

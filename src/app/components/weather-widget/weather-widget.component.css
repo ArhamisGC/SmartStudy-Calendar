@@ -1,4 +1,13 @@
-.weather-widget-container{
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.weather-widget-container {
   width: 300px;
   max-height: 600px;
   overflow-y: auto;
@@ -10,7 +19,36 @@
   position: fixed;
   right: 0;
   z-index: 1050;
-  ngx-weather{
-    margin-bottom: 10px;
-  }
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.weather-widget-container .button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.weather-widget-container button {
+  flex-grow: 1;
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.weather-widget-container button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.weather-widget-container button:active {
+  background-color: #00408b;
+  transform: scale(0.95);
+}
+
+.weather-widget-container ngx-weather {
+  margin-bottom: 10px;
 }
