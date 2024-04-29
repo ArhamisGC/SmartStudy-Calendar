@@ -1,9 +1,15 @@
 .weather-widget-container{
-  background-color: aliceblue;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
+  width: 300px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: white;
+  position: fixed;
+  right: 0;
+  z-index: 1050;
   ngx-weather{
     margin-bottom: 10px;
   }

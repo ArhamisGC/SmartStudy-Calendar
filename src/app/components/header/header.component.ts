@@ -9,6 +9,7 @@ import { UserService } from "../../services/user.service";
 })
 export class HeaderComponent {
   showNotifications = false;
+  showWeather: boolean = false;
   constructor(private router: Router,private userService: UserService) {}
 
   navigateTo(path: string): void {
@@ -22,5 +23,9 @@ export class HeaderComponent {
 
   toggleNotifications(): void {
     this.showNotifications = !this.showNotifications; // Cambia la visibilidad del componente de notificaciones
+  }
+
+  toggleWeather(): void {
+    this.showWeather = !this.showWeather; // Cambia la visibilidad del componente de tiempo
   }
 }
