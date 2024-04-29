@@ -38,6 +38,9 @@
 
   </div>
   <div class="user-menu">
+    <a (click)="toggleNotifications()" class="user-item" cursor="pointer">
+      <i class="far fa-bell"></i>
+    </a>
     <a (click)="navigateTo('/profile')" class="user-item" cursor="pointer">
       <i class="far fa-user"></i>
     </a>
@@ -46,4 +49,8 @@
       <span>Logout</span>
     </a>
   </div>
+</div>
+
+<div *ngIf="showNotifications" class="notification-wrapper">
+  <app-notification></app-notification>
 </div>

@@ -1,0 +1,26 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<div class="notification-container">
+  <!-- Muestra las notificaciones si existen; si no, muestra la plantilla 'noNotifications' -->
+  <div *ngIf="notifications.length; else noNotifications" class="notifications-list">
+    <!-- Itera sobre las notificaciones usando Angular *ngFor -->
+    <div *ngFor="let notification of notifications" class="notification">
+      <div class="notification-content">
+        <!-- Muestra el título e información de la notificación -->
+        <strong>{{ notification.title }}</strong> - {{ notification.info }}
+        <br>
+        <!-- Formatea el timestamp de la notificación a una fecha legible -->
+        <small>{{ notification.time | date:'short' }}</small>
+      </div>
+      <!-- Botón para eliminar la notificación, llamando a 'removeNotification' con el ID de la notificación -->
+      <button class="delete-btn" (click)="removeNotification(notification.id)">
+        <i class="fas fa-trash"></i>
+      </button>
+    </div>
+  </div>
+  <!-- Plantilla que se muestra cuando no hay notificaciones -->
+  <ng-template #noNotifications>
+    <div class="notification-empty">
+      No hay notificaciones
+    </div>
+  </ng-template>
+</div>

@@ -47,6 +47,7 @@ import { WeatherWidgetComponent } from './components/weather-widget/weather-widg
 import {NgxWeatherModule} from "ngx-weather";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {MatButton} from "@angular/material/button";
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
     declarations: [
@@ -78,6 +79,7 @@ import {MatButton} from "@angular/material/button";
         EditSessionComponent,
         ViewSessionComponent,
         ProfessorEditorComponent,
+        NotificationComponent,
         WeatherWidgetComponent,
     ],
   imports: [
