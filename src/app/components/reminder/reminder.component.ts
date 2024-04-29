@@ -7,6 +7,7 @@ import Reminder from '../../interfaces/reminder.interface';
 import {user} from "@angular/fire/auth";
 import { ReminderService } from '../../services/reminder.service';
 import {animate, style, transition, trigger} from "@angular/animations";
+import {NotificationsService} from "../../services/notifications.service";
 
 @Component({
   selector: 'app-reminder',
@@ -50,7 +51,7 @@ export class ReminderComponent implements OnInit{
   user$: Observable<User | undefined>;
   protected userData: any;
 
-  constructor(private userService: UserService, private router: Router, private reminderService: ReminderService) {
+  constructor(private userService: UserService, private router: Router, private reminderService: ReminderService, private NotificationService: NotificationsService) {
     this.user$ = of(undefined);
   }
 

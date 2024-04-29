@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import Event from "../../interfaces/event.interface";
 import { Timestamp } from '@angular/fire/firestore';
 import {animate, style, transition, trigger} from "@angular/animations";
+import {NotificationsService} from "../../services/notifications.service";
 
 @Component({
   selector: 'app-calendar',
@@ -35,7 +36,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   showEventViewer: boolean = false;
   private eventsSub: Subscription = new Subscription();
 
-  constructor(private eventsService: EventsService) {}
+  constructor(private eventsService: EventsService, private notificationsService: NotificationsService) {}
 
   ngOnInit(): void {
     this.requestNotificationPermission();
@@ -180,6 +181,17 @@ export class CalendarComponent implements OnInit, OnDestroy {
       notification.onclick = () => {
         window.focus();
       };
+
+      this.notificationsService.addNotification({
+        id: '',
+        title: "Recordatorio de evento",
+        info: event.name,
+        time: event.date.toMillis()
+      }).then(() => {
+        console.log('Notification added to Firestore');
+      }).catch(error => {
+        console.error('Error adding notification to Firestore:', error);
+      });
     }
   }
 }

@@ -8,6 +8,7 @@ import { UserService } from "../../services/user.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  showNotifications = false;
   constructor(private router: Router,private userService: UserService) {}
 
   navigateTo(path: string): void {
@@ -17,5 +18,9 @@ export class HeaderComponent {
   logout() {
     this.userService.logout();
     this.router.navigate(['/logout']);
+  }
+
+  toggleNotifications(): void {
+    this.showNotifications = !this.showNotifications; // Cambia la visibilidad del componente de notificaciones
   }
 }

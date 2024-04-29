@@ -43,6 +43,7 @@ import { AddSessionComponent } from './components/timetable-component/add-sessio
 import { EditSessionComponent } from './components/timetable-component/edit-session/edit-session.component';
 import { ViewSessionComponent } from './components/timetable-component/view-session/view-session.component';
 import { ProfessorEditorComponent } from './components/professor-editor/professor-editor.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
     declarations: [
@@ -74,6 +75,7 @@ import { ProfessorEditorComponent } from './components/professor-editor/professo
         EditSessionComponent,
         ViewSessionComponent,
         ProfessorEditorComponent,
+        NotificationComponent,
     ],
   imports: [
     BrowserModule,
