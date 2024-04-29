@@ -43,6 +43,10 @@ import { AddSessionComponent } from './components/timetable-component/add-sessio
 import { EditSessionComponent } from './components/timetable-component/edit-session/edit-session.component';
 import { ViewSessionComponent } from './components/timetable-component/view-session/view-session.component';
 import { ProfessorEditorComponent } from './components/professor-editor/professor-editor.component';
+import { WeatherWidgetComponent } from './components/weather-widget/weather-widget.component';
+import {NgxWeatherModule} from "ngx-weather";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MatButton} from "@angular/material/button";
 
 @NgModule({
     declarations: [
@@ -74,6 +78,7 @@ import { ProfessorEditorComponent } from './components/professor-editor/professo
         EditSessionComponent,
         ViewSessionComponent,
         ProfessorEditorComponent,
+        WeatherWidgetComponent,
     ],
   imports: [
     BrowserModule,
@@ -93,7 +98,11 @@ import { ProfessorEditorComponent } from './components/professor-editor/professo
     MatCard,
     MatLabel,
     MatFormField,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxWeatherModule.forRoot({
+      apiKey: 'b042f834f54d47e282075749242904'
+    }),
+    MatButton,
   ],
   providers: [
     provideAnimationsAsync()

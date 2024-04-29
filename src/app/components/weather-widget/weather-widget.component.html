@@ -1,0 +1,7 @@
+<div class="weather-widget-container">
+  <h1>Tiempo</h1>
+  <ng-container *ngFor="let option of weatherOptions">
+    <p>{{option.location}}</p>
+    <ngx-weather class="col-3" [options]="option" ></ngx-weather>
+  </ng-container>
+</div>

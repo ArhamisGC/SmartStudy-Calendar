@@ -1,0 +1,10 @@
+.weather-widget-container{
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  ngx-weather{
+    margin-bottom: 10px;
+  }
+}

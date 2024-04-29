@@ -10,6 +10,7 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-loginregister',
@@ -22,7 +23,7 @@ export class LoginregisterComponent implements OnInit {
   backendErrorMessageLogin: string | null = null;
   backendErrorMessageRegister: string | null = null;
   userData: any = {};
-  constructor(private toastr:ToastrService,private router: Router,private userService: UserService) {}
+  constructor(public dialog: MatDialog, private toastr:ToastrService,private router: Router,private userService: UserService) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
