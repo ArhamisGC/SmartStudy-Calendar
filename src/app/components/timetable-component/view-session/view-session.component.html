@@ -3,8 +3,8 @@
   <div class="session-view-container">
     <div class="session-details">
       <i class="fas fa-times close-icon" (click)="onClose()"></i>
-      <h2>{{ session?.subjectName }}</h2>
-      <p class="session-time">{{ session?.day }}: {{ startTime }} - {{ endTime }}</p>
+      <h2>{{ session.subjectName }}</h2>
+      <p class="session-time">{{ session.day }}: {{ startTime }} - {{ endTime }}</p>
       <button (click)="loadCourseDetails()">
         <i class="fas fa-info-circle"></i> Información de la asignatura
       </button>

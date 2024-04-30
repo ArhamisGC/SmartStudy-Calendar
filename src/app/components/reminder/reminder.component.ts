@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { Observable, of } from 'rxjs';
+import {interval, Observable, of, startWith, tap} from 'rxjs';
 import { User } from '../../interfaces/user.interface';
 import Reminder from '../../interfaces/reminder.interface';
 import {user} from "@angular/fire/auth";
 import { ReminderService } from '../../services/reminder.service';
 import {animate, style, transition, trigger} from "@angular/animations";
 import {NotificationsService} from "../../services/notifications.service";
+import {switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-reminder',
@@ -63,6 +64,10 @@ export class ReminderComponent implements OnInit{
       }
     });
     this.loadReminders();
+    interval(60000).pipe(
+      startWith(0),
+      tap(() => this.checkForReminders())
+    ).subscribe();
   }
 
   loadReminders() {
@@ -204,6 +209,29 @@ export class ReminderComponent implements OnInit{
 
   cancelEdit(): void {
     this.showEditModal = false;
+  }
+
+  checkForReminders() {
+    const now = new Date();
+    this.reminders.forEach(reminder => {
+      const reminderTime = new Date(reminder.date + 'T' + reminder.time);
+      if (reminderTime <= now && reminderTime > new Date(now.getTime() - 60000)) {
+        this.sendNotification(reminder);
+      }
+    });
+    return of(null);
+  }
+
+  sendNotification(reminder: Reminder) {
+    const notification = {
+      title: 'Recordatorio',
+      info: reminder.description,
+      time: new Date().getTime()
+    };
+    this.NotificationService.addNotification(notification).then(() => {
+    }).catch(error => {
+      console.error('Error al enviar notificación:', error);
+    });
   }
 }
 
