@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { LanguagesEnum, NgxWeatherOptionModel, TemperatureUnitsEnum, WidgetTypeEnum } from "ngx-weather";
+import {User} from "../../interfaces/user.interface";
+import {UserService} from "../../services/user.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-weather-widget',
@@ -7,9 +10,30 @@ import { LanguagesEnum, NgxWeatherOptionModel, TemperatureUnitsEnum, WidgetTypeE
   styleUrls: ['./weather-widget.component.css'],
 
 })
-export class WeatherWidgetComponent {
+export class WeatherWidgetComponent implements OnInit, OnDestroy{
+  private subscription: Subscription | undefined;
+  constructor(private userService: UserService) {
+  }
+
   title = 'Tiempo en ...';
   activeLocation = 'Tafira Alta, Canarias';  // Default location
+  userData: User | undefined;
+
+  ngOnInit(): void {
+    this.subscription = this.userService.getUserData().subscribe((user: User) => {
+      this.userData = user;
+      if (this.userData.universidad === 'ULPGC') {
+        this.activeLocation = 'Tafira Alta, Canarias';
+      }else{
+        this.activeLocation = 'La Laguna, Canarias';
+      }
+    }, (error: any) => {
+      console.error(error);
+    });
+  }
+
+
+
   weatherOptions: NgxWeatherOptionModel[] = [
     {
       location: 'Tafira Alta, Canarias',
@@ -28,4 +52,9 @@ export class WeatherWidgetComponent {
   setActiveLocation(location: string) {
     this.activeLocation = location;
   }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
+
 }

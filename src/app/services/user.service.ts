@@ -93,7 +93,8 @@ export class UserService {
     return signOut(this.auth);
   }
 
-  getUserData() {
+
+  getUserData(): any{
     if (this.auth.currentUser) {
       return this.firestore.collection('users').doc(this.auth.currentUser.uid).valueChanges();
     } else {
