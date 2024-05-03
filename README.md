@@ -1,27 +1,19 @@
-# SmartStudyCalendar
+<img src="https://assets-global.website-files.com/65e1b93a72988184d4ca16d6/65e1c6ce8292100cb53973c9_smartstudy-high-resolution-logo-white-transparent.png" width="350">
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+SmartStudy Calendar es una aplicación web innovadora diseñada para satisfacer las necesidades específicas de organización y gestión del tiempo de los estudiantes universitarios. Con una amplia gama de características diseñadas para optimizar el tiempo de estudio y fomentar estrategias efectivas de revisión, SmartStudy Calendar es tu compañero perfecto para alcanzar el éxito académico.
 
-## Development server
+## Características principales
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Organización inteligente:** Analiza el calendario académico del usuario y sugiere bloques de tiempo de estudio optimizados, teniendo en cuenta la carga de trabajo actual y las preferencias personales.
+- **Recordatorios personalizados:** Recibe recordatorios personalizados para sesiones de estudio y revisiones, maximizando la eficiencia del tiempo disponible.
+- **Planificación de metas académicas:** Establece y sigue metas académicas a corto y largo plazo para mantenerte enfocado y motivado.
+- **Notas y listas de tareas:** Crea y gestiona notas y listas de tareas pendientes para mantenerte organizado.
+- **Compatibilidad multiplataforma:** Accede a SmartStudy Calendar desde cualquier dispositivo con acceso a un navegador web, incluyendo ordenadores, tablets y teléfonos móviles.
 
-## Code scaffolding
+## Estructura técnica
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+SmartStudy Calendar utiliza Angular como framework para el front-end y Firebase como servicio principal para el back-end. Esta combinación de tecnologías proporciona una experiencia de desarrollo ágil y eficiente, garantizando la escalabilidad, seguridad y facilidad de mantenimiento de la aplicación.
 
-## Build
+## Gratuito
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+SmartStudy Calendar es una aplicación gratuita para todos los usuarios. ¡Disfruta de todas las características sin coste alguno!
