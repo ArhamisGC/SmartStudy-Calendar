@@ -1,5 +1,17 @@
 /* Estilo de los mensajes */
 
+:root {
+  --error-color: red;
+  --success-bg-color: #4CAF50;
+  --error-bg-color: #f44336;
+  --reminder-bg-color: #333533;
+  --reminder-text-color: #242423;
+  --form-label-color: white;
+  --button-bg-color: white;
+  --button-text-color: black;
+  --modal-bg-color: #CFDBD5;
+}
+
 body {
   font-size: 14px;
 }

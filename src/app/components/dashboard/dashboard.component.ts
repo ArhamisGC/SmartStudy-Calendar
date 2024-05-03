@@ -28,6 +28,8 @@ export class DashboardComponent implements OnInit {
   protected userData: any;
   showSubjectManager: boolean = false;
 
+  darkModeEnabled: boolean = false;
+
   constructor(private userService: UserService, private router: Router) {
     this.user$ = of(undefined);
   }
@@ -56,6 +58,15 @@ export class DashboardComponent implements OnInit {
 
   closeSubjectManager(): void {
     this.showSubjectManager = false;
+  }
+
+  toggleDarkMode(): void {
+    this.darkModeEnabled = !this.darkModeEnabled;
+    if (this.darkModeEnabled) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
   }
 
   protected readonly user = user;
