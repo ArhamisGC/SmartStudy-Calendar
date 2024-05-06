@@ -7,6 +7,7 @@
       <i class="fas fa-user-circle profile-icon"></i>
       <h4>{{ userData?.nombreCompleto }}</h4>
     </div>
+    <app-weather-widget [context]="'dashboard'"></app-weather-widget>
     <nav class="sidebar-nav">
       <a class="sidebar-link" (click)="navigateTo('/profile');"><i class="fas fa-cog"></i> Configuración de cuenta</a>
       <a class="sidebar-link" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
