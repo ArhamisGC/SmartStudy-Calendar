@@ -25,6 +25,17 @@
       <div class="grid-item" (click)="navigateTo('/timetable')"><i class="fa solid fa-table"></i> Horario</div>
     </div>
   </div>
+
+  <div class="dark-mode-switch">
+    <label class="switch">
+      <input type="checkbox" [checked]="isDarkModeEnabled" (change)="toggleDarkMode()">
+      <div class="slider round">
+        <span class="dark">Oscuro</span>
+        <span class="white">Claro</span>
+      </div>
+    </label>
+  </div>
+
 </div>
 <script src="animations.js"></script>
 </body>

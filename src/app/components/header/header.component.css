@@ -7,21 +7,18 @@ body {
 
 .header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
+  justify-content: space-between; /* Distribuye el espacio entre los elementos */
+  align-items: center; /* Alinea verticalmente los elementos */
+  padding: 10px 20px; /* Ajusta según sea necesario */
   background-color: #f0f2f5;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Asegura que los elementos no se envuelvan */
 }
 
 .menu, .user-menu {
   display: flex;
   align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
+  gap: 10px; /* Ajusta el espacio entre elementos */
 }
 .user-menu {
   margin-top: 10px;
@@ -50,3 +47,87 @@ body {
 .far, .fas {
   font-size: 20px;
 }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 34px;
+  margin: 0 20px; /* Asegura consistencia con otros elementos del menú */
+  background-color: #fff; /* Fondo blanco para integración visual */
+  border-radius: 17px; /* Bordes redondeados */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra para consistencia */
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--default-buttons); /* Mantén el color de fondo del slider */
+  transition: .4s;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+  transform: translateX(4px); /* Posición inicial hacia la izquierda */
+}
+
+input:checked + .slider:before {
+  transform: translateX(50px); /* Mueve el círculo hacia la derecha */
+}
+
+.dark, .white {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--default-text); /* Color de texto especificado */
+}
+
+.dark {
+  left: 10px;
+  right: auto;
+  display: none; /* Inicialmente oculto */
+}
+
+.white {
+  right: 10px;
+  left: auto;
+  display: block; /* Inicialmente visible */
+}
+
+input:checked + .slider .dark {
+  display: block; /* Muestra 'Oscuro' cuando está activado */
+}
+
+input:checked + .slider .white {
+  display: none; /* Oculta 'Claro' cuando está activado */
+}
+
+input:not(:checked) + .slider .dark {
+  display: none; /* Oculta 'Oscuro' cuando no está activado */
+}
+
+input:not(:checked) + .slider .white {
+  display: block; /* Muestra 'Claro' cuando no está activado */
+}
+

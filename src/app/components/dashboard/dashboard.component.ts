@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { Observable, of } from 'rxjs';
@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
   protected userData: any;
   showSubjectManager: boolean = false;
 
-  darkModeEnabled: boolean = false;
+  isDarkModeEnabled: boolean = false;
 
   constructor(private userService: UserService, private router: Router) {
     this.user$ = of(undefined);
@@ -41,6 +41,13 @@ export class DashboardComponent implements OnInit {
         this.userData = userData;
       }
     });
+    this.isDarkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
+    this.applyDarkMode();
+  }
+
+  private applyDarkMode(): void {
+    document.body.classList.toggle('dark-mode', this.isDarkModeEnabled);
+    localStorage.setItem('darkMode', this.isDarkModeEnabled ? 'enabled' : 'disabled');
   }
 
   navigateTo(path: string): void {
@@ -61,12 +68,8 @@ export class DashboardComponent implements OnInit {
   }
 
   toggleDarkMode(): void {
-    this.darkModeEnabled = !this.darkModeEnabled;
-    if (this.darkModeEnabled) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
+    this.isDarkModeEnabled = !this.isDarkModeEnabled;
+    this.applyDarkMode();
   }
 
   protected readonly user = user;
