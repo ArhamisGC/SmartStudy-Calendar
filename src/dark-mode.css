@@ -1,5 +1,5 @@
 :root {
-  --default-sidebar: #F5CB5C;
+  --default-yellow: #F5CB5C;
   --default-background: #E8EDDF;
   --default-buttons: #CFDBD5;
   --default-text: #242423;
@@ -21,9 +21,9 @@
 =======
 }
 .dark-mode {
-  --default-sidebar: #F5CB5C;
+  --default-yellow: #333533;
   --default-background: #242423;
-  --default-buttons: #CFDBD5;
+  --default-buttons: #333533;
   --default-text: #E8EDDF;
 >>>>>>> 11759f4 (Dark-mode Ini)
 }
