@@ -28,6 +28,8 @@ export class DashboardComponent implements OnInit {
   protected userData: any;
   showSubjectManager: boolean = false;
 
+  isDarkModeEnabled: boolean = false;
+
   constructor(private userService: UserService, private router: Router) {
     this.user$ = of(undefined);
   }
@@ -39,6 +41,18 @@ export class DashboardComponent implements OnInit {
         this.userData = userData;
       }
     });
+    this.isDarkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
+    this.applyDarkMode();
+  }
+
+  private applyDarkMode(): void {
+    document.body.classList.toggle('dark-mode', this.isDarkModeEnabled);
+    localStorage.setItem('darkMode', this.isDarkModeEnabled ? 'enabled' : 'disabled');
+  }
+
+  toggleDarkMode(): void {
+    this.isDarkModeEnabled = !this.isDarkModeEnabled;
+    this.applyDarkMode();
   }
 
   navigateTo(path: string): void {
