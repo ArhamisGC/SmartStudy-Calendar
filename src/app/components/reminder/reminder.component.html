@@ -1,5 +1,4 @@
 <app-header></app-header>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
@@ -62,10 +61,10 @@
         <input type="text" id="editDescription" [(ngModel)]="editReminder.description" name="editDescription">
 
         <div class="form-field inline-fields">
-          <label for="editTime">Hora:</label>
+          <label for="editTime" class="TimeDateLabel">Hora: </label>
           <input type="time" id="editTime" [(ngModel)]="editReminder.time" name="editTime">
           <span class="spacer"></span> <!-- Espaciador entre hora y fecha -->
-          <label for="editDate">Fecha:</label>
+          <label for="editDate" class="TimeDateLabel">Fecha: </label>
           <input type="date" id="editDate" [(ngModel)]="editReminder.date" name="editDate">
         </div>
 
