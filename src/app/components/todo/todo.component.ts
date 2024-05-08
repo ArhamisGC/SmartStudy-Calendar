@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import Task from '../../interfaces/task.interface'; // Asegúrate de que la ruta sea correcta
 import { TaskService } from '../../services/task.service';
 import {animate, style, transition, trigger} from "@angular/animations"; // Asegúrate de que la ruta al servicio es correcta
+import Course from '../../interfaces/course.interface';
+import { CourseService } from '../../services/course.service';
+
 
 @Component({
   selector: 'app-todo',
@@ -22,19 +25,63 @@ import {animate, style, transition, trigger} from "@angular/animations"; // Aseg
 
 export class TodoComponent implements OnInit {
   tasks: Task[] = [];
+  filteredTasks: Task[] = [];
   newTaskTitle: string = '';
-  newTaskOrder: number = 1; // Establece un valor predeterminado para el orden.
-  newTaskPriority: number = 2; // Prioridad media por defecto.
-  newTaskStatus: number = 0; // Estado pendiente por defecto.
+  newTaskOrder: number = 1;
+  newTaskPriority: number = 2;
+  newTaskStatus: number = 0;
   showTaskBuilder: boolean = false;
   currentSort: 'order' | 'priority' = 'order';
+  // Cursos
+  courses: Course[] = [];
+  selectedCourseColor: string | undefined = '';
+  selectedCourseId: string = '';
+  private _searchText: string = '';
+  filterCourseBy: string = '';
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService,
+    protected courseService: CourseService
+  ) {}
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe(tasks => {
       this.tasks = this.sortTasks(tasks, this.currentSort);
     });
+    this.loadCourses();
+    this.loadTasksWithCourseNames();
+  }
+
+  loadTasksWithCourseNames() {
+    this.taskService.getTasks().subscribe(tasks => {
+      this.courseService.getAllCourses().subscribe(courses => {
+        const coursesMap = new Map(courses.map(course => [course.id, course.name]));
+        this.tasks = tasks.map(task => ({
+          ...task,
+          courseName: task.courseRef ? coursesMap.get(task.courseRef.id) : 'Sin asignatura'
+        }));
+        this.filterTasks();
+      });
+    }
+    )
+  }
+
+  filterTasks(): void {
+    this.filteredTasks = this.tasks.filter(task =>
+      task.courseName?.toLowerCase().includes(this.searchText.toLowerCase())
+    );
+  }  
+
+  loadCourses(): void {
+    this.courseService.getAllCourses().subscribe(courses => this.courses = courses);
+  }
+
+  get searchText(): string {
+    return this._searchText;
+  }
+
+  set searchText(value: string) {
+    this._searchText = value;
+    this.filterTasks();
   }
 
   addTask(): void {
@@ -45,7 +92,8 @@ export class TodoComponent implements OnInit {
       order: this.newTaskOrder,
       priority: this.newTaskPriority,
       status: this.newTaskStatus,
-      editing: false
+      editing: false,
+      courseRef: this.courseService.createRefToCourse(this.selectedCourseId)
     };
 
     this.taskService.addTask(newTask);
@@ -100,7 +148,6 @@ export class TodoComponent implements OnInit {
   }
 
   fixDuplicateOrders(sortedTasks: Task[]): void {
-    // Asumiendo que 'sortedTasks' ya está ordenada por 'order'.
     for (let i = 0; i < sortedTasks.length - 1; i++) {
       if (sortedTasks[i].order === sortedTasks[i + 1].order) {
         let nextUniqueOrder = sortedTasks[i].order;
@@ -118,10 +165,10 @@ export class TodoComponent implements OnInit {
       title: task.title,
       order: task.order,
       priority: task.priority,
-      status: task.status
+      status: task.status,
+      courseRef: this.courseService.createRefToCourse(this.selectedCourseId)
     });
     task.editing = false;
-    // this.sortTasks(this.tasks);
     this.fixDuplicateOrders(this.tasks);
   }
 
@@ -144,5 +191,5 @@ export class TodoComponent implements OnInit {
 
   get completedTasks(): number {
     return this.tasks.filter(task => task.status === 1).length;
-  }
+  }  
 }

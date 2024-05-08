@@ -28,6 +28,10 @@
     <div class="task-builder-container" (click)="$event.stopPropagation()">
       <input type="text" [(ngModel)]="newTaskTitle" placeholder="Task title" />
 
+      <select [(ngModel)]="selectedCourseId">
+        <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
+      </select>
+
       <select [(ngModel)]="newTaskPriority">
         <option [value]="1">Alta</option>
         <option [value]="2">Media</option>
@@ -56,7 +60,11 @@
             </label>
           </div>
 
-          <span>{{ task.title }} Priority: {{ task.priority }}</span>
+          <span>
+            {{ task.title }} Priority: {{ task.priority }}
+            Asignatura: {{ task.courseName }}
+          </span>
+          
         </div>
         <div class="options-container">
           <button (click)="editTask(task)">
@@ -72,6 +80,10 @@
       <div *ngIf="task.editing">
         <input type="text" [(ngModel)]="task.title" placeholder="Task title" />
 
+        <select [(ngModel)]="selectedCourseId">
+          <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
+        </select>
+
         <select [(ngModel)]="task.priority">
           <option [value]="1">Alta</option>
           <option [value]="2">Media</option>
@@ -83,4 +95,5 @@
       </div>
     </li>
   </ul>
+
 </div>
