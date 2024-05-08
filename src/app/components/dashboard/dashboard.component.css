@@ -32,12 +32,12 @@ body, html {
 
 .profile-icon {
   font-size: 60px;
-  color: #242423;
+  color: var(--default-text);
   margin-bottom: 10px;
 }
 
 .profile-info h4 {
-  color: #242423;
+  color: var(--default-text);
 }
 
 .sidebar-nav {
@@ -46,7 +46,7 @@ body, html {
 }
 
 .sidebar-link {
-  color: #242423;
+  color: var(--default-text);
   text-decoration: none;
   padding: 10px;
   border-radius: 5px;
@@ -58,7 +58,7 @@ body, html {
 }
 
 .sidebar-link:hover {
-  background-color: #e1e1e1;
+  background-color: var(--default-buttons);
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
@@ -70,8 +70,7 @@ body, html {
 }
 
 .cabecera {
-  background: #242423;
-  color: #ffffff;
+  background: var(--default-background);
   padding: 20px;
   text-align: center;
 }
@@ -84,7 +83,7 @@ body, html {
 }
 
 .grid-item {
-  background-color: #CFDBD5;
+  background-color: var(--default-buttons);
   padding: 20px;
   border-radius: 10px;
   text-align: center;
@@ -95,6 +94,7 @@ body, html {
   gap: 10px;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
+  color: var(--default-text);
 }
 
 .grid-item:hover {
@@ -104,8 +104,8 @@ body, html {
 
 .grid-item i {
   font-size: 24px;
-  color: #242423;
 }
+
 .dashboard-weather-widget-container{
   width: 100%;
   max-height: 600px;
