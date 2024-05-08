@@ -48,15 +48,17 @@ body {
   font-size: 20px;
 }
 
+/* Inicio de sección del modo oscuro */
+
 .switch {
   position: relative;
   display: inline-block;
   width: 80px;
   height: 34px;
-  margin: 0 20px; /* Asegura consistencia con otros elementos del menú */
-  background-color: #fff; /* Fondo blanco para integración visual */
-  border-radius: 17px; /* Bordes redondeados */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra para consistencia */
+  margin: 0 20px;
+  background-color: #fff;
+  border-radius: 17px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .switch input {
@@ -72,7 +74,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--default-buttons); /* Mantén el color de fondo del slider */
+  background-color: var(--default-buttons);
   transition: .4s;
   border-radius: 17px;
   display: flex;
@@ -87,11 +89,11 @@ body {
   background-color: white;
   transition: .4s;
   border-radius: 50%;
-  transform: translateX(4px); /* Posición inicial hacia la izquierda */
+  transform: translateX(4px);
 }
 
 input:checked + .slider:before {
-  transform: translateX(50px); /* Mueve el círculo hacia la derecha */
+  transform: translateX(50px);
 }
 
 .dark, .white {
@@ -100,34 +102,35 @@ input:checked + .slider:before {
   transform: translateY(-50%);
   font-size: 10px;
   font-family: 'Poppins', sans-serif;
-  color: var(--default-text); /* Color de texto especificado */
+  color: var(--default-text);
 }
 
 .dark {
   left: 10px;
   right: auto;
-  display: none; /* Inicialmente oculto */
+  display: none;
 }
 
 .white {
   right: 10px;
   left: auto;
-  display: block; /* Inicialmente visible */
+  display: block;
 }
 
 input:checked + .slider .dark {
-  display: block; /* Muestra 'Oscuro' cuando está activado */
+  display: block;
 }
 
 input:checked + .slider .white {
-  display: none; /* Oculta 'Claro' cuando está activado */
+  display: none;
 }
 
 input:not(:checked) + .slider .dark {
-  display: none; /* Oculta 'Oscuro' cuando no está activado */
+  display: none;
 }
 
 input:not(:checked) + .slider .white {
-  display: block; /* Muestra 'Claro' cuando no está activado */
+  display: block;
 }
 
+/* Fin de sección del modo oscuro */

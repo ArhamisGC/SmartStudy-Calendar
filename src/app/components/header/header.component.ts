@@ -12,13 +12,11 @@ export class HeaderComponent implements OnInit {
 
   constructor(private router: Router, private userService: UserService) {}
 
+  // Inicio de la sección del modo oscuro más añadido en el ngOnInit
+
   ngOnInit(): void {
     this.isDarkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
     this.applyDarkMode();
-  }
-
-  navigateTo(path: string): void {
-    this.router.navigate([path]);
   }
 
   private applyDarkMode(): void {
@@ -29,6 +27,12 @@ export class HeaderComponent implements OnInit {
     this.isDarkModeEnabled = !this.isDarkModeEnabled;
     this.applyDarkMode();
     localStorage.setItem('darkMode', this.isDarkModeEnabled ? 'enabled' : 'disabled');
+  }
+
+  // Fin de la sección del modo oscuro más añadido en el ngOnInit
+
+  navigateTo(path: string): void {
+    this.router.navigate([path]);
   }
 
   logout(): void {
