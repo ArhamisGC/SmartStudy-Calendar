@@ -10,7 +10,24 @@ import { UserService } from "../../services/user.service";
 export class HeaderComponent {
   showNotifications = false;
   showWeather: boolean = false;
+
+  isDarkModeEnabled: boolean = false;
   constructor(private router: Router,private userService: UserService) {}
+
+  ngOnInit(): void {
+    this.isDarkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
+    this.applyDarkMode();
+  }
+
+  private applyDarkMode(): void {
+    document.body.classList.toggle('dark-mode', this.isDarkModeEnabled);
+  }
+
+  toggleDarkMode(): void {
+    this.isDarkModeEnabled = !this.isDarkModeEnabled;
+    this.applyDarkMode();
+    localStorage.setItem('darkMode', this.isDarkModeEnabled ? 'enabled' : 'disabled');
+  }
 
   navigateTo(path: string): void {
     this.router.navigate([path]);

@@ -36,6 +36,14 @@
       <span>Horario</span>
     </a>
 
+    <label class="menu-item switch">
+      <input type="checkbox" [checked]="isDarkModeEnabled" (change)="toggleDarkMode()">
+      <div class="slider round">
+        <span class="dark">Oscuro</span>
+        <span class="white">Claro</span>
+      </div>
+    </label>
+
   </div>
   <div class="user-menu">
     <a (click)="toggleNotifications()" class="user-item" cursor="pointer">
