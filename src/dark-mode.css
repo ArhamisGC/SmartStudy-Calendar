@@ -1,12 +1,16 @@
 :root {
-  --default-yellow: #F5CB5C;
+  --default-sidebar: #F5CB5C;
   --default-background: #E8EDDF;
   --default-buttons: #CFDBD5;
   --default-text: #242423;
+  --reminders: #333533;
+  --text-reminders: #E8EDDF;
 }
 .dark-mode {
-  --default-yellow: #333533;
+  --default-sidebar: #333533;
   --default-background: #242423;
   --default-buttons: #333533;
   --default-text: #E8EDDF;
+  --reminders: #E8EDDF;
+  --text-reminders: #242423;
 }
