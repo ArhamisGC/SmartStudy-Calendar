@@ -6,10 +6,12 @@ export default interface Task {
   order: number;
   title: string;
   description?: string;
-  course?: DocumentReference<Course>
+  courseRef?: DocumentReference<Course>
   priority: TaskPriority;
   status: TaskStatus;
   editing: boolean;
+  courseId?: string;
+  courseName?: string;
 }
 
 enum TaskStatus {

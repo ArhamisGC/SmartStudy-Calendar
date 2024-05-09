@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import Task from '../interfaces/task.interface';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Auth } from '@angular/fire/auth';
-import {take} from "rxjs";
-import {map, switchMap} from "rxjs/operators"; // Asegúrate de importar Auth
+import { take } from "rxjs";
+import { map, switchMap } from "rxjs/operators"; // Asegúrate de importar Auth
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  constructor(private firestore: AngularFirestore, private auth: Auth) {}
+  constructor(private firestore: AngularFirestore, private auth: Auth) { }
 
   private getUserId(): string {
     return this.auth.currentUser?.uid ?? '';
