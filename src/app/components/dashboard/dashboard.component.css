@@ -106,6 +106,16 @@ body, html {
   font-size: 24px;
   color: #242423;
 }
+.dashboard-weather-widget-container{
+  width: 100%;
+  max-height: 600px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: white;
+  animation: fadeIn 0.5s ease-out forwards;
+}
 
 @media (max-width: 768px) {
   .sidebar {
