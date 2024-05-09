@@ -46,12 +46,14 @@ export class TodoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log("oninit")
     this.loadCourses();
     this.loadTasksWithCourseNames();
     this.filterTasks()
   }
 
   loadTasksWithCourseNames() {
+    console.log("loadtasksnames")
     this.taskService.getTasks().subscribe(tasks => {
       this.courseService.getAllCourses().subscribe(courses => {
         const coursesMap = new Map(courses.map(course => [course.id, course.name]));
@@ -66,10 +68,12 @@ export class TodoComponent implements OnInit {
   }
 
   loadCourses(): void {
+    console.log("loadcourses")
     this.courseService.getAllCourses().subscribe(courses => this.courses = courses);
   }
 
   filterTasks(): void {
+    console.log("filter")
     if (this.selectedFilterCourseId) {
 
       const filteredTasks = this.cachedTasks.filter(task => task.courseRef?.id === this.selectedFilterCourseId);
@@ -115,10 +119,13 @@ export class TodoComponent implements OnInit {
   }
 
   updateStatus(task: Task): void {
-
+    console.log("updatestatus")
     const newStatus = task.status === 1 ? 0 : 1;
     this.taskService.updateTask(task.id, { status: newStatus });
     task.status = newStatus;
+    console.log(this.selectedFilterCourseId)
+    this.filterTasks();
+    console.log(this.tasks)
   }
 
   editTask(task: Task): void {
@@ -126,17 +133,18 @@ export class TodoComponent implements OnInit {
   }
 
   sortTasks(tasks: Task[], sortBy: 'order' | 'priority', isAscending: boolean = true): Task[] {
-
+    console.log("sortTasks")
     return tasks.sort((a, b) => {
       if (sortBy === 'priority') {
 
         const priorityComparison = isAscending ? a.priority - b.priority : b.priority - a.priority;
         if (a.priority === b.priority) {
-          return a.order - b.order;        }
+          return a.order - b.order;
+        }
         return priorityComparison;
-      } else { 
+      } else {
         if (a.order === b.order) {
-          return a.priority - b.priority; 
+          return a.priority - b.priority;
         }
         return a.order - b.order;
       }
@@ -162,6 +170,7 @@ export class TodoComponent implements OnInit {
   }
 
   updateTask(task: Task): void {
+    console.log("updateTask")
     this.taskService.updateTask(task.id, {
       title: task.title,
       order: task.order,
@@ -175,7 +184,7 @@ export class TodoComponent implements OnInit {
 
   cancelEdit(task: Task): void {
     task.editing = false;
-    
+
   }
 
   toggleTaskBuilder() {
