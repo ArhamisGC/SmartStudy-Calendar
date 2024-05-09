@@ -23,6 +23,10 @@
     <button (click)="onSortChange('order')">Ordenar por creación</button>
     <button (click)="onSortChange('priority', true)">Ordenar por prioridad ascendente</button>
     <button (click)="onSortChange('priority', false)">Ordenar por prioridad descendente</button>
+    <select [(ngModel)]="selectedFilterCourseId" (change)="filterTasks()">
+      <option value="">Todas las Asignaturas</option>
+      <option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</option>
+    </select>
   </div>
   <div class="modal-backdrop" *ngIf="showTaskBuilder" (click)="toggleTaskBuilder()">
     <div class="task-builder-container" (click)="$event.stopPropagation()">
@@ -64,7 +68,7 @@
             {{ task.title }} Priority: {{ task.priority }}
             Asignatura: {{ task.courseName }}
           </span>
-          
+
         </div>
         <div class="options-container">
           <button (click)="editTask(task)">

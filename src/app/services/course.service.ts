@@ -65,14 +65,4 @@ export class CourseService {
     return updateDoc(courseRef, { color: newColor });
   }
 
-  // getCourseNameByReference(courseRef: DocumentReference<Course>): Observable<Map<DocumentReference<Course>, string>> {
-  //   return this.getCourseFromReference(courseRef).pipe(
-  //     map(course => {
-  //       const courseNameMap = new Map<DocumentReference<Course>, string>();
-  //       courseNameMap.set(courseRef, course.name);
-  //       return courseNameMap;
-  //     })
-  //   );
-  // }
-
 }

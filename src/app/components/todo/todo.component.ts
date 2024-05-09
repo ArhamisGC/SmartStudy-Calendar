@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import Task from '../../interfaces/task.interface'; // Asegúrate de que la ruta sea correcta
+import Task from '../../interfaces/task.interface';
 import { TaskService } from '../../services/task.service';
-import {animate, style, transition, trigger} from "@angular/animations"; // Asegúrate de que la ruta al servicio es correcta
+import { animate, style, transition, trigger } from "@angular/animations";
 import Course from '../../interfaces/course.interface';
 import { CourseService } from '../../services/course.service';
+import { DocumentReference } from 'firebase/firestore';
 
 
 @Component({
@@ -33,22 +34,21 @@ export class TodoComponent implements OnInit {
   showTaskBuilder: boolean = false;
   currentSort: 'order' | 'priority' = 'order';
   // Cursos
+  cachedTasks: Task[] = [];
   courses: Course[] = [];
   selectedCourseColor: string | undefined = '';
   selectedCourseId: string = '';
-  private _searchText: string = '';
   filterCourseBy: string = '';
+  selectedFilterCourseId: string = '';
 
   constructor(private taskService: TaskService,
     protected courseService: CourseService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe(tasks => {
-      this.tasks = this.sortTasks(tasks, this.currentSort);
-    });
     this.loadCourses();
     this.loadTasksWithCourseNames();
+    this.filterTasks()
   }
 
   loadTasksWithCourseNames() {
@@ -59,30 +59,32 @@ export class TodoComponent implements OnInit {
           ...task,
           courseName: task.courseRef ? coursesMap.get(task.courseRef.id) : 'Sin asignatura'
         }));
-        this.filterTasks();
+        this.cachedTasks = [...tasks];
       });
     }
     )
   }
 
-  filterTasks(): void {
-    this.filteredTasks = this.tasks.filter(task =>
-      task.courseName?.toLowerCase().includes(this.searchText.toLowerCase())
-    );
-  }  
-
   loadCourses(): void {
     this.courseService.getAllCourses().subscribe(courses => this.courses = courses);
   }
 
-  get searchText(): string {
-    return this._searchText;
+  filterTasks(): void {
+    if (this.selectedFilterCourseId) {
+
+      const filteredTasks = this.cachedTasks.filter(task => task.courseRef?.id === this.selectedFilterCourseId);
+
+      this.tasks = filteredTasks;
+    } else {
+
+      this.tasks = [...this.cachedTasks];
+    }
   }
 
-  set searchText(value: string) {
-    this._searchText = value;
-    this.filterTasks();
+  extractIdFromRef(ref: DocumentReference<Course>): string {
+    return ref.id;
   }
+
 
   addTask(): void {
     if (!this.newTaskTitle.trim()) return;
@@ -98,7 +100,6 @@ export class TodoComponent implements OnInit {
 
     this.taskService.addTask(newTask);
     this.clearForm();
-    // this.sortTasks(this.tasks);
     this.fixDuplicateOrders(this.tasks);
   }
 
@@ -114,33 +115,33 @@ export class TodoComponent implements OnInit {
   }
 
   updateStatus(task: Task): void {
-    const newStatus = task.status === 1 ? 0 : 1; // Cambia el estado
+
+    const newStatus = task.status === 1 ? 0 : 1;
     this.taskService.updateTask(task.id, { status: newStatus });
     task.status = newStatus;
   }
 
   editTask(task: Task): void {
-    task.editing = true;  // Agrega la propiedad 'editing' a tu interfaz Task si aún no está.
+    task.editing = true;
   }
 
   sortTasks(tasks: Task[], sortBy: 'order' | 'priority', isAscending: boolean = true): Task[] {
+
     return tasks.sort((a, b) => {
       if (sortBy === 'priority') {
-        // Cuando sortBy es 'priority', comprueba si es ascendente o descendente
+
         const priorityComparison = isAscending ? a.priority - b.priority : b.priority - a.priority;
         if (a.priority === b.priority) {
-          return a.order - b.order; // Siempre subordenar por 'order' ascendente si 'priority' es igual
-        }
+          return a.order - b.order;        }
         return priorityComparison;
-      } else { // Default to sorting by 'order'
+      } else { 
         if (a.order === b.order) {
-          return a.priority - b.priority; // Suborden por 'priority' ascendente si 'order' es igual
+          return a.priority - b.priority; 
         }
         return a.order - b.order;
       }
     });
   }
-  
 
   onSortChange(sortBy: 'order' | 'priority', isAscending: boolean = true): void {
     this.currentSort = sortBy;
@@ -174,7 +175,7 @@ export class TodoComponent implements OnInit {
 
   cancelEdit(task: Task): void {
     task.editing = false;
-    // Opcionalmente, podrías recargar la tarea desde Firebase para descartar los cambios no guardados.
+    
   }
 
   toggleTaskBuilder() {
@@ -182,7 +183,7 @@ export class TodoComponent implements OnInit {
   }
 
   trackByTasks(index: number, task: Task): any {
-    return task.id; // Usamos el ID de la tarea como un identificador único
+    return task.id;
   }
 
   get totalTasks(): number {
@@ -191,5 +192,5 @@ export class TodoComponent implements OnInit {
 
   get completedTasks(): number {
     return this.tasks.filter(task => task.status === 1).length;
-  }  
+  }
 }
