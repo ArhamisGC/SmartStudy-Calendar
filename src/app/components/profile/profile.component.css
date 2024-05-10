@@ -7,7 +7,7 @@
 
 .profile-banner {
   width: 100%;
-  background-color: #D3D3D3; /* Gris para el banner */
+  background-color: var(--default-background); /* Gris para el banner */
   display: flex;
   justify-content: center;
   padding: 20px 0;
@@ -22,7 +22,7 @@
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid white; /* Hacer que la imagen resalte sobre el banner */
+  border: 4px solid var(--default-buttons); /* Hacer que la imagen resalte sobre el banner */
 }
 
 .profile-info-container {
@@ -31,11 +31,11 @@
   align-items: center;
   margin-top: -75px; /* Ajustar según sea necesario para que la imagen sobresalga correctamente */
   padding: 20px;
-  background-color: #404040; /* Gris no tan oscuro */
+  background-color: var(--default-background); /* Gris no tan oscuro */
   width: 100%; /* Ajustar el ancho para igualar al banner, considerando el padding del host */
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 0 0 8px 8px;
-  color: white; /* Texto blanco */
+  color: var(--default-text); /* Texto blanco */
 }
 
 .profile-details {
@@ -49,18 +49,18 @@
   display: flex;
   align-items: center;
   margin: 10px 0;
-  color: white;
+  color: var(--default-text);
 }
 
 .fa-icon {
   margin-right: 10px;
   font-size: 20px;
-  color: white;
+  color: var(--default-text);
 }
 
 .edit-user-info-button {
-  background-color: #f5cb5c;
-  color: white;
+  background-color: var(--default-sidebar);
+  color: var(--default-text);
   border: none;
   border-radius: 20px;
   padding: 12px 24px;
@@ -73,8 +73,17 @@
 }
 
 .edit-user-info-button:hover {
-  background-color: #2A3942;
+  background-color: var(--reminders);
   transform: translateY(-2px);
+}
+
+input{
+  width: auto;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--default-buttons);
+  border-radius: 8px;
+
 }
 
 @media (max-width: 768px) {
