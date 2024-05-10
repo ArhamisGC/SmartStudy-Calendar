@@ -21,7 +21,9 @@ export class TimetableComponent implements OnInit {
   showSessionViewerModal: boolean = false;
   selectedSession: ClassSession | null = null;
   showEditSessionModal: boolean = false;
-  editableSession: ClassSession | null = null
+  editableSession: ClassSession | null = null;
+  showFindSessionModal: boolean = false;
+  allSessions: ClassSession[] = [];
 
   constructor(
     public datePipe: DatePipe,
@@ -65,11 +67,68 @@ export class TimetableComponent implements OnInit {
   }
 
   getSessionsForDay(day: string): ClassSession[] {
+    //console.log(this.schedule.filter(session => session.day === day));
     return this.schedule.filter(session => session.day === day);
+  }
+
+  findd(): void{
+    let materia = {...this.schedule[0]};
+    materia.id = '12345';
+    console.log("Pulsado");
+    console.log(this.schedule.filter(session => session.day === 'Mon'));
+
+
+    if (!this.verifyOverlap(materia)) {
+      console.log('No se solapa');
+    } else {
+      alert('No se puede crear la sesión de clase porque se solapa con otra existente.');
+    }
+  }
+
+  findFreeSlots(selectedDay: string): void {
+    let sessionsForSelectedDay = this.schedule.filter(session => session.day === 'Mon');
+
+    // Ordena las sesiones por hora de inicio
+    sessionsForSelectedDay.sort((a, b) => a.start.toDate().getTime() - b.start.toDate().getTime());
+
+    const freeSlots = [];
+
+    // Encuentra los espacios libres entre las sesiones
+    for (let i = 0; i < sessionsForSelectedDay.length - 1; i++) {
+      const currentSessionEnd = sessionsForSelectedDay[i].end.toDate();
+      const nextSessionStart = sessionsForSelectedDay[i + 1].start.toDate();
+
+      if (currentSessionEnd < nextSessionStart) {
+        freeSlots.push({
+          start: currentSessionEnd,
+          end: nextSessionStart
+        });
+      }
+    }
+
+    console.log('Horas libres para el día seleccionado:', freeSlots);
+    for(let i = 0;i<freeSlots.length;i++) {
+      console.log('Empieza a las ' + freeSlots[i].start.getHours()+ ':' + freeSlots[i].start.getMinutes() + ' y termina a las ' + freeSlots[i].end.getHours()+ ':' + freeSlots[i].end.getMinutes());
+    }
+  }
+
+  verifyOverlap(newSession: ClassSession): boolean {
+    const newStart = newSession.start.toDate().getTime();
+    const newEnd = newSession.end.toDate().getTime() - 1; // Permitir fin a inicio sin solapamiento
+
+    return this.allSessions.filter(session => session.day === newSession.day).some(session => {
+      const existingStart = session.start.toDate().getTime();
+      const existingEnd = session.end.toDate().getTime() - 1;
+      return newStart <= existingEnd && newEnd >= existingStart;
+    });
   }
 
   addSession(): void {
     this.showAddSessionModal = true;
+  }
+
+  toFind(): void {
+    this.showFindSessionModal = true;
   }
 
   deleteSubject(index: number): void {
@@ -133,6 +192,10 @@ export class TimetableComponent implements OnInit {
     this.showAddSessionModal = false;
   }
 
+  closetoFindSessionModal(): void {
+    this.showFindSessionModal = false;
+  }
+
   openSessionViewer(session: ClassSession): void {
     this.selectedSession = session;
     this.showSessionViewerModal = true;
@@ -151,9 +214,6 @@ export class TimetableComponent implements OnInit {
 
   closeEditSessionModal(): void {
     this.showEditSessionModal = false;
-  }
-
-  handleSessionInfo(session: ClassSession): void {
   }
 
 }

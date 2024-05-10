@@ -16,6 +16,12 @@
     </button>
   </div>
 
+  <div class="buttons-container">
+    <button (click)="toFind()" title="Find Session">
+      Buscar hora libre
+    </button>
+  </div>
+  <!--Crea el cabezal de dias de la semana-->
   <table>
     <thead>
     <tr>
@@ -28,7 +34,9 @@
     </tr>
     </thead>
     <tbody>
+    <!--Comienza a crear las filas con las horas que haya-->
     <tr *ngFor="let time of uniqueTimes">
+      <!--Aquí pone las horas que es la clase-->
       <td class="hour-cell">{{ time }}</td>
       <td *ngFor="let day of daysOfWeek" class="class-cell">
         <ng-container *ngFor="let session of getSessionsForDay(day)">
@@ -62,4 +70,10 @@
 
 <div *ngIf="showEditSessionModal" class="edit-session-overlay">
   <app-edit-session [session]="editableSession" (onCancel)="closeEditSessionModal()"></app-edit-session>
+</div>
+
+<div *ngIf="showFindSessionModal" class="add-session-overlay">
+  <div class="modal-content">
+    <app-to-find (close)="closetoFindSessionModal()"></app-to-find>
+  </div>
 </div>

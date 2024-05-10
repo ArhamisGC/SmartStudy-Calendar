@@ -48,6 +48,7 @@ import {NgxWeatherModule} from "ngx-weather";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {MatButton} from "@angular/material/button";
 import { NotificationComponent } from './components/notification/notification.component';
+import { ToFindComponent } from './components/timetable-component/to-find/to-find.component';
 
 @NgModule({
     declarations: [
@@ -81,6 +82,7 @@ import { NotificationComponent } from './components/notification/notification.co
         ProfessorEditorComponent,
         NotificationComponent,
         WeatherWidgetComponent,
+        ToFindComponent,
     ],
   imports: [
     BrowserModule,

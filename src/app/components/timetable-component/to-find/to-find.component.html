@@ -1,0 +1,30 @@
+
+<div class="add-session-overlay" [@dialog]>
+  <form [formGroup]="sessionForm" class="session-form">
+    <span class="close-button" (click)="closeDialog()">&times;</span>
+    <h2 class="form-title">Selecciona un dia</h2>
+    <div class="day-buttons">
+      <button type="button" class="day-button" (click)="selectDay('Mon')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Mon'">Lu</button>
+      <button type="button" class="day-button" (click)="selectDay('Tue')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Tue'">Mar</button>
+      <button type="button" class="day-button" (click)="selectDay('Wed')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Wed'">Mié</button>
+      <button type="button" class="day-button" (click)="selectDay('Thu')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Thu'">Jue</button>
+      <button type="button" class="day-button" (click)="selectDay('Fri')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Fri'">Vie</button>
+    </div>
+    <div class="button-group">
+      <button type="button" class="manage-button" (click)="findFreeSlots()">
+        <i class="fas fa-search"></i> Buscar horas libres
+      </button>
+    </div>
+  </form>
+</div>
+<div *ngIf="nuevo">
+  <div class="add-session-overlay" [@dialog]>
+    <form [formGroup]="sessionForm" class="session-form">
+      <span class="close-button" (click)="closeFree()">&times;</span>
+      <h2 class="form-title">Horas libres</h2>
+      <div *ngFor="let hora of libres" class="free">
+        {{hora}}
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,189 @@
+.add-session-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1050;
+}
+
+.session-form-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: 'Poppins', sans-serif;
+}
+
+.session-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.form-title, .form-label {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.day-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.day-button {
+  flex-grow: 1;
+  margin: 2px;
+  padding: 8px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.day-button.selected {
+  background-color: #007BFF;
+  color: white;
+}
+
+input[type="text"], input[type="time"], input[type="color"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button-group button, .day-button, .manage-button, .submit-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Añadir transiciones */
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+
+.button-group button:hover, .day-button:hover, .manage-button:hover, .submit-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Efecto de escala al pasar el ratón */
+}
+
+.button-group button:active, .day-button:active, .manage-button:active, .submit-button:active {
+  transform: scale(0.95); /* Efecto de pulsación */
+}
+
+.manage-button, .submit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.manage-button:hover, .submit-button:hover {
+  background-color: #0056b3;
+}
+
+.manage-button {
+  background-color: rgb(255, 196, 46);
+  color: #ffffff;
+  border: 1px solid #b78604;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.manage-button:hover {
+  background-color: #e2e6ea;
+}
+
+.close-button-container {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 1100;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 35px;
+  cursor: pointer;
+  color: #000;
+  background-color: transparent;
+  border: none;
+}
+
+.select-subject {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  margin: 10px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  appearance: none;
+  cursor: pointer;
+}
+
+.select-subject option {
+  padding: 8px;
+  background: #f8f8f8;
+}
+
+.select-subject {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  margin: 10px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.select-subject::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #333;
+  font-size: 0.8em;
+}
+
+.free{
+
+}
+
