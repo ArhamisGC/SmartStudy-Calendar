@@ -12,7 +12,17 @@ export class HeaderComponent {
   showWeather: boolean = false;
 
   isDarkModeEnabled: boolean = false;
-  constructor(private router: Router,private userService: UserService) {}
+  userUID: string | undefined;
+  userImage: string = "https://placehold.co/600x400";
+
+  constructor(private router: Router,private userService: UserService) {
+    this.userUID = this.userService.getUID();
+    if (this.userUID) {
+      this.userService.getUserData().subscribe((userData: any) => {
+        this.userImage = userData.profilePicture;
+      });
+    }
+  }
 
   ngOnInit(): void {
     this.isDarkModeEnabled = localStorage.getItem('darkMode') === 'enabled';

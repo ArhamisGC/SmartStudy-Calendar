@@ -4,7 +4,7 @@
 <div class="dashboard" [@dialog]>
   <aside class="sidebar">
     <div class="profile-info">
-      <i class="fas fa-user-circle profile-icon"></i>
+      <img [src]="userData?.profilePicture" alt="Imagen de perfil" class="profile-image" (click)="navigateTo('/profile');"/>
       <h4>{{ userData?.nombreCompleto }}</h4>
     </div>
     <app-weather-widget [context]="'dashboard'"></app-weather-widget>

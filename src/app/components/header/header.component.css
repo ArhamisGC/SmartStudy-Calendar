@@ -181,7 +181,12 @@ input:not(:checked) + .slider .dark {
 input:not(:checked) + .slider .white {
   display: block;
 }
-
+.profile-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: var(--default-text);
+}
 @keyframes slideInDown {
   from {
     opacity: 0;
@@ -191,4 +196,5 @@ input:not(:checked) + .slider .white {
     opacity: 1;
     transform: translateY(0);
   }
+
 }
