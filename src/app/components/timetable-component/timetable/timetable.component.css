@@ -3,9 +3,11 @@
 .timetable-container {
   margin: 20px;
   overflow: auto;
-  background-color: #f8f8f8;
+  background-color: var(--default-background);
   font-family: 'Poppins', sans-serif;
 }
+
+
 .buttons-container {
   text-align: right; /* Alineación de los botones a la derecha */
   margin-bottom: 10px;
@@ -40,19 +42,20 @@ th, td {
 }
 
 thead th {
-  background-color: #e0e0e0;
-  color: #333;
+  background-color: var(--default-bars);
+  color: var(--default-text);
   font-size: 16px;
   font-weight: 600;
 }
 
 .days-row th {
-  background: linear-gradient(145deg, #f5f5f5, #e0e0e0);
+  background: linear-gradient(145deg, #e3dede, #e0e0e0);
   border-bottom: 2px solid #ccc;
 }
 
 .hour-cell {
-  background-color: #fff;
+  background-color: var(--default-background);
+  color: var(--default-text);
   font-weight: bold;
   padding: 15px;
   text-align: center; /* Centrado del texto de la hora */
@@ -115,7 +118,7 @@ thead th {
   position: absolute;
   top: 5px;
   font-size: 16px;
-  color: #707070; /* Gris para ambos, puedes cambiarlo si quieres diferenciarlos */
+  color: var(--default-text);
   cursor: pointer;
   display: none;
 }
@@ -142,7 +145,7 @@ thead th {
 }
 
 .dark-text {
-  color: white; /* Cambia el color del texto a blanco */
+  color: white;
 }
 
 .session-container {

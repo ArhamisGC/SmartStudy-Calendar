@@ -14,7 +14,7 @@
 }
 
 .subject-manager-container {
-  background-color: #fff;
+  background-color: var(--default-background);
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -33,11 +33,11 @@
 .close-button {
   cursor: pointer;
   font-size: 30px;
-  color: #666;
+  color: var(--default-text);
 }
 
 .close-button:hover {
-  color: #333;
+  color: var(--default-text);
 }
 
 .courses-list-container {
@@ -48,6 +48,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  color: var(--default-text);
 }
 
 .courses-list li {
@@ -94,7 +95,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #666;
+  color: var(--default-text);
   font-size: 20px;
   transition: color 0.3s ease;
 }

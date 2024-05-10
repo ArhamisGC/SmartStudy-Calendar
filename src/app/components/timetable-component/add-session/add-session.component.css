@@ -28,7 +28,7 @@
   align-items: center;
   gap: 15px;
   padding: 20px;
-  background: white;
+  background: var(--default-background);
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -49,6 +49,7 @@
   .form-title, .form-label {
     margin-bottom: 5px;
     font-weight: 600;
+    color: var(--default-text)
   }
 
   .day-buttons {
@@ -61,7 +62,8 @@
     flex-grow: 1;
     margin: 2px;
     padding: 8px;
-    background-color: #f0f0f0;
+    background: var(--default-bars);
+    color: var(--default-text);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -137,7 +139,7 @@
   right: 10px;
   font-size: 35px;
   cursor: pointer;
-  color: #000;
+  color: var(--default-text);
   background-color: transparent;
   border: none;
 }

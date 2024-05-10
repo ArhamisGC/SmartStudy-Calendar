@@ -6,7 +6,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  background-color: white;
+  background-color: var(--default-background);
   position: fixed;
   right: 0;
   z-index: 1050;
@@ -16,11 +16,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f9f9f9;
+  background-color: var(--default-bars);
   padding: 8px;
   margin-bottom: 8px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  color: var(--default-text);
 }
 
 .notification-content {

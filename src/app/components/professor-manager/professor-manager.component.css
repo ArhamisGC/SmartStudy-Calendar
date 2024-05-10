@@ -5,7 +5,7 @@
   max-width: 600px;
   margin: auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--default-background);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -28,7 +28,7 @@
   margin-bottom: 20px;
   text-align: center;
   font-size: 24px;
-  color: #333;
+  color: var(--default-text);
 }
 
 .professors-list {
@@ -38,6 +38,7 @@
   max-height: 300px;
   padding: 10px;
   border-radius: 4px;
+  color: var(--default-text);
 }
 
 .professors-list div {
@@ -47,7 +48,7 @@
 }
 
 .professors-list div:hover, .professors-list div.selected {
-  background-color: #e9e9e9;
+  background-color: var(--default-background);
 }
 
 .action-buttons {
@@ -98,7 +99,7 @@ button {
 .close-button {
   cursor: pointer;
   font-size: 24px;
-  color: #666;
+  color: var(--default-text);
   position: absolute;
   right: 15px;
   top: 15px;

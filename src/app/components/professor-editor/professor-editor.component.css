@@ -25,11 +25,12 @@
   margin: auto;
   padding: 20px;
   padding-top: 40px; /* Space for the close 'X' */
-  background-color: #fff;
+  background-color: var(--default-background);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative; /* For absolute positioning of the 'X' */
   animation: slideIn 0.5s;
+  color: var(--default-text);
 }
 
 .form-group {
@@ -68,7 +69,7 @@ input {
 .close-button {
   cursor: pointer;
   font-size: 24px;
-  color: #666;
+  color: var(--default-text);
   position: absolute;
   right: 15px;
   top: 15px;

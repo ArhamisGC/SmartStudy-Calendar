@@ -2,7 +2,7 @@
 <div class="add-session-overlay" [@dialog]>
   <form [formGroup]="sessionForm" class="session-form">
     <span class="close-button" (click)="closeDialog()">&times;</span>
-    <h2 class="form-title">Selecciona un dia</h2>
+    <h2 class="form-title">Seleccione un día:</h2>
     <div class="day-buttons">
       <button type="button" class="day-button" (click)="selectDay('Mon')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Mon'">Lu</button>
       <button type="button" class="day-button" (click)="selectDay('Tue')" [class.selected]="sessionForm.get('selectedDay')?.value === 'Tue'">Mar</button>
