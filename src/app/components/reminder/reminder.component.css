@@ -1,7 +1,7 @@
 /* Estilo de los mensajes */
-
 body {
   font-size: 14px;
+  background-color: var(--background-reminder);
 }
 
 .error-message {
@@ -23,26 +23,35 @@ body {
   left: 50%;
   transform: translateX(-50%);
   padding: 10px;
-  color: white;
+  color: var(--background-reminder);
   border-radius: 5px;
   z-index: 1000;
 }
 
 /* Contenedor de recordatorios */
 .reminder-container {
-  background-color: #333533;
+  background-color: var(--default-background);
   color: #242423;
   border-radius: 8px;
   width: 97%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  transform: translateY(20px);
   padding: 15px;
+}
+
+.reminder-container button {
+  color: var(--default-text);
+}
+
+.reminder-container input{
+  background-color: var(--default-buttons);
+  color: var(--default-text);
 }
 
 .form-group label {
   margin: 5px;
-  color: white;
+  color: var(--default-text);
 }
 
 .form-group {
@@ -63,7 +72,7 @@ input[type="text"], input[type="time"], input[type="date"] {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
-  border: 1px solid white;
+  border: 1px solid var(--background-reminder);
   box-sizing: border-box;
 }
 
@@ -86,8 +95,8 @@ button {
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
-  background-color: white;
-  color: black;
+  background-color: var(--default-buttons);
+  color: var(--default-text);
 }
 
 button {
@@ -106,7 +115,7 @@ button:hover {
   justify-content: start;
   gap: 10px;
   padding: 20px;
-  background-color: #242423;
+  background-color: var(--default-background);
   margin-top: 10px;
   box-sizing: border-box;
   min-height: 50vh;
@@ -114,10 +123,18 @@ button:hover {
   overflow-y: auto;
 }
 
+.extra-square h3 {
+  color: var(--text-reminders);
+}
+
+.extra-square p {
+  color: var(--text-reminders);
+}
+
 .reminder-item {
   flex: 1 1 calc(25% - 10px);
   max-width: calc(25% - 10px);
-  background-color: #FFFFFF;
+  background-color: var(--reminders);
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -195,10 +212,26 @@ button:hover {
   width: auto;
   max-width: 600px;
   margin: auto;
-  background-color: #CFDBD5;
+  background-color: var(--default-background);
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.modal-overlay h2 {
+  color: var(--default-text);
+}
+
+.modal-overlay p {
+  color: var(--default-text);
+}
+
+.edit-modal-content {
+  background-color: var(--default-background);
+}
+
+.TimeDateLabel{
+  color: var(--default-text)
 }
 
 .inline-fields input {
@@ -219,13 +252,19 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .sort-container select {
   height: auto;
   padding: 10px;
   margin: 0 5px;
+  background-color: var(--background-reminder);
+  color: var(--default-text);
+}
+
+.sort-container span {
+  color: var(--default-text);
 }
 
 .modal-actions button {
@@ -255,7 +294,3 @@ button:hover {
   background-color: #f44336;
   color: white;
 }
-
-
-
-

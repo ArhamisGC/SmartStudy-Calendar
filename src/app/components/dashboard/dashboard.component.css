@@ -200,7 +200,6 @@ input:checked + .slider .white {
   display: none;
 }
 
-
 input:checked + .slider {
   background-color: var(--default-buttons);
 }

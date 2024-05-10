@@ -15,19 +15,20 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  background-color: white;
+  background-color: var(--default-sidebar);
   position: fixed;
   right: 0;
   z-index: 1050;
   animation: fadeIn 0.5s ease-out forwards;
 }
+
 .dashboard-weather-widget-container{
   width: 100%;
   max-height: 600px;
   padding: 10px;
   border: 2px solid rgba(0,0,0);
   border-radius: 25px;
-  background-color: #F5CB5C;
+  background-color: var(--default-sidebar);
   animation: fadeIn 0.5s ease-out forwards;
 }
 
@@ -57,7 +58,6 @@ button:active {
   background-color: #00408b;
   transform: scale(0.95);
 }
-
 
 ngx-weather {
   margin-bottom: 10px;

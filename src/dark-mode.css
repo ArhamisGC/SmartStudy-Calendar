@@ -5,6 +5,8 @@
   --default-text: #242423;
   --reminders: #333533;
   --text-reminders: #E8EDDF;
+  --header: #FFFFFF;
+  --background-reminder: #CFDBD5;
 }
 .dark-mode {
   --default-sidebar: #333533;
@@ -13,4 +15,6 @@
   --default-text: #E8EDDF;
   --reminders: #E8EDDF;
   --text-reminders: #242423;
+  --header: #242423;
+  --background-reminder: #333533;
 }

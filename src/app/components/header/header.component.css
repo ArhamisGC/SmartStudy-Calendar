@@ -10,7 +10,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #f0f2f5;
+  background-color: var(--default-background);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   flex-wrap: wrap;
 }
@@ -32,14 +32,22 @@ body {
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: #333;
+  color: var(--default-text);
   font-size: 18px;
-  background-color: #fff;
+  background-color: var(--default-buttons);
   border-radius: 5px;
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
   cursor: pointer;
+}
+
+.menu-item span, .user-item span, .logout-item span {
+  color: var(--default-text);
+}
+
+.menu-item i, .user-item i, .logout-item i {
+  color: var(--default-text);
 }
 
 .menu-item:hover, .user-item:hover, .logout-item:hover {
@@ -55,7 +63,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--header);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
@@ -84,7 +92,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  background-color: white;
+  background-color: var(--header);
   position: fixed;
   right: 0;
   z-index: 1050;
