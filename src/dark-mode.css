@@ -3,7 +3,6 @@
   --default-background: #E8EDDF;
   --default-buttons: #CFDBD5;
   --default-text: #242423;
-<<<<<<< HEAD
   --reminders: #333533;
   --text-reminders: #E8EDDF;
   --header: #FFFFFF;
@@ -18,12 +17,5 @@
   --text-reminders: #242423;
   --header: #242423;
   --background-reminder: #333533;
-=======
 }
-.dark-mode {
-  --default-yellow: #333533;
-  --default-background: #242423;
-  --default-buttons: #333533;
-  --default-text: #E8EDDF;
->>>>>>> 11759f4 (Dark-mode Ini)
-}
+
