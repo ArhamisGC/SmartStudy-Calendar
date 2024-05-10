@@ -4,41 +4,53 @@
 
 <div class="profile-banner" [@dialog]>
   <div class="profile-image-container">
-    <img alt="Imagen de perfil" src="https://via.placeholder.com/250" class="profile-image" />
+    <input type="file" id="file" (change)="onFileSelected($event)" style="display: none;">
+    <img alt="Imagen de perfil" [src]="userData.profilePicture" class="profile-image" (click)="openFileInput()" />
   </div>
 </div>
 
 <div class="profile-info-container" [@dialog]>
-  <h2 class="profile-name">{{ userData?.nombreCompleto }} - <span class="profile-role">Estudiante</span></h2>
+  <h2 *ngIf="!isEditing" class="profile-name">{{ userData.nombreCompleto }} - <span class="profile-role">Estudiante</span></h2>
+  <input *ngIf="isEditing" type="text" class="edit-input" [(ngModel)]="tempUser.nombreCompleto" />
+
 
   <div class="profile-details" [@dialog]>
     <!-- Icono y detalle de Teléfono -->
     <div class="profile-detail-item">
       <i class="fa-icon fa fa-phone"></i>
-      <span>{{ userData?.telefono }}</span>
+      <span *ngIf="!isEditing" >{{ userData.telefono }}</span>
+      <input *ngIf="isEditing" type="text" class="edit-input" [(ngModel)]="tempUser.telefono" />
     </div>
 
     <!-- Icono y detalle de Universidad -->
     <div class="profile-detail-item">
       <i class="fa-icon fa fa-university"></i>
-      <span>{{ userData?.universidad }}</span>
+      <span *ngIf="!isEditing" >{{ userData.universidad }}</span>
+      <select *ngIf="isEditing" type="text" class="edit-input" [(ngModel)]="tempUser.universidad">
+        <option value="" disabled selected>Selecciona un centro universitario</option>
+        <option value="ULPGC">Universidad de Las Palmas de Gran Canaria</option>
+        <option value="ULL">Universidad de La Laguna</option>
+      </select>
     </div>
 
     <!-- Icono y detalle de Email -->
     <div class="profile-detail-item">
       <i class="fa-icon fa fa-envelope"></i>
-      <span>{{ userData?.email }}</span>
+      <span >{{ userData.email }}</span>
     </div>
 
     <!-- Icono y detalle de Fecha de Nacimiento -->
     <div class="profile-detail-item">
       <i class="fa-icon fa fa-birthday-cake"></i>
-      <span>{{ userData?.fechaNacimiento }}</span>
+      <span>{{ userData.fechaNacimiento }}</span>
     </div>
   </div>
 
-  <button type="button" class="edit-user-info-button">
+  <button *ngIf="!isEditing" (click)="editProfile()" type="button" class="edit-user-info-button">
     <i class="fas fa-edit"></i> Editar información de usuario
+  </button>
+  <button *ngIf="isEditing" (click)="saveProfile()"
+          class="edit-user-info-button">Save Changes
   </button>
 
 </div>
