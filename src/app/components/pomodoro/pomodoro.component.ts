@@ -99,6 +99,4 @@ export class PomodoroComponent {
       this.timer = this.formatTime(this.minutes, this.seconds);
     }
   }
-
-
 }

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import Task from '../../interfaces/task.interface'; // Asegúrate de que la ruta sea correcta
+import Task from '../../interfaces/task.interface';
 import { TaskService } from '../../services/task.service';
-import {animate, style, transition, trigger} from "@angular/animations"; // Asegúrate de que la ruta al servicio es correcta
+import { animate, style, transition, trigger } from "@angular/animations";
+import Course from '../../interfaces/course.interface';
+import { CourseService } from '../../services/course.service';
+import { DocumentReference } from 'firebase/firestore';
+
 
 @Component({
   selector: 'app-todo',
@@ -22,20 +26,69 @@ import {animate, style, transition, trigger} from "@angular/animations"; // Aseg
 
 export class TodoComponent implements OnInit {
   tasks: Task[] = [];
+  filteredTasks: Task[] = [];
   newTaskTitle: string = '';
-  newTaskOrder: number = 1; // Establece un valor predeterminado para el orden.
-  newTaskPriority: number = 2; // Prioridad media por defecto.
-  newTaskStatus: number = 0; // Estado pendiente por defecto.
+  newTaskOrder: number = 1;
+  newTaskPriority: number = 2;
+  newTaskStatus: number = 0;
   showTaskBuilder: boolean = false;
   currentSort: 'order' | 'priority' = 'order';
+  // Cursos
+  cachedTasks: Task[] = [];
+  courses: Course[] = [];
+  selectedCourseColor: string | undefined = '';
+  selectedCourseId: string = '';
+  filterCourseBy: string = '';
+  selectedFilterCourseId: string = '';
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService,
+    protected courseService: CourseService
+  ) { }
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe(tasks => {
-      this.tasks = this.sortTasks(tasks, this.currentSort);
-    });
+    console.log("oninit")
+    this.loadCourses();
+    this.loadTasksWithCourseNames();
+    this.filterTasks()
   }
+
+  loadTasksWithCourseNames() {
+    console.log("loadtasksnames")
+    this.taskService.getTasks().subscribe(tasks => {
+      this.courseService.getAllCourses().subscribe(courses => {
+        const coursesMap = new Map(courses.map(course => [course.id, course.name]));
+        this.tasks = tasks.map(task => ({
+          ...task,
+          courseName: task.courseRef ? coursesMap.get(task.courseRef.id) : 'Sin asignatura'
+        }));
+        this.cachedTasks = [...tasks];
+      });
+    }
+    )
+  }
+
+  loadCourses(): void {
+    console.log("loadcourses")
+    this.courseService.getAllCourses().subscribe(courses => this.courses = courses);
+  }
+
+  filterTasks(): void {
+    console.log("filter")
+    if (this.selectedFilterCourseId) {
+
+      const filteredTasks = this.cachedTasks.filter(task => task.courseRef?.id === this.selectedFilterCourseId);
+
+      this.tasks = filteredTasks;
+    } else {
+
+      this.tasks = [...this.cachedTasks];
+    }
+  }
+
+  extractIdFromRef(ref: DocumentReference<Course>): string {
+    return ref.id;
+  }
+
 
   addTask(): void {
     if (!this.newTaskTitle.trim()) return;
@@ -45,12 +98,12 @@ export class TodoComponent implements OnInit {
       order: this.newTaskOrder,
       priority: this.newTaskPriority,
       status: this.newTaskStatus,
-      editing: false
+      editing: false,
+      courseRef: this.courseService.createRefToCourse(this.selectedCourseId)
     };
 
     this.taskService.addTask(newTask);
     this.clearForm();
-    // this.sortTasks(this.tasks);
     this.fixDuplicateOrders(this.tasks);
   }
 
@@ -66,33 +119,37 @@ export class TodoComponent implements OnInit {
   }
 
   updateStatus(task: Task): void {
-    const newStatus = task.status === 1 ? 0 : 1; // Cambia el estado
+    console.log("updatestatus")
+    const newStatus = task.status === 1 ? 0 : 1;
     this.taskService.updateTask(task.id, { status: newStatus });
     task.status = newStatus;
+    console.log(this.selectedFilterCourseId)
+    this.filterTasks();
+    console.log(this.tasks)
   }
 
   editTask(task: Task): void {
-    task.editing = true;  // Agrega la propiedad 'editing' a tu interfaz Task si aún no está.
+    task.editing = true;
   }
 
   sortTasks(tasks: Task[], sortBy: 'order' | 'priority', isAscending: boolean = true): Task[] {
+    console.log("sortTasks")
     return tasks.sort((a, b) => {
       if (sortBy === 'priority') {
-        // Cuando sortBy es 'priority', comprueba si es ascendente o descendente
+
         const priorityComparison = isAscending ? a.priority - b.priority : b.priority - a.priority;
         if (a.priority === b.priority) {
-          return a.order - b.order; // Siempre subordenar por 'order' ascendente si 'priority' es igual
+          return a.order - b.order;
         }
         return priorityComparison;
-      } else { // Default to sorting by 'order'
+      } else {
         if (a.order === b.order) {
-          return a.priority - b.priority; // Suborden por 'priority' ascendente si 'order' es igual
+          return a.priority - b.priority;
         }
         return a.order - b.order;
       }
     });
   }
-  
 
   onSortChange(sortBy: 'order' | 'priority', isAscending: boolean = true): void {
     this.currentSort = sortBy;
@@ -100,7 +157,6 @@ export class TodoComponent implements OnInit {
   }
 
   fixDuplicateOrders(sortedTasks: Task[]): void {
-    // Asumiendo que 'sortedTasks' ya está ordenada por 'order'.
     for (let i = 0; i < sortedTasks.length - 1; i++) {
       if (sortedTasks[i].order === sortedTasks[i + 1].order) {
         let nextUniqueOrder = sortedTasks[i].order;
@@ -114,20 +170,21 @@ export class TodoComponent implements OnInit {
   }
 
   updateTask(task: Task): void {
+    console.log("updateTask")
     this.taskService.updateTask(task.id, {
       title: task.title,
       order: task.order,
       priority: task.priority,
-      status: task.status
+      status: task.status,
+      courseRef: this.courseService.createRefToCourse(this.selectedCourseId)
     });
     task.editing = false;
-    // this.sortTasks(this.tasks);
     this.fixDuplicateOrders(this.tasks);
   }
 
   cancelEdit(task: Task): void {
     task.editing = false;
-    // Opcionalmente, podrías recargar la tarea desde Firebase para descartar los cambios no guardados.
+
   }
 
   toggleTaskBuilder() {
@@ -135,7 +192,7 @@ export class TodoComponent implements OnInit {
   }
 
   trackByTasks(index: number, task: Task): any {
-    return task.id; // Usamos el ID de la tarea como un identificador único
+    return task.id;
   }
 
   get totalTasks(): number {
