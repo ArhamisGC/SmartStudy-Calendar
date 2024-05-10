@@ -11,7 +11,7 @@
 }
 
 .event-editor-container {
-  background-color: #fff;
+  background-color: var(--default-background);
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -25,6 +25,7 @@
 
 h2, h4 {
   font-family: 'Poppins', sans-serif;
+  color: var(--default-text);
 }
 
 h2 {
@@ -36,7 +37,7 @@ h4 {
   font-weight: 600;
   font-size: 24px;
   margin-bottom: 1em;
-  color: #333;
+  color: var(--default-text);
 }
 
 .form-group {
@@ -97,7 +98,7 @@ textarea {
 .close-button {
   cursor: pointer;
   font-size: 24px;
-  color: #666;
+  color: var(--default-text);
   position: absolute;
   right: 20px;
   top: 20px;

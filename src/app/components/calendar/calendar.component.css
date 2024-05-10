@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
 
+* {
+  color: var(--default-text);
+}
+
 .calendar-container {
   width: 95%;
   max-width: 1200px;
@@ -10,7 +14,7 @@
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
   border-radius: 8px;
-  background-color: #fff;
+  background-color: var(--default-background);
 }
 
 .calendar-header {
@@ -18,7 +22,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: var(--default-buttons);
   font-family: 'Poppins', sans-serif;
 }
 
@@ -33,7 +37,7 @@
 
 .week-days {
   display: flex;
-  background-color: #e0e0e0;
+  background-color: var(--default-background);
   font-weight: 400;
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
@@ -79,7 +83,7 @@
 .events-list li {
   font-size: 0.75rem;
   margin-bottom: 2px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--default-buttons);
   border-radius: 5px;
   padding: 5px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -94,7 +98,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: rgba(255, 0, 0, 0.44);
+  background-color: rgba(255, 0, 0, 0.56);
   z-index: 0;
 }
 

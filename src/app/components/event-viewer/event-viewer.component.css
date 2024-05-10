@@ -13,7 +13,7 @@
 }
 
 .event-content {
-  background-color: #fff;
+  background-color: var(--default-background);
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -39,26 +39,26 @@
   border: none;
   cursor: pointer;
   transition: transform 0.2s, color 0.2s;
-  color: #666;
+  color: var(--default-text);
   font-size: 1.2em;
 }
 
 .icon-button:hover, .close-button:hover {
   transform: scale(1.05);
-  color: #333;
+  color: var(--default-text);
 }
 
 h4 {
   font-weight: 600;
   font-size: 20px;
   margin-bottom: 0.8em;
-  color: #333;
+  color: var(--default-text);
 }
 
 .event-date, .course-name, .event-description {
   font-weight: 400;
   font-size: 0.9em;
-  color: #666;
+  color: var(--default-text);
   margin-bottom: 0.5em;
 }
 
@@ -66,13 +66,13 @@ h4 {
   font-weight: 500;
   cursor: pointer;
   text-decoration: underline;
-  text-decoration-color: #666;
+  text-decoration-color: var(--default-text);
   text-underline-offset: 2px;
   margin-top: 0.5em;
 }
 
 .event-description {
-  color: #444;
+  color: var(--default-text);
   line-height: 1.4;
 }
 
@@ -81,5 +81,5 @@ h4 {
 }
 
 .delete i {
-  color: #354159;
+  color: #8fa5d1;
 }

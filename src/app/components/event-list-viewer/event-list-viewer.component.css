@@ -14,7 +14,7 @@
 }
 
 .event-list-viewer-container {
-  background: #fff;
+  background: var(--default-background);
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 80%;
@@ -36,12 +36,12 @@ h2 {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 22px;
-  color: #333;
+  color: var(--default-text);
 }
 
 .close-button {
   cursor: pointer;
-  color: #757575;
+  color: var(--default-text);
 }
 
 .close-button i.material-icons {
@@ -61,7 +61,7 @@ h2 {
 }
 
 .event-card {
-  background-color: #f0f0f0;
+  background-color: var(--default-buttons);
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
@@ -83,6 +83,6 @@ h2 {
 }
 
 .event-date, .event-time {
-  color: #757575;
+  color: var(--default-text);
   font-size: 0.9em;
 }
