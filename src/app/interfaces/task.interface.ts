@@ -1,5 +1,7 @@
 import { DocumentReference } from '@angular/fire/firestore';
 import Course from "./course.interface";
+import {TaskStatus} from "./typeOfTask.interface";
+import {TaskPriority} from "./typeOfTask.interface";
 
 export default interface Task {
   id: string;
@@ -12,15 +14,4 @@ export default interface Task {
   editing: boolean;
   courseId?: string;
   courseName?: string;
-}
-
-enum TaskStatus {
-  Pending = 0,
-  Completed = 1,
-}
-
-enum TaskPriority {
-  Low,
-  Medium,
-  High,
 }

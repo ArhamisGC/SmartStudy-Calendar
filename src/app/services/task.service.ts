@@ -22,6 +22,7 @@ export class TaskService {
 
   addTask(task: Omit<Task, 'id'>) {
     const userId = this.getUserId();
+    task.priority = +task.priority;
     this.firestore.collection<Task>(`users/${userId}/tasks`)
       .valueChanges()
       .pipe(
@@ -54,6 +55,9 @@ export class TaskService {
 
   updateTask(id: string, changes: Partial<Task>) {
     const userId = this.getUserId();
+    if (typeof changes.priority === 'string') {
+      changes.priority = +changes.priority;  // Convertir a número si es string
+    }
     this.firestore.collection<Task>(`users/${userId}/tasks`).doc(id).update(changes);
   }
 }

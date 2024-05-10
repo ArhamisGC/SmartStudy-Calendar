@@ -25,6 +25,7 @@ body, html {
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
+  position: relative;
 }
 
 .profile-info {
@@ -118,21 +119,13 @@ body, html {
   animation: fadeIn 0.5s ease-out forwards;
 }
 
-.dark-mode-switch {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-}
-
 .switch {
-  position: relative;
-  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+  left: 30%;
+  transform: translateY(-450%);
   width: 90px;
   height: 34px;
-  margin-right: 10px;
 }
 
 .switch input {
@@ -148,7 +141,7 @@ body, html {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--default-buttons);
+  background-color: var(--dark-mode-buttton);
   transition: .4s;
   border-radius: 34px;
   display: flex;
@@ -202,7 +195,7 @@ input:checked + .slider .white {
 }
 
 input:checked + .slider {
-  background-color: var(--default-buttons);
+  background-color: var(--dark-mode-buttton);
 }
 
 input:checked + .slider:before {
@@ -211,35 +204,31 @@ input:checked + .slider:before {
 
 .progress-bar-container {
   position: fixed;
-  bottom: 20px; /* Ajusta según la ubicación deseada */
-  left: 260px; /* Alineación a la izquierda igual al ancho de la barra lateral */
-  right: 150px; /* Espacio hasta la izquierda del botón 'Claro' */
-  height: 30px;
-  background-color: #f0f0f0; /* Color de fondo del contenedor */
-  border-radius: 15px; /* Bordes redondeados para suavidad */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra para dar profundidad */
+  bottom: 20px;
+  left: 260px;
+  right: 20px;
+  height: 90px;
   display: flex;
-  align-items: center; /* Alineación vertical de la barra interna */
-  overflow: hidden; /* Oculta cualquier parte de la barra que exceda los bordes */
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .progress-bar {
-  height: 100%; /* Altura completa del contenedor */
-  background-color: #007bff; /* Color de la barra */
-  border-radius: 12px; /* Bordes redondeados */
-  color: white; /* Color del texto */
+  position: relative;
+  height: 25px;
+  border-radius: 5px;
+  color: white;
   display: flex;
-  justify-content: center; /* Centrado horizontal del texto */
-  align-items: center; /* Centrado vertical del texto */
-  font-size: 16px; /* Tamaño del texto */
-  transition: width 0.5s ease; /* Transición suave del ancho */
+  align-items: center;
 }
 
-/* CSS adicional para la animación y visualización del texto */
-.progress-bar span {
-  white-space: nowrap; /* Evita que el texto se ajuste a líneas múltiples */
-  padding-left: 10px; /* Espacio antes del texto para evitar pegarse al borde izquierdo */
+.label {
+  margin-left: 10px;
 }
+
+.high { background-color: var(--high);}
+.medium { background-color: var(--medium);}
+.low { background-color: var(--low);}
 
 @media (max-width: 768px) {
   .sidebar {
