@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
   user$: Observable<User | undefined>;
   protected userData: any;
   showSubjectManager: boolean = false;
-
+  private userImage: String = "https://placehold.co/600x400";
   isDarkModeEnabled: boolean = false;
 
   constructor(private userService: UserService, private router: Router) {
@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit {
     this.userService.getUserData().subscribe(userData => {
       if (userData) {
         this.userData = userData;
+        this.userImage = userData.profilePicture;
       }
     });
     this.isDarkModeEnabled = localStorage.getItem('darkMode') === 'enabled';

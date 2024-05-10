@@ -30,11 +30,6 @@ body, html {
   text-align: center;
 }
 
-.profile-icon {
-  font-size: 60px;
-  color: var(--default-text);
-  margin-bottom: 10px;
-}
 
 .profile-info h4 {
   color: var(--default-text);
@@ -104,6 +99,11 @@ body, html {
 
 .grid-item i {
   font-size: 24px;
+}
+.profile-image {
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 50%;
 }
 
 .dashboard-weather-widget-container{

@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { EventViewerComponent } from './components/event-viewer/event-viewer.component';
 import {getAuth, provideAuth} from "@angular/fire/auth";
@@ -84,30 +84,31 @@ import { ToFindComponent } from './components/timetable-component/to-find/to-fin
         WeatherWidgetComponent,
         ToFindComponent,
     ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
-    provideAuth(() => getAuth()),
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    AngularFireAuthModule,
-    CommonModule,
-    FaIconComponent,
-    MatCardContent,
-    MatToolbar,
-    MatCard,
-    MatLabel,
-    MatFormField,
-    ToastrModule.forRoot(),
-    NgxWeatherModule.forRoot({
-      apiKey: 'b042f834f54d47e282075749242904'
-    }),
-    MatButton,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideFirestore(() => getFirestore()),
+        provideAuth(() => getAuth()),
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        AngularFireAuthModule,
+        CommonModule,
+        FaIconComponent,
+        MatCardContent,
+        MatToolbar,
+        MatCard,
+        MatLabel,
+        MatFormField,
+        ToastrModule.forRoot(),
+        NgxWeatherModule.forRoot({
+            apiKey: 'b042f834f54d47e282075749242904'
+        }),
+        MatButton,
+        NgOptimizedImage,
+    ],
   providers: [
     provideAnimationsAsync()
   ],
