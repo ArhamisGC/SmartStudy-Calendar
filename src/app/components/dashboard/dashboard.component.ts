@@ -5,6 +5,8 @@ import { Observable, of } from 'rxjs';
 import { User } from '../../interfaces/user.interface';
 import {user} from "@angular/fire/auth";
 import {animate, style, transition, trigger} from "@angular/animations";
+import Task from '../../interfaces/task.interface';
+import { TaskService } from '../../services/task.service';
 
 @Component({
 selector: 'app-dashboard',
@@ -30,7 +32,10 @@ export class DashboardComponent implements OnInit {
 
   isDarkModeEnabled: boolean = false;
 
-  constructor(private userService: UserService, private router: Router) {
+  tasks: Task[] = [];
+  completionPercentage = 0;
+
+  constructor(private userService: UserService, private router: Router, private taskService: TaskService) {
     this.user$ = of(undefined);
   }
 
@@ -41,8 +46,18 @@ export class DashboardComponent implements OnInit {
         this.userData = userData;
       }
     });
+
     this.isDarkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
     this.applyDarkMode();
+
+    this.taskService.getTasks().subscribe(tasks => {
+      const totalWeight = tasks.reduce((acc, task) => acc + this.getPriorityWeight(task.priority), 0);
+      const completedWeight = tasks.reduce((acc, task) => {
+        return acc + (task.status === 1 ? this.getPriorityWeight(task.priority) : 0);
+      }, 0);
+
+      this.completionPercentage = totalWeight > 0 ? (completedWeight / totalWeight) * 100 : 0;
+    });
   }
 
   private applyDarkMode(): void {
@@ -55,6 +70,17 @@ export class DashboardComponent implements OnInit {
     this.applyDarkMode();
   }
 
+  private getPriorityWeight(priority: TaskPriority): number {
+    switch (priority) {
+      case tas: // Assuming 1 is High
+        return 0.6;
+      case TaskPriority.Medium: // Assuming 2 is Medium
+        return 0.3;
+      case TaskPriority.Low: // Assuming 3 is Low
+        return 0.1;
+      default:
+        return 0.1; // Default to Low if undefined
+    }
   navigateTo(path: string): void {
     this.router.navigate([path]);
   }
@@ -70,6 +96,12 @@ export class DashboardComponent implements OnInit {
 
   closeSubjectManager(): void {
     this.showSubjectManager = false;
+  }
+
+  loadTasks(): void {
+    this.taskService.getTasks().subscribe(tasks => {
+      this.tasks = tasks;
+    });
   }
 
   protected readonly user = user;

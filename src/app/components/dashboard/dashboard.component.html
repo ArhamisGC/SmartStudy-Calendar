@@ -27,6 +27,12 @@
     </div>
   </div>
 
+  <div class="progress-bar-container">
+    <div class="progress-bar" [style.width]="completionPercentage + '%'">
+      {{ completionPercentage | number:'1.0-0' }}% Completado
+    </div>
+  </div>
+
   <div class="dark-mode-switch">
     <label class="switch">
       <input type="checkbox" [checked]="isDarkModeEnabled" (change)="toggleDarkMode()">
@@ -36,6 +42,7 @@
       </div>
     </label>
   </div>
+
 </div>
 <script src="animations.js"></script>
 </body>

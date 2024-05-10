@@ -209,6 +209,38 @@ input:checked + .slider:before {
   transform: translateX(55px);
 }
 
+.progress-bar-container {
+  position: fixed;
+  bottom: 20px; /* Ajusta según la ubicación deseada */
+  left: 260px; /* Alineación a la izquierda igual al ancho de la barra lateral */
+  right: 150px; /* Espacio hasta la izquierda del botón 'Claro' */
+  height: 30px;
+  background-color: #f0f0f0; /* Color de fondo del contenedor */
+  border-radius: 15px; /* Bordes redondeados para suavidad */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra para dar profundidad */
+  display: flex;
+  align-items: center; /* Alineación vertical de la barra interna */
+  overflow: hidden; /* Oculta cualquier parte de la barra que exceda los bordes */
+}
+
+.progress-bar {
+  height: 100%; /* Altura completa del contenedor */
+  background-color: #007bff; /* Color de la barra */
+  border-radius: 12px; /* Bordes redondeados */
+  color: white; /* Color del texto */
+  display: flex;
+  justify-content: center; /* Centrado horizontal del texto */
+  align-items: center; /* Centrado vertical del texto */
+  font-size: 16px; /* Tamaño del texto */
+  transition: width 0.5s ease; /* Transición suave del ancho */
+}
+
+/* CSS adicional para la animación y visualización del texto */
+.progress-bar span {
+  white-space: nowrap; /* Evita que el texto se ajuste a líneas múltiples */
+  padding-left: 10px; /* Espacio antes del texto para evitar pegarse al borde izquierdo */
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 200px;
