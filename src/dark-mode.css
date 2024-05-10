@@ -1,7 +1,7 @@
 :root {
   --default-sidebar: #F5CB5C;
-  --default-background: #E8EDDF;
-  --default-buttons: #CFDBD5;
+  --default-background: #ffffff;
+  --default-buttons: rgba(148, 150, 152, 0.22);
   --default-text: #242423;
   --reminders: #333533;
   --text-reminders: #E8EDDF;
@@ -11,7 +11,7 @@
 .dark-mode {
   --default-sidebar: #333533;
   --default-background: #242423;
-  --default-buttons: #333533;
+  --default-buttons: rgb(0, 0, 0);
   --default-text: #E8EDDF;
   --reminders: #E8EDDF;
   --text-reminders: #242423;

@@ -19,11 +19,11 @@ h4 {
   font-weight: 600;
   font-size: 24px;
   margin-bottom: 1em;
-  color: #333;
+  color: var(--default-text);
 }
 
 .event-creator-container {
-  background-color: #fff;
+  background-color: var(--default-background);
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -74,6 +74,7 @@ label {
   font-weight: 500;
   transition: transform 0.3s ease, background-color 0.3s ease;
   font-size: 1rem;
+  color: var(--default-text);
 }
 
 .icon-button:hover {
@@ -104,9 +105,9 @@ label {
   top: 20px;
   cursor: pointer;
   font-size: 24px;
-  color: #666;
+  color: var(--default-text);
 }
 
 .close-button:hover {
-  color: #333;
+  color: var(--default-text);
 }
