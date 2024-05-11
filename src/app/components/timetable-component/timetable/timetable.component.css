@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+
+* {
+  background-color: var(--default-background);
+}
+
 .timetable-container {
   margin: 20px;
   overflow: auto;
