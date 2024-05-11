@@ -157,16 +157,16 @@ body{
   box-shadow: 0 0 0 1.5px #2b2c37, 0 0 25px -17px #000;
   border: 0;
   border-radius: 12px;
-  background-color: var(--default-text);
+  background-color: var(--default-bars);
   outline: none;
-  color: #bdbecb;
+  color: var(--default-text);
   transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
   cursor: text;
   z-index: 0;
 }
 
 .search-input::placeholder {
-  color: #bdbecb;
+  color: var(--default-text);
 }
 
 .search-input:hover {
