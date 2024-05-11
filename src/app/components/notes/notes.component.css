@@ -35,13 +35,13 @@ body{
 
 .styled_input label.text {
   font-size: 0.75rem;
-  color: #242423;
+  color: var(--default-text);
   font-weight: 700;
   position: relative;
   top: 0.5rem;
   margin: 0 0 0 7px;
   padding: 0 3px;
-  background: white;
+  background: var(--default-background);
   width: fit-content;
 }
 
@@ -62,7 +62,7 @@ body{
 }
 
 .toggle-form-button:hover, .form-actions button:hover {
-  background-color: var(--default-background);
+  background-color: var(--default-hover);
 }
 
 .form-container, .notes-list {
@@ -86,7 +86,7 @@ body{
 
 .window-container {
   padding: 20px;
-  background: white;
+  background: var(--default-background);
   border-radius: 8px;
   width: 80%;  /* or a fixed width like 300px */
   max-width: 500px;  /* Adjust based on your preference */

@@ -12,6 +12,7 @@
   --medium: #FF851B;
   --low: #2ECC40;
   --dark-mode-buttton: #ffff00;
+  --default-hover:#484847;
 }
 .dark-mode {
   --default-sidebar: #333533;
@@ -27,4 +28,5 @@
   --medium: #0074EB;
   --low: #DE4AC3;
   --dark-mode-buttton: #747874;
+  --default-hover:#b2b7ac;
 }
