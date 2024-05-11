@@ -1,7 +1,7 @@
+<body>
 <app-header></app-header>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
 <div class="notes-container" [@dialog]>
   <div class="title-search-bar">
     <svg viewBox="0 0 24 24" aria-hidden="true" class="search-icon">
@@ -48,7 +48,6 @@
       </div>
 
 
-
       <div class="form-actions">
         <button (click)="submitNote()"><i class="fas fa-save"></i> Guardar</button>
         <button (click)="toggleForm()"><i class="fas fa-times"></i> Cancelar</button>
@@ -57,7 +56,8 @@
   </div>
 
   <div class="notes-list" [@dialog]>
-    <div *ngFor="let note of filteredNotes" class="note-item" [ngStyle]="{ 'background-color': color(note.courseName,courses) || note.color }">
+    <div *ngFor="let note of filteredNotes" class="note-item"
+         [ngStyle]="{ 'background-color': color(note.courseName,courses) || note.color }">
       <div class="note-content">
         <h2>{{ note.title }}</h2>
         <p>{{ [note.courseName] }}</p>
@@ -71,10 +71,13 @@
       </div>
     </div>
   </div>
-  <div class="asignaturas"><div *ngFor="let course of courses">
-    <option [value]="course.id">{{ course.name }}</option>
-    <div class="subj">
-      <input type="color" [(ngModel)]="course.color" (change)="cambiarColor(course,course.color)">
+  <div class="asignaturas">
+    <div *ngFor="let course of courses">
+      <option [value]="course.id">{{ course.name }}</option>
+      <div class="subj">
+        <input type="color" [(ngModel)]="course.color" (change)="cambiarColor(course,course.color)">
+      </div>
     </div>
-  </div></div>
+  </div>
 </div>
+</body>

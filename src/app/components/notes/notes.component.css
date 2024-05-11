@@ -1,14 +1,18 @@
+body{
+  background-color: var(--default-background);
+}
 .notes-container {
   max-width: 70%;
   margin: 20px auto;
+  background-color: var(--default-background);
 }
 
 .toggle-form-button, .form-actions button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #242423;
-  color: white;
+  background-color: var(--default-text);
+  color: var(--default-background);;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
@@ -58,7 +62,7 @@
 }
 
 .toggle-form-button:hover, .form-actions button:hover {
-  background-color: #484847;
+  background-color: var(--default-background);
 }
 
 .form-container, .notes-list {
@@ -153,7 +157,7 @@
   box-shadow: 0 0 0 1.5px #2b2c37, 0 0 25px -17px #000;
   border: 0;
   border-radius: 12px;
-  background-color: #16171d;
+  background-color: var(--default-text);
   outline: none;
   color: #bdbecb;
   transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
@@ -188,7 +192,8 @@
 }
 
 .asignaturas{
-  background-color: #dcf5ee;
+  color:var(--default-text);
+  background-color: var(--default-background);
   position: fixed;
   bottom: 0;
   width: 100%;
