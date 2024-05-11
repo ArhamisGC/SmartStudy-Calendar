@@ -13,6 +13,22 @@
   --low: #2ECC40;
   --dark-mode-buttton: #ffff00;
   --default-hover:#484847;
+
+  
+
+  /* Inversion de colores */
+  --white: #FFFFFF;              /* Blanco puro */
+  --black: #000000;              /* Negro puro */
+  --red: #FF4136;                /* Rojo brillante */
+  --blue: #0074D9;               /* Azul brillante */
+  --green: #2ECC40;              /* Verde brillante */
+  --yellow: #FFDC00;             /* Amarillo vivo */
+  --purple: #800080;             /* Púrpura */
+  --orange: #FFA500;             /* Naranja */
+  --pink: #FFC0CB;               /* Rosado */
+
+  /* paleta */
+  --paleta-negro: #242423;
 }
 .dark-mode {
   --default-sidebar: #333533;
@@ -29,4 +45,17 @@
   --low: #DE4AC3;
   --dark-mode-buttton: #747874;
   --default-hover:#b2b7ac;
+
+  /* inversion de colores */
+  --white: #000000;              /* Negro puro */
+  --black: #FFFFFF;              /* Blanco puro */
+  --red: #DB7093;                /* Rosado pálido */
+  --blue: #ADD8E6;               /* Azul claro */
+  --green: #ABEBC6;              /* Verde claro */
+  --yellow: #F9E79F;             /* Amarillo crema */
+  --purple: #DA70D6;             /* Lavanda */
+  --orange: #FFDAB9;             /* Melocotón */
+  --pink: #FFB6C1;               /* Rosa claro */
+
+  --paleta-negro: #dbdbdc;
 }

@@ -2,22 +2,21 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
+  background-color: var(--default-background);
   margin: 0;
   padding: 20px;
 }
 
 .todo-app {
-  background: white;
+  background: var(--default-background);
   max-width: 100%;
   margin: 20px auto;
   padding: 10px;
   box-shadow: 2px 2px 10px #ccc;
+  color: var(--black);
 }
 
-.app-header h1 {
-  color: #333;
-}
+
 
 span {
   display: flex;
@@ -39,6 +38,8 @@ select {
   margin: 5px 0;
   border-radius: 5px;
   border: 1px solid #ccc;
+  color: var(--black);
+  background-color: var(--default-background);
 }
 
 .modal-backdrop {
@@ -55,7 +56,7 @@ select {
 }
 
 .task-builder-container {
-  background: white;
+  background: var(--default-background);
   padding: 20px;
   border-radius: 8px;
   width: auto;
@@ -67,8 +68,8 @@ select {
 button {
   min-width: 75px;
   margin-right: 5px;
-  background-color: #242423;
-  color: white;
+  background-color: var(--paleta-negro);
+  color: var(--white);
   border: none;
   padding: 10px;
   cursor: pointer;
@@ -162,7 +163,7 @@ li:last-child {
 .checkbox-wrapper-44 .toggleButton input + div svg {
   fill: none;
   stroke-width: 3.6;
-  stroke: #000;
+  stroke: var(--black);
   stroke-linecap: round;
   stroke-linejoin: round;
   width: 44px;
@@ -184,7 +185,7 @@ li:last-child {
   content: "";
   width: 3px;
   height: 16px;
-  background: #000;
+  background: var(--black);
   position: absolute;
   left: 50%;
   top: 50%;
@@ -371,7 +372,7 @@ progress {
   height: 20px;
   overflow: hidden;
   border-radius: 10px;
-  background-color: #eee;
+  background-color: var(--default-background);
   transition: width 0.5s ease, background-color 0.5s ease; /* Suaviza la transición del ancho y color de fondo */
 }
 
@@ -380,13 +381,13 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-  background-color: #242423;
+  background-color: var(--paleta-negro);
   border-radius: 10px;
   transition: width 0.5s ease, background-color 0.5s ease; /* Animación suave */
 }
 
 progress::-moz-progress-bar {
-  background-color: #242423;
+  background-color: var(--paleta-negro);
   border-radius: 10px;
   transition: width 0.5s ease; /* Animación suave */
 }
