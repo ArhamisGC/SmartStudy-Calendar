@@ -7,12 +7,15 @@ import { UserService } from "../../services/user.service";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent {
   showNotifications = false;
   showWeather: boolean = false;
 
   isDarkModeEnabled: boolean = false;
-  constructor(private router: Router,private userService: UserService) {}
+  showMenu: boolean = false;
+
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.isDarkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
@@ -31,6 +34,11 @@ export class HeaderComponent {
 
   navigateTo(path: string): void {
     this.router.navigate([path]);
+    this.showMenu = false; // Close the menu after navigation
+  }
+
+  toggleMenu(): void {
+    this.showMenu = !this.showMenu;
   }
 
   logout() {
@@ -42,7 +50,9 @@ export class HeaderComponent {
     this.showNotifications = !this.showNotifications; // Cambia la visibilidad del componente de notificaciones
   }
 
+
   toggleWeather(): void {
     this.showWeather = !this.showWeather; // Cambia la visibilidad del componente de tiempo
   }
 }
+

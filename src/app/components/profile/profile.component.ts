@@ -22,7 +22,7 @@ import {DOCUMENT} from "@angular/common";
 
 export class ProfileComponent implements OnInit {
   userData: User = {
-    profilePicture: 'https://via.placeholder.com/250',
+    profilePicture: '',
     nombreCompleto: '',
     email: '',
     telefono: '',
@@ -42,6 +42,9 @@ export class ProfileComponent implements OnInit {
       if (userData) {
         this.userData = userData;
         this.tempUser = {...userData};
+        if (userData.profilePicture == null || userData.profilePicture == '') {
+          this.userData.profilePicture = "https://placehold.co/300x300";
+        }
       }
     });
   }

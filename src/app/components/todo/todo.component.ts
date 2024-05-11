@@ -6,7 +6,6 @@ import Course from '../../interfaces/course.interface';
 import { CourseService } from '../../services/course.service';
 import { DocumentReference } from 'firebase/firestore';
 
-
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',

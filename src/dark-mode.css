@@ -7,6 +7,11 @@
   --text-reminders: #E8EDDF;
   --header: #FFFFFF;
   --background-reminder: #CFDBD5;
+  --default-bars: #cdcdcd;
+  --high: #FF4136;
+  --medium: #FF851B;
+  --low: #2ECC40;
+  --dark-mode-buttton: #ffff00;
 }
 .dark-mode {
   --default-sidebar: #333533;
@@ -17,4 +22,9 @@
   --text-reminders: #242423;
   --header: #242423;
   --background-reminder: #333533;
+  --default-bars: rgba(126, 127, 133, 0.22);
+  --high: #00ABCE;
+  --medium: #0074EB;
+  --low: #DE4AC3;
+  --dark-mode-buttton: #747874;
 }

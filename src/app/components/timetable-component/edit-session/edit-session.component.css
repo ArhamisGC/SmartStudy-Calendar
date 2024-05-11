@@ -24,16 +24,18 @@
   align-items: center;
   gap: 15px;
   padding: 20px;
-  background: white;
+  background: var(--default-background);
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 600px;
+  color: var(--default-text);
 }
 
 .form-title, .form-label {
   margin-bottom: 10px;
   font-weight: 600;
+  color: var(--default-text);
 }
 
 .day-buttons {
@@ -47,7 +49,7 @@
   flex-grow: 1;
   margin: 2px;
   padding: 8px;
-  background-color: #333;
+  background-color: var(--default-bars);
   border: none;
   border-radius: 5px;
   cursor: pointer;
