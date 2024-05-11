@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit {
   user$: Observable<User | undefined>;
   protected userData: any;
   showSubjectManager: boolean = false;
-  private userImage: String = "https://placehold.co/600x400";
+  protected userImage: String = "https://placehold.co/300x300";
   isDarkModeEnabled: boolean = false;
 
   tasks: Task[] = [];
@@ -48,7 +48,11 @@ export class DashboardComponent implements OnInit {
     this.userService.getUserData().subscribe(userData => {
       if (userData) {
         this.userData = userData;
-        this.userImage = userData.profilePicture;
+        if (userData.profilePicture !== null && userData.profilePicture !== undefined && userData.profilePicture !== ""
+        ){
+          this.userImage = userData.profilePicture;
+        }
+
       }
     });
 
