@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +25,7 @@ body, html {
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
+  position: relative;
 }
 
 .profile-info {
@@ -117,21 +119,13 @@ body, html {
   animation: fadeIn 0.5s ease-out forwards;
 }
 
-.dark-mode-switch {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-}
-
 .switch {
-  position: relative;
-  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+  left: 30%;
+  transform: translateY(-450%);
   width: 90px;
   height: 34px;
-  margin-right: 10px;
 }
 
 .switch input {
@@ -147,7 +141,7 @@ body, html {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--default-buttons);
+  background-color: var(--dark-mode-buttton);
   transition: .4s;
   border-radius: 34px;
   display: flex;
@@ -201,12 +195,40 @@ input:checked + .slider .white {
 }
 
 input:checked + .slider {
-  background-color: var(--default-buttons);
+  background-color: var(--dark-mode-buttton);
 }
 
 input:checked + .slider:before {
   transform: translateX(55px);
 }
+
+.progress-bar-container {
+  position: fixed;
+  bottom: 20px;
+  left: 260px;
+  right: 20px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.progress-bar {
+  position: relative;
+  height: 25px;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  margin-left: 10px;
+}
+
+.high { background-color: var(--high);}
+.medium { background-color: var(--medium);}
+.low { background-color: var(--low);}
 
 @media (max-width: 768px) {
   .sidebar {

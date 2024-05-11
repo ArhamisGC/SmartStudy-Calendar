@@ -9,6 +9,13 @@
     </div>
     <app-weather-widget [context]="'dashboard'"></app-weather-widget>
     <nav class="sidebar-nav">
+      <label class="switch">
+        <input type="checkbox" [checked]="isDarkModeEnabled" (change)="toggleDarkMode()">
+        <div class="slider round">
+          <span class="dark">Oscuro</span>
+          <span class="white">Claro</span>
+        </div>
+      </label>
       <a class="sidebar-link" (click)="navigateTo('/profile');"><i class="fas fa-cog"></i> Configuración de cuenta</a>
       <a class="sidebar-link" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
     </nav>
@@ -27,15 +34,18 @@
     </div>
   </div>
 
-  <div class="dark-mode-switch">
-    <label class="switch">
-      <input type="checkbox" [checked]="isDarkModeEnabled" (change)="toggleDarkMode()">
-      <div class="slider round">
-        <span class="dark">Oscuro</span>
-        <span class="white">Claro</span>
-      </div>
-    </label>
+  <div class="progress-bar-container">
+    <div class="progress-bar high" [style.width]="highCompletedPercentage + '%'">
+      <span class="label">Tareas de Alta Prioridad: {{ highCompletedPercentage | number:'1.0-0' }}%</span>
+    </div>
+    <div class="progress-bar medium" [style.width]="mediumCompletedPercentage + '%'">
+      <span class="label">Tareas de Media Prioridad: {{ mediumCompletedPercentage | number:'1.0-0' }}%</span>
+    </div>
+    <div class="progress-bar low" [style.width]="lowCompletedPercentage + '%'">
+      <span class="label">Tareas de Baja Prioridad: {{ lowCompletedPercentage | number:'1.0-0' }}%</span>
+    </div>
   </div>
+
 </div>
 <script src="animations.js"></script>
 </body>
