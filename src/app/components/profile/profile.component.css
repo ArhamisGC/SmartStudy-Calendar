@@ -1,3 +1,10 @@
+.full-page-background {
+  background-color: var(--default-background);
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
 :host {
   display: block;
   font-family: 'Poppins', sans-serif;

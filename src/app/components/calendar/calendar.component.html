@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+<div class="full-page-background">
 <app-header></app-header>
 
 <div class="calendar-container" [@dialog]>
@@ -41,3 +41,4 @@
 <app-event-creator *ngIf="showEventCreator" (eventCreated)="onEventCreated($event)" (close)="closeDialog()"></app-event-creator>
 <app-event-list-viewer *ngIf="showEventViewer" [events]="selectedEvents" (eventSelected)="handleEventSelected($event)" (close)="onEventViewerClose()"></app-event-list-viewer>
 <app-event-viewer *ngIf="selectedEvent" [event]="selectedEvent" (close)="onViewerClose()"></app-event-viewer>
+</div>

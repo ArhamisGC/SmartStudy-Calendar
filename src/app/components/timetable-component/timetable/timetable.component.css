@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 
-* {
+.full-page-background {
   background-color: var(--default-background);
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
 }
 
 .timetable-container {

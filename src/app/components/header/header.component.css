@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: var(--default-text);
 }
 
 .header {
@@ -10,10 +11,15 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: var(--default-background);
+  background-color: var(--default-bars);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   flex-wrap: wrap;
 }
+
+a {
+  color: var(--default-text);
+}
+
 
 .menu, .user-menu {
   display: flex;
@@ -73,6 +79,7 @@ body {
   display: inline-block;
   color: #333;
   text-decoration: none;
+  color: var(--default-text);
 }
 
 .user-menu {
@@ -198,3 +205,4 @@ input:not(:checked) + .slider .white {
   }
 
 }
+

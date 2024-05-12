@@ -1,4 +1,9 @@
-/* Estilos globales */
+.full-page-background {
+  background-color: var(--default-background);
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
 
 body {
   font-family: 'Arial', sans-serif;
@@ -78,6 +83,7 @@ button {
 
 .delete {
   background-color: #9c0000;
+  color: var(--default-text);
 }
 
 button:hover {

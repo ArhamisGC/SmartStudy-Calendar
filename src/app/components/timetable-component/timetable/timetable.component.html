@@ -7,73 +7,76 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-<app-header></app-header>
+<div class="full-page-background"> <!-- Div agregado para manejar el fondo de toda la página -->
+  <app-header></app-header>
 
-<div class="timetable-container">
-  <div class="buttons-container">
-    <button (click)="addSession()" title="Add Session">
-       Añadir clase
-    </button>
+  <div class="timetable-container">
+    <div class="buttons-container">
+      <button (click)="addSession()" title="Add Session">
+        Añadir clase
+      </button>
+    </div>
+
+    <div class="buttons-container">
+      <button (click)="toFind()" title="Find Session">
+        Buscar hora libre
+      </button>
+    </div>
+    <!-- Crea el cabezal de días de la semana -->
+    <table>
+      <thead>
+      <tr>
+        <th class="hour-header">Hora</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miércoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Comienza a crear las filas con las horas que haya -->
+      <tr *ngFor="let time of uniqueTimes">
+        <!-- Aquí pone las horas que es la clase -->
+        <td class="hour-cell">{{ time }}</td>
+        <td *ngFor="let day of daysOfWeek" class="class-cell">
+          <ng-container *ngFor="let session of getSessionsForDay(day)">
+            <div *ngIf="datePipe.transform(session.start.toDate(), 'shortTime') === time"
+                 [ngStyle]="{'background-color': session.color}"
+                 [ngClass]="{'dark-text': isDarkColor(session.color)}" class="class-box"
+                 (click)="openSessionViewer(session)">
+              {{ session.subjectName || 'Libre' }}
+              <i class="fas fa-pencil-alt edit-icon" (click)="editSubject(session); $event.stopPropagation()"></i>
+              <i class="fas fa-times delete-icon" (click)="deleteSubject(schedule.indexOf(session)); $event.stopPropagation()"></i>
+            </div>
+          </ng-container>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 
-  <div class="buttons-container">
-    <button (click)="toFind()" title="Find Session">
-      Buscar hora libre
-    </button>
+  <div *ngIf="showAddSessionModal" class="add-session-overlay">
+    <div class="modal-content">
+      <app-add-session (close)="closeAddSessionModal()"></app-add-session>
+    </div>
   </div>
-  <!--Crea el cabezal de dias de la semana-->
-  <table>
-    <thead>
-    <tr>
-      <th class="hour-header">Hora</th>
-      <th>Lunes</th>
-      <th>Martes</th>
-      <th>Miércoles</th>
-      <th>Jueves</th>
-      <th>Viernes</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!--Comienza a crear las filas con las horas que haya-->
-    <tr *ngFor="let time of uniqueTimes">
-      <!--Aquí pone las horas que es la clase-->
-      <td class="hour-cell">{{ time }}</td>
-      <td *ngFor="let day of daysOfWeek" class="class-cell">
-        <ng-container *ngFor="let session of getSessionsForDay(day)">
-          <div *ngIf="datePipe.transform(session.start.toDate(), 'shortTime') === time"
-               [ngStyle]="{'background-color': session.color}"
-               [ngClass]="{'dark-text': isDarkColor(session.color)}" class="class-box"
-               (click)="openSessionViewer(session)">
-            {{ session.subjectName || 'Libre' }}
-            <i class="fas fa-pencil-alt edit-icon" (click)="editSubject(session); $event.stopPropagation()"></i>
-            <i class="fas fa-times delete-icon" (click)="deleteSubject(schedule.indexOf(session)); $event.stopPropagation()"></i>
-          </div>
-        </ng-container>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
 
+  <div *ngIf="showSessionViewerModal" class="session-view-overlay">
+    <div class="modal-content">
+      <app-view-session [session]="selectedSession" (close)="closeSessionViewer()"></app-view-session>
+    </div>
+  </div>
+
+  <div *ngIf="showEditSessionModal" class="edit-session-overlay">
+    <app-edit-session [session]="editableSession" (onCancel)="closeEditSessionModal()"></app-edit-session>
+  </div>
+
+  <div *ngIf="showFindSessionModal" class="add-session-overlay">
+    <div class="modal-content">
+      <app-to-find (close)="closetoFindSessionModal()"></app-to-find>
+    </div>
+  </div>
+</div> <!-- Fin del div full-page-background -->
 </body>
-<div *ngIf="showAddSessionModal" class="add-session-overlay">
-  <div class="modal-content">
-    <app-add-session (close)="closeAddSessionModal()"></app-add-session>
-  </div>
-</div>
-
-<div *ngIf="showSessionViewerModal" class="session-view-overlay">
-  <div class="modal-content">
-    <app-view-session [session]="selectedSession" (close)="closeSessionViewer()"></app-view-session>
-  </div>
-</div>
-
-<div *ngIf="showEditSessionModal" class="edit-session-overlay">
-  <app-edit-session [session]="editableSession" (onCancel)="closeEditSessionModal()"></app-edit-session>
-</div>
-
-<div *ngIf="showFindSessionModal" class="add-session-overlay">
-  <div class="modal-content">
-    <app-to-find (close)="closetoFindSessionModal()"></app-to-find>
-  </div>
-</div>
+</html>
