@@ -16,7 +16,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  background-color: var(--default-sidebar);
+  background-color: var(--default-background);
   position: fixed;
   right: 0;
   z-index: 1050;
