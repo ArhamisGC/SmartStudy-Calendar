@@ -37,8 +37,9 @@ export class HeaderComponent {
     this.showMenu = false; // Close the menu after navigation
   }
 
-  toggleMenu(): void {
-    this.showMenu = !this.showMenu;
+  toggleMenu() {
+    const navbar = document.querySelector('.navbar') as HTMLElement;
+    navbar.classList.toggle('active');
   }
 
   logout() {
@@ -49,7 +50,6 @@ export class HeaderComponent {
   toggleNotifications(): void {
     this.showNotifications = !this.showNotifications; // Cambia la visibilidad del componente de notificaciones
   }
-
 
   toggleWeather(): void {
     this.showWeather = !this.showWeather; // Cambia la visibilidad del componente de tiempo

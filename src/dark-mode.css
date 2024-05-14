@@ -8,13 +8,14 @@
   --header: #FFFFFF;
   --background-reminder: #CFDBD5;
   --default-bars: #cdcdcd;
+  --default-toggle-button: #cdcdcd;
   --high: #FF4136;
   --medium: #FF851B;
   --low: #2ECC40;
   --dark-mode-buttton: #ffff00;
   --default-hover:#484847;
 
-  
+
 
   /* Inversion de colores */
   --white: #FFFFFF;              /* Blanco puro */
@@ -39,7 +40,8 @@
   --text-reminders: #242423;
   --header: #242423;
   --background-reminder: #333533;
-  --default-bars: rgba(126, 127, 133, 0.22);
+  --default-bars: #333533;
+  --default-toggle-button: #242423;
   --high: #00ABCE;
   --medium: #0074EB;
   --low: #DE4AC3;
