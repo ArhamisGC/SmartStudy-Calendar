@@ -113,6 +113,7 @@ button:hover {
   transform: scale(1.025);
 }
 
+/* Contenedor de recordatorios */
 .extra-square {
   font-family: 'Helvetica', sans-serif;
   display: flex;
@@ -125,9 +126,28 @@ button:hover {
   margin-top: 10px;
   box-sizing: border-box;
   min-height: 50vh;
-  max-height: 50vh;
   overflow-y: auto;
 }
+
+.extra-square .reminder-item {
+  flex: 1 1 calc(50% - 10px); /* Dos elementos por fila */
+  max-width: calc(50% - 10px);
+}
+
+@media (min-width: 768px) {
+  .extra-square .reminder-item {
+    flex: 1 1 calc(33.33% - 10px); /* Tres elementos por fila */
+    max-width: calc(33.33% - 10px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .extra-square .reminder-item {
+    flex: 1 1 calc(25% - 10px); /* Cuatro elementos por fila */
+    max-width: calc(25% - 10px);
+  }
+}
+
 
 .extra-square h3 {
   color: var(--text-reminders);
@@ -168,6 +188,7 @@ button:hover {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+  color: var(--text-reminders);
 }
 
 .extra-square .reminder-item p {

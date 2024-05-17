@@ -1,23 +1,24 @@
 <div class="full-page-background">
-<app-header></app-header>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <app-header></app-header>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
-<body>
+  <body>
   <div *ngIf="showMessageSuccess" class="message-success">Recordatorio creado con éxito.</div>
   <div *ngIf="showMessageError" class="message-error">{{ errorMessage }}</div>
 
   <div class="reminder-container" [@dialog]>
     <div class="form-group description">
-      <input type="text" id="description" [(ngModel)]="reminder.description" name="description" placeholder="Reminder Description" required>
+      <input type="text" id="description" [(ngModel)]="reminder.description" name="description"
+             placeholder="Reminder Description" required>
     </div>
     <div class="form-row">
       <div class="form-group time-date">
-        <label for="time">Time  </label>
+        <label for="time">Time </label>
         <input type="time" id="time" [(ngModel)]="reminder.time" name="time" required>
       </div>
       <div class="form-group time-date">
-        <label for="date">Date  </label>
+        <label for="date">Date </label>
         <input type="date" id="date" [(ngModel)]="reminder.date" name="date" required>
       </div>
     </div>
@@ -33,7 +34,7 @@
   </div>
 
   <div class="extra-square" [@dialog]>
-    <div *ngFor="let reminder of reminders; let i = index" class="reminder-item">
+    <div class="reminder-item" *ngFor="let reminder of reminders; let i = index">
       <h3>{{ reminder.description }}</h3>
       <p class="time-date">Hora: {{ reminder.time }} Fecha: {{ formatDate(reminder.date) }}</p>
       <div class="reminder-actions">
@@ -59,7 +60,8 @@
     <div class="edit-modal-content">
       <h2>Editar Recordatorio</h2>
       <form>
-        <input type="text" id="editDescription" [(ngModel)]="editReminder.description" name="editDescription">
+        <input type="text" id="editDescription" [(ngModel)]="editReminder.description"
+               name="editDescription">
 
         <div class="form-field inline-fields">
           <label for="editTime" class="TimeDateLabel">Hora: </label>
@@ -76,7 +78,5 @@
       </form>
     </div>
   </div>
-</body>
+  </body>
 </div>
-
-
