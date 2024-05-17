@@ -103,6 +103,8 @@ body{
   box-shadow: 20px 20px 60px rgba(190, 190, 190, 1);
 }
 
+
+
 .note-item {
   display: inline-block;
   width: calc(33.333% - 60px);
@@ -114,6 +116,42 @@ body{
   vertical-align: top;
 
 }
+
+/* Notas */
+.notes-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.note-item {
+  width: calc(33.333% - 20px); /* Ajustar para tres columnas en pantallas más grandes */
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .note-item {
+    width: calc(50% - 20px); /* Ajustar para dos columnas en pantallas medianas */
+  }
+}
+
+@media (max-width: 480px) {
+  .note-item {
+    width: 100%; /* Ajustar para una columna en pantallas más pequeñas */
+  }
+}
+
+/* Asignaturas */
+.asignaturas {
+  overflow-x: auto; /* Permitir desplazamiento horizontal en pantallas pequeñas */
+}
+
+.subj {
+  flex-shrink: 0; /* Evitar que las asignaturas se reduzcan de tamaño en pantallas pequeñas */
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 
 .note-content h2, .note-content p, .note-actions button {
   margin: 10px 0;
@@ -219,3 +257,6 @@ option{
   margin-left: 20px;
   margin-right: 20px;
 }
+
+
+
