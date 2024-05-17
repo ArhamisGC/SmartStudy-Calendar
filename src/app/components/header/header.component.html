@@ -44,7 +44,7 @@
     <a (click)="logout()" class="logout-item"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
   </div>
 
-  <div *ngIf="showNotifications" class="notification-wrapper"><app-notification></app-notification></div>
-  <div *ngIf="showWeather" class="weather-wrapper"><app-weather-widget [context]="'header'"></app-weather-widget></div>
-
 </div>
+
+<div *ngIf="showNotifications" class="notification-wrapper"><app-notification></app-notification></div>
+<div *ngIf="showWeather" class="weather-wrapper"><app-weather-widget [context]="'header'"></app-weather-widget></div>
